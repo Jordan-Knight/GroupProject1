@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Group Project 1</title>
-	<p> Marya was here </p>
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<title>Study Groop</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel='stylesheet' type='text/css' href='assets/styles/style.css'>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+	<script type='text/javascript' src='assets/js/app.js'></script>
 </head>
-<body>
-<h1>What Whatt  Tony is in the Houuuuse</h1>
 
-<h1>This is KAYLEA!</h1>
+<div class="banner row">
+	<h1>Study Groop</h1>
+	<table class="table table-hover" id='employee-table'>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Availability</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+</div>
 
+<body class="container">
+<div class="content row">
+	<iframe class="col-md-7" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110229.26652340658!2d-97.74794657448211!3d30.303609135686962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b599a0cc032f%3A0x5d9b464bd469d57a!2sAustin%2C+TX!5e0!3m2!1sen!2sus!4v1495510226051" allowfullscreen></iframe>
+<div class="row">	
+	<section class="user-input col-md-4">
+	<form>
+		<div class="form-group">
+                  <label for="student-name-input">Student Name</label>
+                  <input class="form-control" id="student-name-input" type="text" placeholder="Your name here">
+                </div>
+                <div class="form-group">
+                  <label for="time-input">Availability</label>
+                  <input class="form-control" id="time-input" type="text" placeholder="Ideal times are 10am to 5pm or 5pm to 10pm">
+                </div>
+                <button class="btn" id="add-employee-btn" type="submit">Submit</button>
+	</form>
+	</section>
+</div>
 </body>
 </html>

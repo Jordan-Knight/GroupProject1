@@ -1,4 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
 body {
+	background-image: url(../images/cloudy-day.png);
+	background-color: #747b8e;
+	color: #000;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.banner {
+	background-color: #747b8e;
+	color: #F1F4E5;
+	height: 15%;
+	width: 100%;
+	top: 0px;
+    letter-spacing: 0.05em;
+    border-bottom: 5px solid #000;
+    text-align: center;
+    margin: 0px;
+    right: 0px;
+    position: fixed;
+	z-index: 999;
+}
+
+h1 {
+	color: #000;
+	text-shadow:
+			-1px -1px 0 #D7ECEB,  
+    		1px -1px 0 #D7ECEB,
+    		-1px 1px 0 #D7ECEB,
+     		1px 1px 0 #D7ECEB;
+    font-weight: 900;
+}
+
+iframe {
+	height: 500px;
+	border: 3px solid #747b8e;
+	margin: 1% 1%;
+	padding: 0px;
+	width: 100%;
+}
+
+.user-input {
+	margin: 1% 1%;
+	overflow: auto;
+}
+
+button {
+	background-color: #747b8e;
+	color: #F1F4E5;
+}
+
+.btn:hover {
+	color: #D7ECEB;
 	background-color: #000;
-	color: #FFFFFF;
+}
+
+.content {
+	margin: 125px 0px 0px 0px;
 }
