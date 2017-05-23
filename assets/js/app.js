@@ -6,12 +6,12 @@ var googleApi = {
 };
 
 var firebaseConfig = {
-	apiKey: "AIzaSyBsIeE686XAmx6rsPiE3igmwLIkGm1Iah8",
-    authDomain: "studentmeetup-1495578444077.firebaseapp.com",
-    databaseURL: "https://studentmeetup-1495578444077.firebaseio.com",
-    projectId: "studentmeetup-1495578444077",
-    storageBucket: "studentmeetup-1495578444077.appspot.com",
-    messagingSenderId: "882686649590"
+    apiKey: "AIzaSyD-ftcKUoOvdhzaeaXypzqjyzKrsoZMGr8",
+    authDomain: "stump-ddd23.firebaseapp.com",
+    databaseURL: "https://stump-ddd23.firebaseio.com",
+    projectId: "stump-ddd23",
+    storageBucket: "stump-ddd23.appspot.com",
+    messagingSenderId: "140581118335"
 
 };
 
