@@ -11,7 +11,7 @@ body {
 .banner {
 	background-color: #000;
 	color: #E6BB8E;
-	height: 20%;
+	height: 15%;
 	width: 100%;
 	top: 0px;
     letter-spacing: 0.05em;
@@ -45,6 +45,9 @@ iframe {
 .user-input {
 	margin: 1% 1%;
 	overflow: auto;
+	background-color: #E6BB8E;
+	padding: 3%;
+	border: 3px solid #747b8e;
 }
 
 button {
@@ -59,10 +62,4 @@ button {
 
 .content {
 	margin: 175px 0px 0px 0px;
-}
-
-form {
-	background-color: #E6BB8E;
-	padding: 3%;
-	border: 3px solid #747b8e;
 }

@@ -13,16 +13,6 @@
 
 <div class="banner row">
 	<h1>STUMP</h1>
-	<table class="table table-hover" id='employee-table'>
-                <thead>
-                  <tr>
-                    <th>Student</th>
-                    <th>Availability</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
 </div>
 
 <body class="container">
@@ -31,14 +21,36 @@
 	<form>
 		<div class="form-group">
                   <label for="student-name-input">Student Name</label>
-                  <input class="form-control" id="student-name-input" type="text" placeholder="Your name here">
+                  <br>
+                  <button id="tony" class="btn">Tony</button>
+                  <button id="kaylie" class="btn">Kaylie</button>
+                  <button id="marya" class="btn">Marya</button>
+                  <button id="jordan" class="btn">Jordan</button>
+                  <button id="john" class="btn">John</button>
                 </div>
-                <div class="form-group">
-                  <label for="time-input">Availability</label>
-                  <input class="form-control" id="time-input" type="text" placeholder="Ideal times are 10am to 5pm or 5pm to 10pm">
-                </div>
-                <button class="btn" id="add-employee-btn" type="submit">Submit</button>
+                <label for="availability-input">Availability</label>
+                <br>
+                <button id="am-button" class="btn btn-info">10am to 2pm</button>
+                <br>
+                <button id="mid-button" class="btn btn-warning">2pm to 6pm</button>
+                <br>
+                <button id="pm-button" class="btn btn-primary">6pm to 10pm</button>
+                <br>
+                <button class="btn" id="add-student-btn" type="submit">Create Stump</button>
 	</form>
+			<table>
+				<thead>
+                  <tr>
+					<th>Stump Leader</th>
+					<th>Location</th>
+					<th>Stumpies</th>
+					<th>Time</th>
+					<th><button class="btn" id="join-btn" type="join">Join Stump</button></th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
 	</section>
 <div class="row">	
 	<iframe class="col-md-7" src="https://www.google.com/maps/d/embed?mid=1lBsF4dIWCf9EfRZZalpX__amifA&hl=en_US" allowfullscreen></iframe>
