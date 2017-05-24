@@ -17,6 +17,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(config);
 
+var database = firebase.database();
 
 
 
@@ -44,3 +45,9 @@ var users = [
 {ID: "student5", name: "john", email: "jfbendfeldt@gmail.com"} ];
 
 var stumpObject = {creater: "", availability: "", location: "", stumpees: "", date: ""};
+
+function stumpGet(snapshot){
+	$.ajax({
+
+	});
+}
