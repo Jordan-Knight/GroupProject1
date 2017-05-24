@@ -17,6 +17,9 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+var database = firebase.database();
+
+
 
 
 /*var userID;
@@ -42,41 +45,21 @@ var users = [
 {ID: "student4", name: "anthony", email: "apekearo@gmail.com"}, 
 {ID: "student5", name: "john", email: "jfbendfeldt@gmail.com"} ];
 
-var stumpObject = {creater: "", availability: "", location: "", stumpees: "", date: ""};
+var stumpObject = {creater: "", availability: "", location: "30.283552,-97.733410", stumpees: "", date: ""};
 
-var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
-        });
-        infoWindow = new google.maps.InfoWindow;
+//******************************************************************************************************************
+//THIS IS KAYLEA'S API STUFFFFFF!
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+//the type of place the user wants to meet at
+var placeType = "cafe";
+//any restrictions on the place **vegetarian, gluten free???
+var keyword = "coffee";
+//distance from the user location **this will be a set distance for now but I am using a variable in case 
+//we want to change it in the future
+var distance = "16093.4";
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
+var googlePlace = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location="+stumpObject.location+"&radius="+distance+
+"&type="+type+"&keyword="+keyword+"&key="+googleApi.key;
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
+console.log(googlePlace);
+//*******************************************************************************************************************
