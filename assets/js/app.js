@@ -59,7 +59,7 @@ var keyword = "coffee";
 var distance = "16093.4";
 
 var googlePlaceUrl = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location="+stumpObject.location+"&radius="+distance+
-"&type="+type+"&keyword="+keyword+"&key="+googleApi.key;
+"&type="+placeType+"&keyword="+keyword+"&key="+googleApi.key;
 
 $.ajax({
                 url: googlePlaceUrl,
