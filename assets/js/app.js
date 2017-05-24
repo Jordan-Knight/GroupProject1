@@ -17,16 +17,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(config);
 
-var slackApi = {
-	oauth : "https://slack.com/oauth/authorize",
-	clientId : "159539740338.187078916050",
-	clientSecret : "ebe5869fe6e04851d665a42e8c637c7f",
-	webHookUrl : "https://hooks.slack.com/services/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",
-	curl : curl -X POST -H 'Content-type: application/json' --data '{"text":' slackApi.message'}',
-	message : "",
-	
 
-};
 
 
 /*var userID;
