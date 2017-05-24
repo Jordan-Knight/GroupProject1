@@ -45,4 +45,21 @@ var users = [
 {ID: "student4", name: "anthony", email: "apekearo@gmail.com"}, 
 {ID: "student5", name: "john", email: "jfbendfeldt@gmail.com"} ];
 
-var stumpObject = {creater: "", availability: "", location: "", stumpees: "", date: ""};
+var stumpObject = {creater: "", availability: "", location: "30.283552,-97.733410", stumpees: "", date: ""};
+
+//******************************************************************************************************************
+//THIS IS KAYLEA'S API STUFFFFFF!
+
+//the type of place the user wants to meet at
+var placeType = "cafe";
+//any restrictions on the place **vegetarian, gluten free???
+var keyword = "coffee";
+//distance from the user location **this will be a set distance for now but I am using a variable in case 
+//we want to change it in the future
+var distance = "16093.4";
+
+var googlePlace = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location="+stumpObject.location+"&radius="+distance+
+"&type="+type+"&keyword="+keyword+"&key="+googleApi.key;
+
+console.log(googlePlace);
+//*******************************************************************************************************************
