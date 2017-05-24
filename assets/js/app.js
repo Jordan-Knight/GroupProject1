@@ -58,8 +58,15 @@ var keyword = "coffee";
 //we want to change it in the future
 var distance = "16093.4";
 
-var googlePlace = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location="+stumpObject.location+"&radius="+distance+
+var googlePlaceUrl = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location="+stumpObject.location+"&radius="+distance+
 "&type="+type+"&keyword="+keyword+"&key="+googleApi.key;
 
-console.log(googlePlace);
+$.ajax({
+                url: googlePlaceUrl,
+                method: "GET"
+            }).done( function (reponse) {
+   				var result = reponse.data;
+   				console.log(result);
+            });
+console.log(googlePlaceUrl);
 //*******************************************************************************************************************
