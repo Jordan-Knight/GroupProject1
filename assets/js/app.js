@@ -17,6 +17,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(config);
 
+<<<<<<< HEAD
 // var slackApi = {
 // 	oauth : "https://slack.com/oauth/authorize",
 // 	clientId : "159539740338.187078916050",
@@ -27,6 +28,9 @@ firebase.initializeApp(config);
 	
 
 // };
+=======
+
+>>>>>>> 104af7a38541e76b7c7421546b531f04edf0a8ff
 
 
 /*var userID;

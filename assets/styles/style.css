@@ -53,6 +53,7 @@ iframe {
 button {
 	color: #E6BB8E;
 	background-color: #000;
+	padding: 0px;
 }
 
 .btn:hover {
