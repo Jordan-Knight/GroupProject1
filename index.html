@@ -17,7 +17,7 @@
 
 <body class="container">
 <div class="content row">
-	<section class="user-input col-md-4">
+	<section class="user-input col-md-7">
 	<form>
 		<div class="form-group">
                   <label for="student-name-input">Student Name</label>
@@ -31,9 +31,9 @@
                 <label for="availability-input">Availability</label>
                 <br>
                 <button id="am-button" class="btn btn-info">10am to 2pm</button>
-                <br>
+                
                 <button id="mid-button" class="btn btn-warning">2pm to 6pm</button>
-                <br>
+                
                 <button id="pm-button" class="btn btn-primary">6pm to 10pm</button>
                 <br>
                 <button class="btn" id="add-student-btn" type="submit">Create Stump</button>
@@ -43,6 +43,7 @@
                   <tr>
 					<th>Stump Leader</th>
 					<th>Location</th>
+					<th><button class="btn" id="view-btn" type="view">View</button></th>
 					<th>Stumpees</th>
 					<th>Time</th>
 					<th><button class="btn" id="join-btn" type="join">Join Stump</button></th>
@@ -53,7 +54,7 @@
 			</table>
 	</section>
 <div class="row">	
-	<iframe class="col-md-7" src="https://www.google.com/maps/d/embed?mid=1lBsF4dIWCf9EfRZZalpX__amifA&hl=en_US" allowfullscreen></iframe>
+	<iframe class="col-md-3" src="https://www.google.com/maps/d/embed?mid=1lBsF4dIWCf9EfRZZalpX__amifA&hl=en_US" allowfullscreen></iframe>
 </div>
 </body>
 </html>

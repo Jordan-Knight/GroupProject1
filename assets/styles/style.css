@@ -63,3 +63,11 @@ button {
 .content {
 	margin: 120px 0px 0px 0px;
 }
+
+th {
+	width: 7%;
+}
+
+table, th, td {
+    border: 0.5px dashed #747b8e;
+}
