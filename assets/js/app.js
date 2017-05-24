@@ -17,6 +17,8 @@ var firebaseConfig = {
 
 firebase.initializeApp(config);
 
+var database = firebase.database();
+
 
 
 
