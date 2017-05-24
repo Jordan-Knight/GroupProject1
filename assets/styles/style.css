@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
 body {
-	background-image: url(../images/cloudy-day.png);
+	background-image: url(../images/woodbg.jpg);
+	background-size: 100%;
 	background-color: #747b8e;
 	color: #000;
 	font-family: 'Ubuntu', sans-serif;
 }
 
 .banner {
-	background-color: #747b8e;
-	color: #F1F4E5;
+	background-color: #000;
+	color: #E6BB8E;
 	height: 15%;
 	width: 100%;
 	top: 0px;
@@ -23,12 +24,12 @@ body {
 }
 
 h1 {
-	color: #000;
+	color: #E6BB8E;
 	text-shadow:
-			-1px -1px 0 #D7ECEB,  
-    		1px -1px 0 #D7ECEB,
-    		-1px 1px 0 #D7ECEB,
-     		1px 1px 0 #D7ECEB;
+			-1px -1px 0 #B86403,  
+    		1px -1px 0 #B86403,
+    		-1px 1px 0 #B86403,
+     		1px 1px 0 #B86403;
     font-weight: 900;
 }
 
@@ -46,15 +47,21 @@ iframe {
 }
 
 button {
-	background-color: #747b8e;
-	color: #F1F4E5;
+	color: #E6BB8E;
+	background-color: #000;
 }
 
 .btn:hover {
-	color: #D7ECEB;
-	background-color: #000;
+	background-color: #747b8e;
+	color: #000;
 }
 
 .content {
 	margin: 125px 0px 0px 0px;
+}
+
+form {
+	background-color: #E6BB8E;
+	padding: 3%;
+	border: 3px solid #747b8e;
 }
