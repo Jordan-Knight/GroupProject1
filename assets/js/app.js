@@ -87,9 +87,9 @@ console.log(googlePlaceUrl);
       var map, infoWindow;
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
-        });
+          center: {lat: 30.2672, lng: -97.7431},
+          zoom: 14
+         });
         infoWindow = new google.maps.InfoWindow;
 
         // Try HTML5 geolocation.
