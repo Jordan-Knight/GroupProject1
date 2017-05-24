@@ -27,3 +27,28 @@ var slackApi = {
 	
 
 };
+
+
+/*var userID;
+var userName;
+var userCurrentLocation;
+var userAvailabilty;
+var userEmail;
+
+//array of users
+*var users = [{
+	ID: userID,
+	name: userName,
+	currentLocation: userCurrentLocation,
+	//stumpLocation: userStumpLocation //maybe????
+	availability: userAvailabilty,
+	email: userEmail
+}]*/
+
+var users = [
+{ID: "student1", name: "kaylea", email: "kayleabox09@gmail.com"}, 
+{ID: "student2", name: "marya", email: "marya.crigler@att.net"}, 
+{ID: "student3", name: "jordan", email: "jbknight83@gmail.com"},
+{ID: "student4", name: "anthony", email: "apekearo@gmail.com"}, 
+{ID: "student5", name: "john", email: "jfbendfeldt@gmail.com"} ]
+
