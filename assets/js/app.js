@@ -1,7 +1,7 @@
 var googleApi = {
 
 	key : "AIzaSyBUln0pM_BnfEb_h86rcctPuC5hECblXgY",
-	queryUrl : "https://maps.googleapis.com/maps/api/js?key=" + googleApi.key + "&callback=initMap"
+	queryUrl : "https://maps.googleapis.com/maps/api/js?key=" + this.key + "&callback=initMap"
 
 };
 
@@ -15,22 +15,8 @@ var firebaseConfig = {
 
 };
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
-<<<<<<< HEAD
-// var slackApi = {
-// 	oauth : "https://slack.com/oauth/authorize",
-// 	clientId : "159539740338.187078916050",
-// 	clientSecret : "ebe5869fe6e04851d665a42e8c637c7f",
-// 	webHookUrl : "https://hooks.slack.com/services/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",
-// 	curl : curl -X POST -H 'Content-type: application/json' --data '{"text":' slackApi.message'}',
-// 	message : "",
-	
-
-// };
-=======
-
->>>>>>> 104af7a38541e76b7c7421546b531f04edf0a8ff
 
 
 /*var userID;
