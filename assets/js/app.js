@@ -1,7 +1,7 @@
 var googleApi = {
 
 	key : "AIzaSyBUln0pM_BnfEb_h86rcctPuC5hECblXgY",
-	queryUrl : "https://maps.googleapis.com/maps/api/js?key=" + googleApi.key + "&callback=initMap"
+	queryUrl : "https://maps.googleapis.com/maps/api/js?key=" + this.key + "&callback=initMap"
 
 };
 
@@ -15,7 +15,7 @@ var firebaseConfig = {
 
 };
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
