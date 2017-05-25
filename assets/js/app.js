@@ -189,7 +189,7 @@ console.log(googlePlaceUrl);
 //*******************************************************************************************************************
 // Jordan Firebase push plus population of table
 
-$(document).ready({
+$(document).ready(function() {
 
 	database.ref().on("child_added", function(snapshot){
 		var row = $("<tr>");
