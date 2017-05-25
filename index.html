@@ -22,21 +22,21 @@
 		<div class="form-group">
                   <label for="student-name-input">Student Name</label>
                   <br>
-                  <button id="tony" class="btn">Tony</button>
-                  <button id="kaylie" class="btn">Kaylie</button>
-                  <button id="marya" class="btn">Marya</button>
-                  <button id="jordan" class="btn">Jordan</button>
-                  <button id="john" class="btn">John</button>
+                  <button id="tony" data-value="Tony" class="btn btn-user">Tony</button>
+                  <button id="kaylea" data-value="Kaylea" class="btn btn-user">Kaylea</button>
+                  <button id="marya" data-value="Yaya" class="btn btn-user">Marya</button>
+                  <button id="jordan" data-value="Jordan" class="btn btn-user">Jordan</button>
+                  <button id="john" data-value="John" class="btn btn-user">John</button>
                 </div>
                 <label for="availability-input">Availability</label>
                 <br>
-                <button id="am-button" class="btn btn-info">10am to 2pm</button>
+                <button id="am-button" data-value="am" class="btn btn-info">10am to 2pm</button>
                 
-                <button id="mid-button" class="btn btn-danger">2pm to 6pm</button>
+                <button id="mid-button" data-value="mid" class="btn btn-danger">2pm to 6pm</button>
                 
-                <button id="pm-button" class="btn btn-primary">6pm to 10pm</button>
+                <button id="pm-button" data-value="pm" class="btn btn-primary">6pm to 10pm</button>
                 <br>
-                <button class="btn" id="add-student-btn" type="submit">Create Stump</button>
+                <button class="btn" id="add-stump-btn" type="submit">Create Stump</button>
                 <br>
 	</form>
 			<table>
@@ -49,7 +49,7 @@
 					<th><button class="btn" id="join-btn" type="join">Join Stump</button></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="stumps">
 				</tbody>
 			</table>
 	</section>

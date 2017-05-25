@@ -22,6 +22,8 @@ var database = firebase.database();
 
 
 
+
+
 /*var userID;
 var userName;
 var userCurrentLocation;
@@ -45,7 +47,13 @@ var users = [
 {ID: "student4", name: "anthony", email: "apekearo@gmail.com"}, 
 {ID: "student5", name: "john", email: "jfbendfeldt@gmail.com"} ];
 
-var stumpObject = {creater: "", availability: "", location: "30.283552,-97.733410", stumpees: "", date: ""};
+var stumpObject = {
+	creator: "", 
+	availability: "", 
+	location: "30.283552,-97.733410", 
+	stumpees: "", 
+	date: ""
+};
 
 //******************************************************************************************************************
 //THIS IS KAYLEA'S API STUFFFFFF!
@@ -62,13 +70,47 @@ var googlePlaceUrl = "https://maps.googleapis.com/maps/api/place/radarsearch/jso
 "&type="+placeType+"&keyword="+keyword+"&key="+googleApi.key;
 
 $.ajax({
-                url: googlePlaceUrl,
-                method: "GET"
-            }).done( function (reponse) {
-   				var result = reponse.data;
-   				console.log(result);
-            });
+	url: googlePlaceUrl,
+    method: "GET"
+}).done(function (reponse) {
+   	var result = reponse.data;
+   	console.log(result);
+    });
 console.log(googlePlaceUrl);
+
+
+//*******************************************************************************************************************
+// Jordan Firebase push plus population of table
+
+$(document).ready(){
+
+	dataRef.ref().on("child_added", function(snapshot) {
+		var row = $("<tr>");
+		
+
+
+	});
+
+	$("#add-stump-btn").on("click", function(event){
+		event.preventDefault();
+
+		stumpObject.creator = $(".selected-user").data("value");
+		stumpObject.availability = $(".selected-avail").data("value");
+		stumpObject.location = $("Placholder");
+
+		database.ref().push({
+			creator: stumpObject.creator, 
+			availability: stumpObject.availability, 
+			location: stumpObject.location, 
+			stumpees: "", 
+			date: firebase.database.ServerValue.TIMESTAMP
+		});
+
+
+
+});
+
+};
 //*******************************************************************************************************************
 //  Tony GeoLocation Area
 // $.ajax({
@@ -79,45 +121,40 @@ console.log(googlePlaceUrl);
 // 			console.log(location);
 // 		});
 
-    
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: {lat: 30.2672, lng: -97.7431},
-          zoom: 14
-         });
-        infoWindow = new google.maps.InfoWindow;
+var map, infoWindow;
+function initMap() {
+map = new google.maps.Map(document.getElementById("map"), {
+  center: {lat: 30.2672, lng: -97.7431},
+  zoom: 14
+ });
+infoWindow = new google.maps.InfoWindow;
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+// Try HTML5 geolocation.
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
+    infoWindow.setPosition(pos);
+    infoWindow.setContent('Location found.');
+    infoWindow.open(map);
+    map.setCenter(pos);
+  }, function() {
+    handleLocationError(true, infoWindow, map.getCenter());
+  });
+} else {
+  // Browser doesn't support Geolocation
+  handleLocationError(false, infoWindow, map.getCenter());
+}
+}
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+infoWindow.setPosition(pos);
+infoWindow.setContent(browserHasGeolocation ?
+                      'Error: The Geolocation service failed.' :
+                      'Error: Your browser doesn\'t support geolocation.');
+infoWindow.open(map);
+}
    //************************************************************************************
