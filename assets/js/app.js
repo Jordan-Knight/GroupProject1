@@ -101,7 +101,7 @@ console.log(googlePlaceUrl);
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            infoWindow.setContent('<img src="assets/images/small-black-silhouette-bird.png" style="width:1.5em; height:1.5em;">'+'fly to the next stump!');
             infoWindow.open(map);
             map.setCenter(pos);
           }, function() {
