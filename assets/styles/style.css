@@ -34,16 +34,14 @@ h1 {
     font-size: 48px;
 }
 
-iframe {
-	height: 500px;
+#map {
+	height: 300px;
 	border: none;
-	margin: 1% 1%;
-	padding: 0px;
-	width: 100%;
+	max-width: 300px
+	margin: 5% 5%;
 }
 
 .user-input {
-	margin: 1% 1%;
 	overflow: auto;
 	background-color: #D9AF8B;
 	padding: 3%;
@@ -76,6 +74,7 @@ table {
 table, th, td {
     border: 0.5px dashed #B86403;
 }
+<<<<<<< HEAD
 
 
 /*this is going to control the map div where we place the map returned by the call to google places -kb*/
@@ -84,3 +83,5 @@ table, th, td {
     height:200px;
 	margin:20px;
 }
+=======
+>>>>>>> 5cc1edc69aaa25920cd63f7b23ee963fa27abf5f

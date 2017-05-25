@@ -18,7 +18,7 @@
 </head>
 
 <div class="banner row">
-	<h1>STUMP</h1>
+	<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
 </div>
 
 <body class="container">
@@ -28,37 +28,38 @@
 		<div class="form-group">
                   <label for="student-name-input">Student Name</label>
                   <br>
-                  <button id="tony" class="btn">Tony</button>
-                  <button id="kaylie" class="btn">Kaylie</button>
-                  <button id="marya" class="btn">Marya</button>
-                  <button id="jordan" class="btn">Jordan</button>
-                  <button id="john" class="btn">John</button>
+                  <button type="button" id="tony" data-value="Tony" class="btn btn-user">Tony</button>
+                  <button type="button" id="kaylea" data-value="Kaylea" class="btn btn-user">Kaylea</button>
+                  <button type="button" id="marya" data-value="Yaya" class="btn btn-user">Marya</button>
+                  <button type="button" id="jordan" data-value="Jordan" class="btn btn-user">Jordan</button>
+                  <button type="button" id="john" data-value="John" class="btn btn-user">John</button>
                 </div>
                 <label for="availability-input">Availability</label>
                 <br>
-                <button id="am-button" class="btn btn-info">10am to 2pm</button>
+                <button type="button" id="am-button" data-value="am" class="btn btn-info avail-btn">10am to 2pm</button>
                 
-                <button id="mid-button" class="btn btn-danger">2pm to 6pm</button>
+                <button type="button" id="mid-button" data-value="mid" class="btn btn-danger avail-btn">2pm to 6pm</button>
                 
-                <button id="pm-button" class="btn btn-primary">6pm to 10pm</button>
+                <button type="button" id="pm-button" data-value="pm" class="btn btn-primary avail-btn">6pm to 10pm</button>
                 <br>
-                <button class="btn" id="add-student-btn" type="submit">Create Stump</button>
+                <button type="button" class="btn" id="add-stump-btn" type="submit">Create Stump</button>
                 <br>
 	</form>
 			<table>
 				<thead>
                   <tr>
 					<th>Stump Leader</th>
-					<th>Location <button class="btn" id="view-btn" type="view"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></button></th>
+					<th>Location <button type="button" class="btn view-btn" id="view-btn"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></button></th>
 					<th>Stumpees</th>
 					<th>Time</th>
-					<th><button class="btn" id="join-btn" type="join">Join Stump</button></th>
+					<th><button type="button" class="btn join-btn" id="join-btn">Join Stump</button></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="stumps">
 				</tbody>
 			</table>
 	</section>
+<<<<<<< HEAD
 <div class="row">	
 	<iframe class="col-md-3" src="https://www.google.com/maps/d/embed?mid=1lBsF4dIWCf9EfRZZalpX__amifA&hl=en_US" allowfullscreen></iframe>
 </div>
@@ -68,5 +69,12 @@
 	<div id="map"></div>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg&libraries=places&callback=initMap" async defer></script>
 </div>
+=======
+	<section class="col-md-3" id="map"></section>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUln0pM_BnfEb_h86rcctPuC5hECblXgY&callback=initMap">
+    </script>
+ </div>
+>>>>>>> 5cc1edc69aaa25920cd63f7b23ee963fa27abf5f
 </body>
 </html>
