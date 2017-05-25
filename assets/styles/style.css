@@ -76,3 +76,11 @@ table {
 table, th, td {
     border: 0.5px dashed #B86403;
 }
+
+
+/*this is going to control the map div where we place the map returned by the call to google places -kb*/
+#map{
+    width:300px;
+    height:200px;
+	margin:20px;
+}
