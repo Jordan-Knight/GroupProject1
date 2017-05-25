@@ -49,9 +49,7 @@ var users = [
 {ID: "student4", name: "anthony", email: "apekearo@gmail.com"}, 
 {ID: "student5", name: "john", email: "jfbendfeldt@gmail.com"} ];
 
-<<<<<<< HEAD
-var stumpObject = {creater: "", availability: "", location: "30,-97", stumpees: "", date: ""};
-=======
+
 var stumpObject = {
 	creator: "", 
 	availability: "", 
@@ -60,7 +58,7 @@ var stumpObject = {
 	date: ""
 };
 
->>>>>>> 5cc1edc69aaa25920cd63f7b23ee963fa27abf5f
+
 
 //******************************************************************************************************************
 //THIS IS KAYLEA'S API STUFFFFFF!
@@ -71,7 +69,7 @@ var placeType = "cafe";
 var keyword = "vegan";
 //distance from the user location **this will be a set distance for now but I am using a variable in case 
 //we want to change it in the future
-<<<<<<< HEAD
+
 var distance = 1500;
 
 //https://console.developers.google.com/apis/credentials?project=studentmeetup-168604
@@ -171,7 +169,7 @@ var placesAPI = "AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg";
  //**********
 
 //*******************************************************************************************************************
-=======
+
 var distance = "16093.4";
 
 var googlePlaceUrl = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location="+stumpObject.location+"&radius="+distance+
@@ -191,9 +189,9 @@ console.log(googlePlaceUrl);
 //*******************************************************************************************************************
 // Jordan Firebase push plus population of table
 
-$(document).ready(){
+$(document).ready({
 
-	dataRef.ref().on("child_added", function(snapshot) {
+	database.ref().on("child_added", function(snapshot){
 		var row = $("<tr>");
 		
 
@@ -219,7 +217,7 @@ $(document).ready(){
 
 });
 
-};
+});
 
 
 
@@ -233,7 +231,7 @@ $(document).ready(){
 // 			console.log(location);
 // 		});
 
-<<<<<<< HEAD
+
     
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
@@ -275,44 +273,7 @@ $(document).ready(){
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
       }
-   //************************************************************************************
-=======
-var map, infoWindow;
-function initMap() {
-map = new google.maps.Map(document.getElementById("map"), {
-  center: {lat: 30.2672, lng: -97.7431},
-  zoom: 14
- });
-infoWindow = new google.maps.InfoWindow;
 
-// Try HTML5 geolocation.
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    var pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    };
-
-    infoWindow.setPosition(pos);
-    infoWindow.setContent('Location found.');
-    infoWindow.open(map);
-    map.setCenter(pos);
-  }, function() {
-    handleLocationError(true, infoWindow, map.getCenter());
-  });
-} else {
-  // Browser doesn't support Geolocation
-  handleLocationError(false, infoWindow, map.getCenter());
-}
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-infoWindow.setPosition(pos);
-infoWindow.setContent(browserHasGeolocation ?
-                      'Error: The Geolocation service failed.' :
-                      'Error: Your browser doesn\'t support geolocation.');
-infoWindow.open(map);
-}
    
 
    //************************************************************************************
@@ -359,5 +320,4 @@ infoWindow.open(map);
 
 
 });
->>>>>>> 9201d8dbf045605a8522495253e7fb2618104dbf
->>>>>>> 5cc1edc69aaa25920cd63f7b23ee963fa27abf5f
+
