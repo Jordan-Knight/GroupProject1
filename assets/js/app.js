@@ -1,3 +1,5 @@
+
+
 var googleApi = {
 
 	key : "AIzaSyBUln0pM_BnfEb_h86rcctPuC5hECblXgY",
@@ -24,14 +26,14 @@ var database = firebase.database();
 
 
 
-/*var userID;
+var userID;
 var userName;
 var userCurrentLocation;
 var userAvailabilty;
 var userEmail;
 
 //array of users
-*var users = [{
+/*var users = [{
 	ID: userID,
 	name: userName,
 	currentLocation: userCurrentLocation,
@@ -55,6 +57,7 @@ var stumpObject = {
 	date: ""
 };
 
+
 //******************************************************************************************************************
 //THIS IS KAYLEA'S API STUFFFFFF!
 
@@ -77,6 +80,7 @@ $.ajax({
    	console.log(result);
     });
 console.log(googlePlaceUrl);
+
 
 
 //*******************************************************************************************************************
@@ -111,6 +115,9 @@ $(document).ready(){
 });
 
 };
+
+
+
 //*******************************************************************************************************************
 //  Tony GeoLocation Area
 // $.ajax({
@@ -157,4 +164,49 @@ infoWindow.setContent(browserHasGeolocation ?
                       'Error: Your browser doesn\'t support geolocation.');
 infoWindow.open(map);
 }
+   
+
    //************************************************************************************
+   //    Event Handlers - Marya
+   //   Name, View and Join buttons
+   //
+
+ $(document).ready(function() {
+    console.log("Event Handlers Reached -- Start js Stump")
+
+    var stumpID = 0;
+  
+ // -----  Static button event handlers  ------  //
+ 
+ //  User Name buttons  //
+ 	$(".btn-user").on("click", function(){
+        stumpObject.creator = $(this).attr("data-value");
+        console.log("Stump User selected is: " + stumpObject.creator);
+    });
+
+
+ //  User Availability buttons  //
+ 	$(".avail-btn").on("click", function(){
+        stumpObject.availability = $(this).attr("data-value");
+        console.log("Stump user availability is: " + stumpObject.availability);
+    });
+
+
+
+ // ----- Dynamic button event handlers   ------//
+ 
+ //  View stump location button  //
+ 	$(document).on("click", ".view-btn", function(){
+        //stumpID = $(this).attr("data-stumpID");
+         console.log("View Stump ID is: " + stumpID);
+    });   
+
+
+ //  Join stump meetup location  //
+ 	$(document).on("click", ".join-btn", function(){
+        //stumpID = $(this).attr("data-stumpID");
+         console.log("Join Stump ID is: " + stumpID);
+    });   
+
+
+});
