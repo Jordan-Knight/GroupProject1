@@ -131,60 +131,6 @@ var placesAPI = "AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg";
 
 
 
-//this solution returns this error: json?location=30,-97&radius=16093.4&type=cafe&keyword=vegan&key=AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqF…:2 Uncaught SyntaxError: Unexpected token :
-     /*$.ajax({
-        type: 'GET',
-        url:googlePlaceUrl,
-        async: false,
-        jsonpCallback: 'jsonCallback',
-        contentType: "application/json",
-        dataType: 'jsonp',
-        success: function (json) {
-            console.log(json.sites);
-        },
-        error: function (e) {
-            console.log(e.message);
-
-        }
-    });*/
-
-
-	
-//*********
-	//this error is happening: jquery.min.js:4 XMLHttpRequest cannot load file:///C:/Users/kaylea/Documents/utcodebootcamp/GroupProject1/navHandler.a…e%3Dcafe%26keyword%3Dvegan%26key%3DAIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg. Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
-
-
-	//this solution can be found here https://stackoverflow.com/questions/18100195/how-to-send-cross-domain-request-to-google-places-api-seems-it-doesnt-support	
-     /*$.ajax({
-          url: 'navHandler.ashx',
-          type: 'GET',
-          data: {
-              'action': 'nearbySearch',
-              'url':googlePlaceUrl
-          },
-          success: function (data) {
-              console.log(JSON.parse(data));
-          }
-      });*/
- //**********
-
-//*******************************************************************************************************************
-
-var distance = "16093.4";
-
-var googlePlaceUrl = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location="+stumpObject.location+"&radius="+distance+
-"&type="+placeType+"&keyword="+keyword+"&key="+googleApi.key;
-
-$.ajax({
-	url: googlePlaceUrl,
-    method: "GET"
-}).done(function (reponse) {
-   	var result = reponse.data;
-   	console.log(result);
-    });
-console.log(googlePlaceUrl);
-
-
 
 //*******************************************************************************************************************
 // Jordan Firebase push plus population of table
