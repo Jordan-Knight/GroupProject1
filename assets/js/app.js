@@ -68,7 +68,7 @@ var users = [{
 var stumpObject = {
     creator: "",
     availability: "",
-    location: "30.283552,-97.733410",
+    location: "",
     stumpees: "",
     date: "",
     locationName:""
@@ -240,8 +240,17 @@ $(document).ready(function() {
                 infowindow.open(map, this);
                 //this gets the lat and lng of the clicked on place and saves it to chosenPlace
                 stumpObject.locationName = place.name;
-                stumpObject.location = placeLoc;
+                stumpObject.location = {
+                  lat:place.geometry.viewport.f.b,
+                  lng:place.geometry.viewport.b.b
+                }
                 console.log("this is the chosen place! "+stumpObject.locationName +stumpObject.location);
+              
+                map = new google.maps.Map(document.getElementById('map'), {
+                center: stumpObject.location,
+                zoom: 12
+            });
+                createMarker(place);
             });
         }
     });
