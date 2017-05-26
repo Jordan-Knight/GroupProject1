@@ -150,7 +150,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //    Event Handlers - Marya
 //   Name, View and Join buttons
 //
-
+// JORDAN FIX THIS FUNCTION!!!!!!!!!
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
         snapshot.forEach(function() {
@@ -158,7 +158,7 @@ $(document).ready(function() {
             snapshot.forEach(function() {
                 var row = $("<tr>");
 
-                row.append("<td>" + stumpObject.creator + "</td> <td>" + stumpObject.location + "</td> <td>" + stumpObject.stumpees + "</td> <td>" + stumpObject.availability + "<td>");
+                row.append("<td>" + snapshot.creator + "</td> <td>" + snapshot.location + "</td> <td>" + snapshot.stumpees + "</td> <td>" + snapshot.availability + "<td>");
                 $("#stumps").append(row);
 
             });
