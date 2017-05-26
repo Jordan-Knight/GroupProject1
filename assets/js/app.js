@@ -60,44 +60,8 @@ var stumpObject = {
 
 //*******************************************************************************************************************
 // Jordan Firebase push plus population of table
-$("#add-stump-btn").on("click", function(event){
-		event.preventDefault();
-//Create jQuery events to push a selected-user and selected-avail class to the element.
-		//stumpObject.creator = $(".selected-user").data("value");
-		stumpObject.availability = $(".selected-avail").data("value");
-		stumpObject.location = $("Placholder");
-
-		database.ref().push({
-			creator: stumpObject.creator, 
-			availability: stumpObject.availability, 
-			location: stumpObject.location, 
-			stumpees: "", 
-			date: firebase.database.ServerValue.TIMESTAMP
-		});
 
 
-
-});
-
-$(document).ready(function() {
-
-	database.ref().on("child_added", function(snapshot){
-		snapshot.forEach(function(){
-
-			snapshot.forEach(function(){
-				var row = $("<tr>");
-
-				row.append("<td>" + stumpObject.creator + "</td> <td>" + stumpObject.location + "</td> <td>" + stumpObject.stumpees + "</td> <td>" + stumpObject.availability + "<td>");
-				$("#stumps").append(row);
-
-			});
- 
-
-		});
-		
-	});
-
-});
 
 
 
@@ -173,6 +137,21 @@ $(document).ready(function() {
    //
 
  $(document).ready(function() {
+	database.ref().on("child_added", function(snapshot){
+		snapshot.forEach(function(){
+
+			snapshot.forEach(function(){
+				var row = $("<tr>");
+
+				row.append("<td>" + stumpObject.creator + "</td> <td>" + stumpObject.location + "</td> <td>" + stumpObject.stumpees + "</td> <td>" + stumpObject.availability + "<td>");
+				$("#stumps").append(row);
+
+			});
+ 
+
+		});
+		
+	});
     console.log("Event Handlers Reached -- Start js Stump")
 
     var stumpID = 0;
@@ -258,6 +237,23 @@ $(document).ready(function() {
          console.log("Join Stump ID is: " + stumpID);
     });   
 
+
+});
+
+ $("#add-stump-btn").on("click", function(event){
+		event.preventDefault();
+//Create jQuery events to push a selected-user and selected-avail class to the element.
+		//stumpObject.creator = $(".selected-user").data("value");
+		stumpObject.availability = $(".selected-avail").data("value");
+		stumpObject.location = $("Placholder");
+
+		database.ref().push({
+			creator: stumpObject.creator, 
+			availability: stumpObject.availability, 
+			location: stumpObject.location, 
+			stumpees: "", 
+			date: firebase.database.ServerValue.TIMESTAMP
+		});
 
 });
 
