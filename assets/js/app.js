@@ -154,14 +154,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
 
-            snapshot.forEach(function() {
                 var row = $("<tr>");
 
-                row.append("<td>" + snapshot.creator + "</td> <td>" + snapshot.location + "</td> <td>" + snapshot.stumpees + "</td> <td>" + snapshot.availability + "<td>");
+                row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().location + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
                 $("#stumps").append(row);
 
-            });
-
+           
 
 
     });
@@ -270,9 +268,9 @@ $(document).ready(function() {
     //stumpObject.creator = $(".selected-user").data("value");
     //stumpObject.availability = $(".selected-avail").data("value");
     //stumpObject.location = $("Placholder");
-    stumpObject.creator = "Kaylea";
-    stumpObject.availability = "mid";
-    stumpObject.location = "THE HOUSE!"
+    stumpObject.creator = "Jordan";
+    stumpObject.availability = "PM";
+    stumpObject.location = "Next door"
     database.ref().push({
         creator: stumpObject.creator,
         availability: stumpObject.availability,
