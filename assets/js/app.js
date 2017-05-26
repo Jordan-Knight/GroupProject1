@@ -157,7 +157,7 @@ $(document).ready(function() {
 
                 var row = $("<tr>");
 
-                row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().location + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
+                row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
                 $("#stumps").append(row);
 
            
