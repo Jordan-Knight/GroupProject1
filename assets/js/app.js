@@ -70,7 +70,8 @@ var stumpObject = {
     availability: "",
     location: "30.283552,-97.733410",
     stumpees: "",
-    date: ""
+    date: "",
+    locationName:""
 };
 
 
@@ -185,6 +186,7 @@ $(document).ready(function() {
     //*********************************************************************************
     //KAYLEA
     //--------------------NEARBY PLACES SEARCH
+    var chosenPlace;
     $('#places').on("click", function() {
 
         console.log("I am in the place");
@@ -217,6 +219,10 @@ $(document).ready(function() {
                 for (var i = 0; i < results.length; i++) {
                     //log the results to make sure it is getting objects back from google
                     console.log(results[i]);
+                    //this gets us the lat and lng of the place
+                    console.log("lng= " +results[i].geometry.viewport.b.b + "lat= " + results[i].geometry.viewport.f.b);
+                    var placeLocation = results[i].geometry.viewport.f.b+","+results[i].geometry.viewport.b.b;
+                    console.log(placeLocation);
                     createMarker(results[i]);
                 }
             }
@@ -232,6 +238,10 @@ $(document).ready(function() {
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent(place.name);
                 infowindow.open(map, this);
+                //this gets the lat and lng of the clicked on place and saves it to chosenPlace
+                stumpObject.locationName = place.name;
+                stumpObject.location = placeLoc;
+                console.log("this is the chosen place! "+stumpObject.locationName +stumpObject.location);
             });
         }
     });
