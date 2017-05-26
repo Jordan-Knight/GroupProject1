@@ -252,8 +252,18 @@ $(document).ready(function() {
  // ----- Dynamic button event handlers   ------//
  
  //  View stump location button  //
- 	$(document).on("click", ".view-btn", function(){
+ 	$(document).on("click", ".view-btn", function(callback){
         //stumpID = $(this).attr("data-stumpID");
+          //try to insert code that will call back the location object from firebase
+
+    database.limitToLast(1).once('value', function (dataSnapshot) {
+        location = dataSnapshot.val();
+        callback(location);
+    }, function (errorObject) {
+        // code to handle read error
+        console.log("The read failed: " + errorObject.code);
+    });
+
          console.log("View Stump ID is: " + stumpID);
     });   
 
