@@ -265,12 +265,8 @@ $(document).ready(function() {
     $("#add-stump-btn").on("click", function(event) {
     event.preventDefault();
     //Create jQuery events to push a selected-user and selected-avail class to the element.
-    //stumpObject.creator = $(".selected-user").data("value");
-    //stumpObject.availability = $(".selected-avail").data("value");
-    //stumpObject.location = $("Placholder");
-    stumpObject.creator = "Jordan";
-    stumpObject.availability = "PM";
-    stumpObject.location = "Next door"
+
+
     database.ref().push({
         creator: stumpObject.creator,
         availability: stumpObject.availability,
