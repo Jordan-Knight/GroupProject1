@@ -153,7 +153,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 // JORDAN FIX THIS FUNCTION!!!!!!!!!
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
-        snapshot.forEach(function() {
 
             snapshot.forEach(function() {
                 var row = $("<tr>");
@@ -164,7 +163,6 @@ $(document).ready(function() {
             });
 
 
-        });
 
     });
     console.log("Event Handlers Reached -- Start js Stump")
