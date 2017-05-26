@@ -71,8 +71,8 @@ var stumpObject = {
     location: "",
     stumpees: "",
     date: "",
-    locationName:""
-    stumpID : "",
+    locationName:"",
+    stumpID : ""
 };
 
 
