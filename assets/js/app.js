@@ -249,7 +249,7 @@ $(document).ready(function() {
                 map = new google.maps.Map(document.getElementById('map'), {
                 center: stumpObject.location,
                 zoom: 12
-            });
+                });
                 createMarker(place);
             });
         }
@@ -273,6 +273,8 @@ $(document).ready(function() {
         //stumpID = $(this).attr("data-stumpID");
         console.log("Join Stump ID is: " + stumpID);
     });
+
+
     $("#add-stump-btn").on("click", function(event) {
     event.preventDefault();
     //Create jQuery events to push a selected-user and selected-avail class to the element.
