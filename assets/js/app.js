@@ -283,7 +283,8 @@ $(document).ready(function() {
         availability: stumpObject.availability,
         location: stumpObject.location,
         stumpees: "",
-        date: firebase.database.ServerValue.TIMESTAMP
+        date: firebase.database.ServerValue.TIMESTAMP,
+        locationName : stumpObject.locationName
     });
 
 });
