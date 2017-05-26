@@ -11,7 +11,7 @@ body {
 .banner {
 	background-color: #000;
 	color: #D9AF8B;
-	height: 15%;
+	height: 90px;
 	width: 100%;
 	top: 0px;
     letter-spacing: 0.05em;
@@ -34,6 +34,7 @@ h1 {
     font-size: 48px;
 }
 
+#apistuff, 
 #map {
 	height: 300px;
 	border: none;
