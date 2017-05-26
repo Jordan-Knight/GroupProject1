@@ -7,17 +7,16 @@ var googleApi = {
 
 };
 
-var firebaseConfig = {
-    apiKey: "AIzaSyD-ftcKUoOvdhzaeaXypzqjyzKrsoZMGr8",
-    authDomain: "stump-ddd23.firebaseapp.com",
-    databaseURL: "https://stump-ddd23.firebaseio.com",
-    projectId: "stump-ddd23",
-    storageBucket: "stump-ddd23.appspot.com",
-    messagingSenderId: "140581118335"
+var config = {
+   apiKey: "AIzaSyD-ftcKUoOvdhzaeaXypzqjyzKrsoZMGr8",
+   authDomain: "stump-ddd23.firebaseapp.com",
+   databaseURL: "https://stump-ddd23.firebaseio.com",
+   projectId: "stump-ddd23",
+   storageBucket: "stump-ddd23.appspot.com",
+   messagingSenderId: "140581118335"
+ };
 
-};
-
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(config);
 
 var database = firebase.database();
 
@@ -59,111 +58,14 @@ var stumpObject = {
 };
 
 
-
-//******************************************************************************************************************
-//THIS IS KAYLEA'S API STUFFFFFF!
-
-//the type of place the user wants to meet at
-var placeType = "cafe";
-//any restrictions on the place **vegetarian, gluten free???
-var keyword = "vegan";
-//distance from the user location **this will be a set distance for now but I am using a variable in case 
-//we want to change it in the future
-
-var distance = 1500;
-
-//https://console.developers.google.com/apis/credentials?project=studentmeetup-168604
-//this is a new key specifically for the google places library 
-var placesAPI = "AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg";
-
-//could not get this method to work
-/*var googlePlaceUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+stumpObject.location+"&radius="+distance+
-"&type="+placeType+"&keyword="+keyword+"&key="+placesAPI;*/
-
-	//use this format once we have figured out how to get the user location
-	//********that might require putting the whole google places call in a function and calling it upon click or something
-	//$("#apiStuff").append("<div id='map'></div>");
-	//$("#apiStuff").append('<script type="text/javascript" src="https://maps.googleapis.com'+
-	//'/maps/api/js?key=AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg&libraries=places"></script>');
- 
-      var map;
-      var infowindow;
-
-      function initMap() {
-        var currentLocation = {lat: 30.3467106, lng: -97.7381047};
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: currentLocation,
-          zoom: 12
-        });
-
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: currentLocation,
-          radius: distance,
-          type: ['cafe']
-        }, callback);
-      }
-
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-          	//log the results to make sure it is getting objects back from google
-          	console.log(results[i]);
-            createMarker(results[i]);
-          }
-        }
-      }
-
-      function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
-
-
-
-
 //*******************************************************************************************************************
 // Jordan Firebase push plus population of table
 
-$(document).ready(function() {
-
-	database.ref().on("child_added", function(snapshot){
-		var row = $("<tr>");
-		
-
-
-	});
-
-	$("#add-stump-btn").on("click", function(event){
-		event.preventDefault();
-
-		stumpObject.creator = $(".selected-user").data("value");
-		stumpObject.availability = $(".selected-avail").data("value");
-		stumpObject.location = $("Placholder");
-
-		database.ref().push({
-			creator: stumpObject.creator, 
-			availability: stumpObject.availability, 
-			location: stumpObject.location, 
-			stumpees: "", 
-			date: firebase.database.ServerValue.TIMESTAMP
-		});
 
 
 
-});
 
-});
+
 
 
 
@@ -203,6 +105,13 @@ $(document).ready(function() {
             infoWindow.setContent('<img src="assets/images/small-black-silhouette-bird.png" style="width:1.5em; height:1.5em;">'+'fly to the next stump!');
             infoWindow.open(map);
             map.setCenter(pos);
+
+
+            //kaylea did this 
+
+
+
+            //*************
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
@@ -228,6 +137,21 @@ $(document).ready(function() {
    //
 
  $(document).ready(function() {
+	database.ref().on("child_added", function(snapshot){
+		snapshot.forEach(function(){
+
+			snapshot.forEach(function(){
+				var row = $("<tr>");
+
+				row.append("<td>" + stumpObject.creator + "</td> <td>" + stumpObject.location + "</td> <td>" + stumpObject.stumpees + "</td> <td>" + stumpObject.availability + "<td>");
+				$("#stumps").append(row);
+
+			});
+ 
+
+		});
+		
+	});
     console.log("Event Handlers Reached -- Start js Stump")
 
     var stumpID = 0;
@@ -247,7 +171,56 @@ $(document).ready(function() {
         console.log("Stump user availability is: " + stumpObject.availability);
     });
 
+  //*********************************************************************************
+  //KAYLEA
+  //--------------------NEARBY PLACES SEARCH
+  $('#places').on("click", function(){
 
+      console.log("I am in the place");
+      getPlaces();
+      function getPlaces() {
+        var currentLocation = {lat: 30.3467106, lng: -97.7381047};
+
+        console.log(currentLocation);
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: currentLocation,
+          zoom: 12
+        });
+
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: currentLocation,
+          radius: 1500,
+          type: ['cafe']
+        }, callback);
+      }
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            //log the results to make sure it is getting objects back from google
+            console.log(results[i]);
+            createMarker(results[i]);
+          }
+        }
+      }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
+    });
+//************************************************************************************
 
  // ----- Dynamic button event handlers   ------//
  
@@ -274,6 +247,23 @@ $(document).ready(function() {
          console.log("Join Stump ID is: " + stumpID);
     });   
 
+
+});
+
+ $("#add-stump-btn").on("click", function(event){
+		event.preventDefault();
+//Create jQuery events to push a selected-user and selected-avail class to the element.
+		//stumpObject.creator = $(".selected-user").data("value");
+		stumpObject.availability = $(".selected-avail").data("value");
+		stumpObject.location = $("Placholder");
+
+		database.ref().push({
+			creator: stumpObject.creator, 
+			availability: stumpObject.availability, 
+			location: stumpObject.location, 
+			stumpees: "", 
+			date: firebase.database.ServerValue.TIMESTAMP
+		});
 
 });
 
