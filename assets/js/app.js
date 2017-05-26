@@ -7,17 +7,16 @@ var googleApi = {
 
 };
 
-var firebaseConfig = {
-    apiKey: "AIzaSyD-ftcKUoOvdhzaeaXypzqjyzKrsoZMGr8",
-    authDomain: "stump-ddd23.firebaseapp.com",
-    databaseURL: "https://stump-ddd23.firebaseio.com",
-    projectId: "stump-ddd23",
-    storageBucket: "stump-ddd23.appspot.com",
-    messagingSenderId: "140581118335"
+var config = {
+   apiKey: "AIzaSyD-ftcKUoOvdhzaeaXypzqjyzKrsoZMGr8",
+   authDomain: "stump-ddd23.firebaseapp.com",
+   databaseURL: "https://stump-ddd23.firebaseio.com",
+   projectId: "stump-ddd23",
+   storageBucket: "stump-ddd23.appspot.com",
+   messagingSenderId: "140581118335"
+ };
 
-};
-
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(config);
 
 var database = firebase.database();
 
@@ -134,6 +133,24 @@ var placesAPI = "AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg";
 
 //*******************************************************************************************************************
 // Jordan Firebase push plus population of table
+$("#add-stump-btn").on("click", function(event){
+		event.preventDefault();
+//Create jQuery events to push a selected-user and selected-avail class to the element.
+		//stumpObject.creator = $(".selected-user").data("value");
+		stumpObject.availability = $(".selected-avail").data("value");
+		stumpObject.location = $("Placholder");
+
+		database.ref().push({
+			creator: stumpObject.creator, 
+			availability: stumpObject.availability, 
+			location: stumpObject.location, 
+			stumpees: "", 
+			date: firebase.database.ServerValue.TIMESTAMP
+		});
+
+
+
+});
 
 $(document).ready(function() {
 
@@ -155,24 +172,7 @@ $(document).ready(function() {
 
 });
 
-	$("#add-stump-btn").on("click", function(event){
-		event.preventDefault();
-//Create jQuery events to push a selected-user and selected-avail class to the element.
-		stumpObject.creator = $(".selected-user").data("value");
-		stumpObject.availability = $(".selected-avail").data("value");
-		stumpObject.location = $("Placholder");
 
-		database.ref().push({
-			creator: stumpObject.creator, 
-			availability: stumpObject.availability, 
-			location: stumpObject.location, 
-			stumpees: "", 
-			date: firebase.database.ServerValue.TIMESTAMP
-		});
-
-
-
-});
 
 
 
