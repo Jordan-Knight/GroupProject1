@@ -65,15 +65,26 @@ var stumpObject = {
 $(document).ready(function() {
 
 	database.ref().on("child_added", function(snapshot){
-		var row = $("<tr>");
+		snapshot.forEach(function(){
+
+			snapshot.forEach(function(){
+				var row = $("<tr>");
+
+				row.append("<td>" + stumpObject.creator + "</td> <td>" + stumpObject.location + "</td> <td>" + stumpObject.stumpees + "</td> <td>" + stumpObject.availability + "<td>");
+				$("#stumps").append(row);
+
+			});
+ 
+
+		});
 		
-
-
 	});
+
+});
 
 	$("#add-stump-btn").on("click", function(event){
 		event.preventDefault();
-
+//Create jQuery events to push a selected-user and selected-avail class to the element.
 		stumpObject.creator = $(".selected-user").data("value");
 		stumpObject.availability = $(".selected-avail").data("value");
 		stumpObject.location = $("Placholder");
@@ -90,7 +101,7 @@ $(document).ready(function() {
 
 });
 
-});
+
 
 
 
