@@ -248,7 +248,7 @@ $(document).ready(function() {
         //stumpID = $(this).attr("data-stumpID");
           //try to insert code that will call back the location object from firebase
 
-    database.limitToLast(1).once('value', function (dataSnapshot) {
+    database.limitToLast(1).get('value', function (dataSnapshot) {
         location = dataSnapshot.val();
         callback(location);
     }, function (errorObject) {
