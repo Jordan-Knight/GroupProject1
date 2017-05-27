@@ -119,7 +119,7 @@ function initMap() {
             };
 
             infoWindow.setPosition(userPosition);
-            infoWindow.setContent('<img src="assets/images/small-black-silhouette-bird.png" style="width:1.5em; height:1.5em;">' + 'fly to the next stump!');
+            infoWindow.setContent('<img src="assets/images/flying-bird.png" style="width:1.5em; height:1.5em;">' + 'Fly to the next stump!');
             infoWindow.open(map);
             map.setCenter(userPosition);
 
