@@ -74,7 +74,7 @@ table {
 table, th, td {
     border: 0.5px dashed #B86403;
 }
-
+/* A falling leaf pattern to go with the stump or woodland theme. -John Bendfeldt jfbendfeldt@gmail.com */
 #leaves{
 	background: none;
 	background-image: url('../images/leaves2.png'), url('../images/leaves1.png');
@@ -89,6 +89,7 @@ table, th, td {
 	-ms-animation: leaves 30s linear infinite;
 	animation: leaves 30s linear infinite;
 }
+/* Leaves change position over 30 seconds. -John Bendfeldt jfbendfeldt@gmail.com */
 @keyframes leaves {
   0% {background-position: 0px 0px, 0px 0px;}
   50% {background-position: 500px 500px, 100px 200px;}
