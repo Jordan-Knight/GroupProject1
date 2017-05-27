@@ -72,7 +72,7 @@ var stumpObject = {
     stumpees: "",
     date: "",
     locationName:"",
-    stumpID : ""
+    stumpID : "1"
 };
 
 
@@ -147,7 +147,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //    Event Handlers - Marya
 //   Name, View and Join buttons
 //
-// JORDAN FIX THIS FUNCTION!!!!!!!!!
+
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
 
@@ -156,12 +156,23 @@ $(document).ready(function() {
         row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
         $("#stumps").append(row);
 
+                var stumpID = 0;
+
+
+           		$.each(snapshot, function(){
+           			if (snapshot.val().stumpID > stumpID){ stumpID = snapshot.val().stumpID};
+           		});
+
+           		stumpID += 1;
+
+           		console.log(stumpID);
+
+         
 
     });
 
-    console.log("Event Handlers Reached -- Start js Stump");
+    console.log("Event Handlers Reached -- Start js Stump")
 
-    var stumpID = 0;
 
     // -----  Static button event handlers  ------  //
 
@@ -176,6 +187,17 @@ $(document).ready(function() {
     $(".avail-btn").on("click", function() {
         stumpObject.availability = $(this).attr("data-value");
         console.log("Stump user availability is: " + stumpObject.availability);
+    });
+
+
+    $(function() {
+    $('input[name="stumpDate"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    }, 
+    function(start, end, label) {
+        console.log("Date picker reached ")
+    });
     });
 
     //*********************************************************************************
@@ -280,7 +302,8 @@ $(document).ready(function() {
         location: stumpObject.location,
         stumpees: "",
         date: firebase.database.ServerValue.TIMESTAMP,
-        locationName : stumpObject.locationName
+        locationName : stumpObject.locationName,
+        stumpID : stumpObject.stumpID
     });
 
 });
