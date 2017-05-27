@@ -75,3 +75,37 @@ table, th, td {
     border: 0.5px dashed #B86403;
 }
 
+#leaves{
+	background: none;
+	background-image: url('../images/leaves2.png'), url('../images/leaves1.png');
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index:-1;
+	-webkit-animation: leaves 30s linear infinite;
+	-moz-animation: leaves 30s linear infinite;
+	-ms-animation: leaves 30s linear infinite;
+	animation: leaves 30s linear infinite;
+}
+@keyframes leaves {
+  0% {background-position: 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px;}
+  100% {background-position: 500px 1000px, 200px 400px;}
+}
+@-moz-keyframes leaves {
+  0% {background-position: 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px;}
+  100% {background-position: 400px 1000px, 200px 400px;}
+}
+@-webkit-keyframes leaves {
+  0% {background-position: 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px;}
+  100% {background-position: 500px 1000px, 200px 400px;}
+}
+@-ms-keyframes leaves {
+  0% {background-position: 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px;}
+  100% {background-position: 500px 1000px, 200px 400px;}
+}	
