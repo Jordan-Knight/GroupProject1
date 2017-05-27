@@ -99,7 +99,16 @@ var stumpObject = {
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
 var map, infoWindow;
+//this is where we will store the user geolocaion to base the nearby search on
+var userPosition = {
+    //saved temp lat and lng values in case user does not allow geolocation
+    lat: 30.2672,
+    lng: -97.7431
+};
 
+
+//this function initiates the map to be displayed on the screen based on 
+//user geoloction
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: {
@@ -113,22 +122,17 @@ function initMap() {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+            userPosition = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
 
-            infoWindow.setPosition(pos);
+            infoWindow.setPosition(userPosition);
             infoWindow.setContent('<img src="assets/images/small-black-silhouette-bird.png" style="width:1.5em; height:1.5em;">' + 'fly to the next stump!');
             infoWindow.open(map);
-            map.setCenter(pos);
+            map.setCenter(userPosition);
 
 
-            //kaylea did this 
-
-
-
-            //*************
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -139,7 +143,7 @@ function initMap() {
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
+    infoWindow.setPosition(userPosition);
     infoWindow.setContent(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
@@ -156,10 +160,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
 
-                var row = $("<tr>");
+        var row = $("<tr>");
 
-                row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
-                $("#stumps").append(row);
+        row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
+        $("#stumps").append(row);
 
            
 
@@ -194,22 +198,17 @@ $(document).ready(function() {
         getPlaces();
 
         function getPlaces() {
-            var currentLocation = {
-                lat: 30.3467106,
-                lng: -97.7381047
-            };
-
-            console.log(currentLocation);
+            console.log(userPosition);
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: currentLocation,
+                center: userPosition,
                 zoom: 12
             });
 
             infowindow = new google.maps.InfoWindow();
             var service = new google.maps.places.PlacesService(map);
             service.nearbySearch({
-                location: currentLocation,
+                location: userPosition,
                 radius: 1500,
                 type: ['cafe']
             }, callback);
