@@ -18,6 +18,12 @@
 	<!-- moment js script. -JB -->
 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 	<script type="text/javascript" src="assets/js/app.js"></script>
+	<!--   Libraries for date picker  - MDC -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
 </head>
 <!-- Establishes banner as a row. -JB -->
@@ -45,6 +51,8 @@
                 <label for="availability-input">Availability</label>
                 <br>
                 <!-- Selecting availability for stump time. -JB -->
+                <input type="text" name="stumpDate" value="4/1/2017" />
+
                 <button type="button" id="am-button" data-value="morning" class="btn btn-info avail-btn">Morning</button>
                 
                 <button type="button" id="mid-button" data-value="afternoon" class="btn btn-danger avail-btn">Afternoon</button>
