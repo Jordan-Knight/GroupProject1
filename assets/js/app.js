@@ -72,7 +72,7 @@ var stumpObject = {
     stumpees: "",
     date: "",
     locationName:"",
-    stumpID : ""
+    stumpID : "1"
 };
 
 
@@ -169,7 +169,7 @@ $(document).ready(function() {
 
 
            		$.each(snapshot, function(){
-           			if (snapshot.val().stumpID > stumpID){ stumpID = snapshot.val().stumpID};
+           			if (snapshot.JSON.parse(stumpID) > stumpID){ stumpID = snapshot.JSON.parse(stumpID)};
            		});
 
            		stumpID += 1;
