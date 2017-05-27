@@ -196,6 +196,17 @@ $(document).ready(function() {
         console.log("Stump user availability is: " + stumpObject.availability);
     });
 
+
+    $(function() {
+    $('input[name="stumpDate"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    }, 
+    function(start, end, label) {
+        console.log("Date picker reached ")
+    });
+    });
+
     //*********************************************************************************
     //KAYLEA
     //--------------------NEARBY PLACES SEARCH
