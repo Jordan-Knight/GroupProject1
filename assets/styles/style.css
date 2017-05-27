@@ -8,7 +8,7 @@ body {
 }
 /* Formats the top banner. -John Bendfeldt jfbendfeldt@gmail.com*/
 .banner {
-	background-color: #000;
+	background-color: #0d4c06;
 	color: #D9AF8B;
 	height: 90px;
 	width: 100%;
@@ -32,7 +32,7 @@ h1 {
     font-weight: 900;
     font-size: 48px;
 }
-/* Places the map on page with the apistuff. -John Bendfeldt jfbendfeldt@gmail.com */
+/* Places the map on page with the apistuff. -JB */
 #apistuff, 
 #map {
 	height: 300px;
@@ -40,7 +40,7 @@ h1 {
 	max-width: 300px
 	margin: 5% 5%;
 }
-/* Formats user input section. -John Bendfeldt jfbendfeldt@gmail.com */
+/* Formats user input section. -JB */
 .user-input {
 	overflow: auto;
 	background-color: #D9AF8B;
@@ -48,10 +48,10 @@ h1 {
 	border: 3px solid #dddddd;
 	margin: 0px 15px 15px 15px;
 }
-/* Formats button appearance. */
+/* Formats button appearance. -JB */
 button {
 	color: #D9AF8B;
-	background-color: #000;
+	background-color: #0d4c06;
 	margin: 2.5px;
 }
 
@@ -59,11 +59,12 @@ button {
 	background-color: #dddddd;
 	color: #000;
 }
-/* Sets top margin so banner doesn't cover any of the main content area. -John Bendfeldt jfbendfeldt@gmail.com */
+
+/* Sets top margin so banner doesn't cover any of the main content area. -JB */
 .content {
 	margin: 120px 0px 0px 0px;
 }
-/* Sets the table dimensions. -John Bendfeldt jfbendfeldt@gmail.com */
+/* Sets the table dimensions. -JB */
 th {
 	width: 7%;
 }
@@ -75,7 +76,7 @@ table {
 table, th, td {
     border: 0.5px dashed #B86403;
 }
-/* A falling leaf pattern to go with the stump or woodland theme. -John Bendfeldt jfbendfeldt@gmail.com */
+/* A falling leaf pattern to go with the stump or woodland theme. -JB */
 #leaves{
 	background: none;
 	background-image: url('../images/leaves2.png'), url('../images/leaves1.png');
@@ -90,7 +91,7 @@ table, th, td {
 	-ms-animation: leaves 30s linear infinite;
 	animation: leaves 30s linear infinite;
 }
-/* Leaves change position over 30 seconds. -John Bendfeldt jfbendfeldt@gmail.com */
+/* Leaves change position over 30 seconds. -JB */
 @keyframes leaves {
   0% {background-position: 0px 0px, 0px 0px;}
   50% {background-position: 500px 500px, 100px 200px;}

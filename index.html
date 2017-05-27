@@ -10,23 +10,23 @@
 	<!-- Bootstrap csss link. -John Bendfeldt jfbendfeldt@gmail.com -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
-	<!-- jquery script. -John Bendfeldt jfbendfeldt@gmail.com -->
+	<!-- jquery script. -JB -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<!-- Firebase script. -John Bendfeldt jfbendfeldt@gmail.com -->
+	<!-- Firebase script. -JB -->
 	<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
-	<!-- moment js script. -John Bendfeldt jfbendfeldt@gmail.com -->
+	<!-- moment js script. -JB -->
 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 	<script type="text/javascript" src="assets/js/app.js"></script>
 
 </head>
-<!-- Establishes banner as a row. -John Bendfeldt jfbendfeldt@gmail.com -->
+<!-- Establishes banner as a row. -JB -->
 <div class="banner row">
 	<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
 </div>
-<!-- Establishes main content area as a grid for bootstrap to work. -John Bendfeldt jfbendfeldt@gmail.com -->
+<!-- Establishes main content area as a grid for bootstrap to work. -JB -->
 <body class="container">
-<!-- Establishes leves for animation. John Bendfeldt jfbendfelt@gmail.com -->
+<!-- Establishes leves for animation. -JB -->
 <div id="leaves">
 </div>
 <div class="content row">
@@ -35,7 +35,7 @@
 		<div class="form-group">
                   <label for="student-name-input">Student Name</label>
                   <br>
-                  <!-- User selection happens here. -John Bendfeldt jfbendfeldt@gmail.com -->
+                  <!-- User selection happens here. -JB -->
                   <button type="button" id="tony" data-value="Tony" class="btn btn-user">Tony</button>
                   <button type="button" id="kaylea" data-value="Kaylea" class="btn btn-user">Kaylea</button>
                   <button type="button" id="marya" data-value="Yaya" class="btn btn-user">Marya</button>
@@ -44,16 +44,16 @@
                 </div>
                 <label for="availability-input">Availability</label>
                 <br>
-                <!-- Selecting availability for stump time. -John Bendfeldt jfbendfeldt@gmail.com -->
-                <button type="button" id="am-button" data-value="am" class="btn btn-info avail-btn">10am to 2pm</button>
+                <!-- Selecting availability for stump time. -JB -->
+                <button type="button" id="am-button" data-value="morning" class="btn btn-info avail-btn">Morning</button>
                 
-                <button type="button" id="mid-button" data-value="mid" class="btn btn-danger avail-btn">2pm to 6pm</button>
+                <button type="button" id="mid-button" data-value="afternoon" class="btn btn-danger avail-btn">Afternoon</button>
                 
-                <button type="button" id="pm-button" data-value="pm" class="btn btn-primary avail-btn">6pm to 10pm</button>
+                <button type="button" id="pm-button" data-value="evening" class="btn btn-primary avail-btn">Evening</button>
                 <br>
-                <!-- Select a location with this button. -John Bendfeldt jfbendfeldt@gmail.com -->
+                <!-- Select a location with this button. -JB -->
                 <button type="button" class="btn" id="places">Get Places <span class="glyphicon glyphicon-road" aria-hidden="true"></button>   
-                <!-- Create a stump here. Pushing data to the table. -John Bendfeldt jfbendfeldt@gmail.com -->             
+                <!-- Create a stump here. Pushing data to the table. -JB -->             
                 <button type="button" class="btn" id="add-stump-btn" type="submit">Create Stump</button>
                 <br>
 	</form>
@@ -72,12 +72,9 @@
 			</table>
 	</section>
 
-	<!-- Map display Happens here. -John Bendfeldt jfbendfeldt@gmail.com -->
+	<!-- Map display Happens here. -JB -->
 	<div id="apiStuff" class="col-md-4">
 	  <section id="map"></section>
-	  <!--<script async defer
-	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUln0pM_BnfEb_h86rcctPuC5hECblXgY&callback=initMap">
-	  </script>-->
 	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg&libraries=places&callback=initMap" async defer></script> 
 	</div>
 </div>
