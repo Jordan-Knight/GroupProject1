@@ -196,14 +196,16 @@ $(document).ready(function() {
         console.log("Stump user availability is: " + stumpObject.availability);
     });
 
-
+    // Date Picker input //
     $(function() {
     $('input[name="stumpDate"]').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     }, 
     function(start, end, label) {
-        console.log("Date picker reached ")
+        stumpObject.date = $('input[name="stumpDate"]').val().trim();
+        console.log("Date picked is " + stumpObject.date)
+
     });
     });
 
