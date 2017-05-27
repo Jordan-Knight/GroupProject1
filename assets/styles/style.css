@@ -63,14 +63,11 @@ h1 {
 	color: #000;
 }
 
-.buttons:active {
-	color: #D9AF8B;
-	background-color: #000;
-}
-
-.buttons:active:focus {
-	color: #D9AF8B;
-	background-color: #000;
+.buttons:active,
+.buttons:focus {
+	color: #D9AF8B !important;
+	background-color: #000 !important;
+	outline: none!important;
 }
 
 /* Sets top margin so banner doesn't cover any of the main content area. -JB */
@@ -112,16 +109,16 @@ table, th, td {
 }
 @-moz-keyframes leaves {
   0% {background-position: 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px;}
-  100% {background-position: 400px 1000px, 200px 400px;}
+  50% {background-position: 500px 500px, -100px 200px;}
+  100% {background-position: 400px 1000px, -200px 400px;}
 }
 @-webkit-keyframes leaves {
   0% {background-position: 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px;}
-  100% {background-position: 500px 1000px, 200px 400px;}
+  50% {background-position: 500px 500px, -100px 200px;}
+  100% {background-position: 500px 1000px, -200px 400px;}
 }
 @-ms-keyframes leaves {
   0% {background-position: 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px;}
-  100% {background-position: 500px 1000px, 200px 400px;}
+  50% {background-position: 500px 500px, -100px 200px;}
+  100% {background-position: 500px 1000px, -200px 400px;}
 }	
