@@ -8,7 +8,7 @@ body {
 }
 /* Formats the top banner. -John Bendfeldt jfbendfeldt@gmail.com*/
 .banner {
-	background-color: #000;
+	background-color: #0d4c06;
 	color: #D9AF8B;
 	height: 90px;
 	width: 100%;
@@ -51,7 +51,7 @@ h1 {
 /* Formats button appearance. -JB */
 button {
 	color: #D9AF8B;
-	background-color: #000;
+	background-color: #0d4c06;
 	margin: 2.5px;
 }
 
