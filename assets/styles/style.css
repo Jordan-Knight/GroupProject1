@@ -29,8 +29,9 @@ h1 {
     		1px -1px 0 #B86403,
     		-1px 1px 0 #B86403,
      		1px 1px 0 #B86403;
-    font-weight: 900;
-    font-size: 48px;
+    font-weight: 900 !important;
+    font-size: 48px !important;
+    font-family: 'Ubuntu' !important, sans-serif;
 }
 /* Places the map on page with the apistuff. -JB */
 #apistuff, 
