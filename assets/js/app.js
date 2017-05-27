@@ -152,8 +152,9 @@ $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
 
         var row = $("<tr>");
+        var checkbox = $("<input type = 'checkbox'>");
 
-        row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
+        row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td>");
         $("#stumps").append(row);
 
                 var stumpID = 0;
