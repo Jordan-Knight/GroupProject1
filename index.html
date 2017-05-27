@@ -65,16 +65,19 @@
                 <button type="button" class="buttons" id="places">Get Places <span class="glyphicon glyphicon-road" aria-hidden="true"></button>   
                 <!-- Create a stump here. Pushing data to the table. -JB -->             
                 <button type="button" class="buttons" id="add-stump-btn" type="submit">Create Stump</button>
+                <button type="button" class="buttons join-btn" id="join-btn">Join Stump</button>
+                <button type="button" class="buttons filter-btn" id="filter-btn">Filter <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span></button>
                 <br>
 	</form>
 			<table>
 				<thead>
                   <tr>
 					<th>Stump Leader</th>
-					<th>Location <button type="button" class="buttons view-btn" id="view-btn"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></button></th>
+					<th>Location <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></th>
 					<th>Stumpees</th>
-					<th>Time</th>
-					<th><button type="button" class="buttons join-btn" id="join-btn">Join Stump</button></th>
+					<th>Date <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></th>
+					<th>Time <span class="glyphicon glyphicon-time" aria-hidden="true"></span></th>
+					<th>Selected <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
 					</tr>
 				</thead>
 				<tbody id="stumps">

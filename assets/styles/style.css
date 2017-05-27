@@ -77,11 +77,13 @@ h1 {
 }
 /* Sets the table dimensions. -JB */
 th {
-	width: 7%;
+	width: auto;
+	padding: 0px 10px;
 }
 
 table {
 	margin: 5px auto;
+	float: left;
 }
 
 table, th, td {
