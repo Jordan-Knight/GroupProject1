@@ -8,7 +8,7 @@ body {
 }
 /* Formats the top banner. -John Bendfeldt jfbendfeldt@gmail.com*/
 .banner {
-	background-color: #000;
+	background-color: #0d4c06;
 	color: #D9AF8B;
 	height: 90px;
 	width: 100%;
@@ -49,15 +49,28 @@ h1 {
 	margin: 0px 15px 15px 15px;
 }
 /* Formats button appearance. -JB */
-button {
+.buttons {
+	border: none;
+	border-radius: 3px;
 	color: #D9AF8B;
-	background-color: #000;
-	margin: 2.5px;
+	background-color: #0d4c06;
+	margin: 3px 0px;
+	padding: 5px 10px;
 }
 
-.btn:hover {
+.buttons:hover {
 	background-color: #dddddd;
 	color: #000;
+}
+
+.buttons:active {
+	color: #D9AF8B;
+	background-color: #000;
+}
+
+.buttons:active:focus {
+	color: #D9AF8B;
+	background-color: #000;
 }
 
 /* Sets top margin so banner doesn't cover any of the main content area. -JB */
