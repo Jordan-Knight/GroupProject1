@@ -63,14 +63,11 @@ h1 {
 	color: #000;
 }
 
-.buttons:active {
-	color: #D9AF8B;
-	background-color: #000;
-}
-
-.buttons:active:focus {
-	color: #D9AF8B;
-	background-color: #000;
+.buttons:active,
+.buttons:focus {
+	color: #D9AF8B !important;
+	background-color: #000 !important;
+	outline: none!important;
 }
 
 /* Sets top margin so banner doesn't cover any of the main content area. -JB */
