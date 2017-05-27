@@ -84,15 +84,6 @@ var stumpObject = {
 
 //*******************************************************************************************************************
 //  Tony GeoLocation Area
-// $.ajax({
-// 			url: "https://www.google.com/maps/embed/v1/geolocate?key=AIzaSyBUln0pM_BnfEb_h86rcctPuC5hECblXgY",
-// 			method: "GET"
-// 		}).done(function(reply){
-// 			var location=reply.data;
-// 			console.log(location);
-// 		});
-
-
 
 // Note: This example requires that you consent to location sharing when
 // prompted by your browser. If you see the error "The Geolocation service
@@ -165,14 +156,16 @@ $(document).ready(function() {
         row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
         $("#stumps").append(row);
 
-                var stumpID = 1;
+                var stumpID = 0;
 
 
            		$.each(snapshot, function(){
-           			if (snapshot.JSON.parse(stumpID) > stumpID){ stumpID = snapshot.JSON.parse(stumpID)};
+           			if (snapshot.val().stumpID > stumpID){ stumpID = snapshot.val().stumpID};
            		});
 
            		stumpID += 1;
+
+           		console.log(stumpID);
 
          
 
@@ -216,8 +209,10 @@ $(document).ready(function() {
     $('#places').on("click", function() {
 
         console.log("I am in the place");
+
         getPlaces();
 
+        //gets places nearby the user that they can meet at and stores the location
         function getPlaces() {
             console.log(userPosition);
 
@@ -244,16 +239,17 @@ $(document).ready(function() {
                     console.log("lng= " +results[i].geometry.viewport.b.b + "lat= " + results[i].geometry.viewport.f.b);
                     var placeLocation = results[i].geometry.viewport.f.b+","+results[i].geometry.viewport.b.b;
                     console.log(placeLocation);
-                    createMarker(results[i]);
+                    createMarker(results[i], "ff6363");
                 }
             }
         }
 
-        function createMarker(place) {
+        function createMarker(place, color) {
             var placeLoc = place.geometry.location;
             var marker = new google.maps.Marker({
                 map: map,
-                position: place.geometry.location
+                position: place.geometry.location,
+                icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
             });
 
             google.maps.event.addListener(marker, 'click', function() {
@@ -271,7 +267,8 @@ $(document).ready(function() {
                 center: stumpObject.location,
                 zoom: 12
                 });
-                createMarker(place);
+                createMarker(place, "a06a40");
+                //createMarker(userPosition, "88bafc");
             });
         }
     });
