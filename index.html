@@ -1,30 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-	<meta charset='UTF-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<meta charset="UTF-8">
+	<meta name="description" content="Group Prject 1 - StudentMeetup App">
+	<meta name="keywords" content="coding, bootcamp, part-time, student, meetup">
+	<meta name="author" content="Jordan Knight, Marya Crigler, John Bendfeldt, Anthony Pekearo, Kaylea Box">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>STUMP</title>
+	<!-- Bootstrap csss link. -John Bendfeldt jfbendfeldt@gmail.com -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel='stylesheet' type='text/css' href='assets/styles/style.css'>
+	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+	<!-- jquery script. -John Bendfeldt jfbendfeldt@gmail.com -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
-	<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!-- Firebase script. -John Bendfeldt jfbendfeldt@gmail.com -->
 	<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+	<!-- moment js script. -John Bendfeldt jfbendfeldt@gmail.com -->
 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-	<script type='text/javascript' src='assets/js/app.js'></script>
+	<script type="text/javascript" src="assets/js/app.js"></script>
 
 </head>
-
+<!-- Establishes banner as a row. -John Bendfeldt jfbendfeldt@gmail.com -->
 <div class="banner row">
 	<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
 </div>
-
+<!-- Establishes main content area as a grid for bootstrap to work. -John Bendfeldt jfbendfeldt@gmail.com -->
 <body class="container">
 <div class="content row">
-	<section class="user-input col-md-7">
+	<section class="user-input col-md-6">
 	<form>
 		<div class="form-group">
                   <label for="student-name-input">Student Name</label>
                   <br>
+                  <!-- User selection happens here. -John Bendfeldt jfbendfeldt@gmail.com -->
                   <button type="button" id="tony" data-value="Tony" class="btn btn-user">Tony</button>
                   <button type="button" id="kaylea" data-value="Kaylea" class="btn btn-user">Kaylea</button>
                   <button type="button" id="marya" data-value="Yaya" class="btn btn-user">Marya</button>
@@ -33,13 +41,16 @@
                 </div>
                 <label for="availability-input">Availability</label>
                 <br>
+                <!-- Selecting availability for stump time. -John Bendfeldt jfbendfeldt@gmail.com -->
                 <button type="button" id="am-button" data-value="am" class="btn btn-info avail-btn">10am to 2pm</button>
                 
                 <button type="button" id="mid-button" data-value="mid" class="btn btn-danger avail-btn">2pm to 6pm</button>
                 
                 <button type="button" id="pm-button" data-value="pm" class="btn btn-primary avail-btn">6pm to 10pm</button>
                 <br>
-                <button type="button" class="btn" id="places">Get Places</button>                
+                <!-- Select a location with this button. -John Bendfeldt jfbendfeldt@gmail.com -->
+                <button type="button" class="btn" id="places">Get Places</button>   
+                <!-- Create a stump here. Pushing data to the table. -John Bendfeldt jfbendfeldt@gmail.com -->             
                 <button type="button" class="btn" id="add-stump-btn" type="submit">Create Stump</button>
                 <br>
 	</form>
@@ -58,8 +69,8 @@
 			</table>
 	</section>
 
-
-	<div id="apiStuff" class="col-md-3">
+	<!-- Map display Happens here. -John Bendfeldt jfbendfeldt@gmail.com -->
+	<div id="apiStuff" class="col-md-4">
 	  <section id="map"></section>
 	  <!--<script async defer
 	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUln0pM_BnfEb_h86rcctPuC5hECblXgY&callback=initMap">
