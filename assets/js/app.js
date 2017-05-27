@@ -165,14 +165,16 @@ $(document).ready(function() {
         row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
         $("#stumps").append(row);
 
-                var stumpID = 1;
+                var stumpID = 0;
 
 
            		$.each(snapshot, function(){
-           			if (snapshot.JSON.parse(stumpID) > stumpID){ stumpID = snapshot.JSON.parse(stumpID)};
+           			if (snapshot.val().stumpID > stumpID){ stumpID = snapshot.val().stumpID};
            		});
 
            		stumpID += 1;
+
+           		console.log(stumpID);
 
          
 
