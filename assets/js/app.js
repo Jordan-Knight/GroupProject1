@@ -26,6 +26,7 @@ var userName;
 var userCurrentLocation;
 var userAvailabilty;
 var userEmail;
+var filterStatus = false;
 
 //array of users
 /*var users = [{
@@ -204,6 +205,21 @@ $(document).ready(function() {
         stumpObject.date = moment(start).format("MM/DD/YYYY");
         console.log("Date picked is " + stumpObject.date)
     });
+    });
+
+
+    //  Filter button  //
+    $('.glyphicon').parent().click(function(){
+        if(jQuery(this).children('.glyphicon').hasClass('glyphicon-off')){
+            jQuery(this).children('.glyphicon').removeClass('glyphicon-off').addClass('glyphicon-sort-by-attributes');
+            filterStatus = true;
+            console.log ("filter was off, turned it on. Current status is: " + filterStatus);
+            }
+        else if(jQuery(this).children('.glyphicon').hasClass('glyphicon-sort-by-attributes')){
+            jQuery(this).children('.glyphicon').removeClass('glyphicon-sort-by-attributes').addClass('glyphicon-off');
+             filterStatus = false;
+             console.log ("filter was on, turned it off. Current status is: " + filterStatus);
+        }
     });
 
     //*********************************************************************************
