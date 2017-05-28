@@ -70,7 +70,7 @@ var stumpObject = {
     availability: "",
     location: "",
     stumpees: "",
-    date: "",
+    date: moment().format("MM/DD/YYYY"),
     locationName:"",
     stumpID : "1"
 };
@@ -191,15 +191,15 @@ $(document).ready(function() {
     });
 
     // Date Picker input //
+    console.log("Default date is: " + stumpObject.date) 
     $(function() {
     $('input[name="stumpDate"]').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     }, 
-    function(start, end, label) {
-        stumpObject.date = $('input[name="stumpDate"]').val().trim();
+    function(start) {
+        stumpObject.date = moment(start).format("MM/DD/YYYY");
         console.log("Date picked is " + stumpObject.date)
-
     });
     });
 
