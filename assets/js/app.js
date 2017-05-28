@@ -144,8 +144,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 //************************************************************************************
-//    Event Handlers - Marya
-//   Name, View and Join buttons
+//    Build html table on data change
 //
 
 $(document).ready(function() {
@@ -175,7 +174,11 @@ $(document).ready(function() {
     console.log("Event Handlers Reached -- Start js Stump")
 
 
-    // -----  Static button event handlers  ------  //
+    //************************************************************************************
+    //    Event Handlers - Marya
+    //
+    // -----  Static button event handlers Name, Availability, Date Picker ------  //
+   
 
     //  User Name buttons  //
     $(".btn-user").on("click", function() {
@@ -304,7 +307,7 @@ $(document).ready(function() {
         availability: stumpObject.availability,
         location: stumpObject.location,
         stumpees: "",
-        date: firebase.database.ServerValue.TIMESTAMP,
+        date: stumpObject.date,
         locationName : stumpObject.locationName,
         stumpID : stumpObject.stumpID
     });
