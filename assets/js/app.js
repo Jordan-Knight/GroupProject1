@@ -185,6 +185,24 @@ $(document).ready(function() {
     $(".btn-user").on("click", function() {
         stumpObject.creator = $(this).attr("data-value");
         console.log("Stump User selected is: " + stumpObject.creator);
+
+        //**************************************************************************************
+        //I am inside the ".btn-user" function adding remove buttons when the users is selected
+        //appends a button to remove the stump *****still need to only append it for the creator
+        //kaylea
+        var numRows = $('#stumps tr').length;
+        for(i=0; i<numRows; i++){
+            $("#stumps tr:eq('"+i+"') td:eq('5')").html("");    
+            if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === $(this).attr("data-value")){
+                $("#stumps tr:eq('"+i+"') td:eq('5')").html('<button type="button" data-value="remove-stump" class="btn btn-danger remove-btn">x</button>');
+                //found a solution to appending information to a specific column here: https://api.jquery.com/last-selector/
+            }
+        }
+
+        //as of now the user has to select their name again after 
+        //submitting the create stump form in order to see the ".remove-btn"
+        //**************************************************************************************
+
     });
 
 
@@ -275,6 +293,8 @@ $(document).ready(function() {
                 icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
             });
 
+
+
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent(place.name);
                 infowindow.open(map, this);
@@ -331,8 +351,14 @@ $(document).ready(function() {
         stumpID : stumpObject.stumpID
     });
 
+
 });
 
+
+    $(document).on("click", ".remove-btn", function(){
+        $(this).closest('tr').remove();
+        //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
+    });
 
 });
 
