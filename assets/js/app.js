@@ -28,15 +28,6 @@ var userAvailabilty;
 var userEmail;
 var filterStatus = false;
 
-//array of users
-/*var users = [{
-	ID: userID,
-	name: userName,
-	currentLocation: userCurrentLocation,
-	//stumpLocation: userStumpLocation //maybe????
-	availability: userAvailabilty,
-	email: userEmail
-}];*/
 
 var users = [{
         ID: "student1",
@@ -150,11 +141,11 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
-
+        console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
         var checkbox = "<input type = 'checkbox'>";
 
-        row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td>");
+        row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td>");
         $("#stumps").append(row);
 
 
@@ -184,6 +175,17 @@ $(document).ready(function() {
     $(".btn-user").on("click", function() {
         stumpObject.creator = $(this).attr("data-value");
         console.log("Stump User selected is: " + stumpObject.creator);
+
+        //**************************************************************************************
+        //I am inside the ".btn-user" function adding remove buttons when the users is selected
+        //appends a button to remove the stump *****still need to only append it for the creator
+        //kaylea
+        addRemoveBtn(stumpObject.creator);
+
+        //as of now the user has to select their name again after 
+        //submitting the create stump form in order to see the ".remove-btn"
+        //**************************************************************************************
+
     });
 
 
@@ -274,6 +276,8 @@ $(document).ready(function() {
                 icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
             });
 
+
+
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent(place.name);
                 infowindow.open(map, this);
@@ -330,8 +334,37 @@ $(document).ready(function() {
         stumpID : stumpObject.stumpID
     });
 
+    addRemoveBtn(stumpObject.creator);
+
 });
 
+    function addRemoveBtn(currentUser){
+        var numRows = $('#stumps tr').length;
+        for(i=0; i<numRows; i++){
+            //removes all the removal buttons when a new user is selected
+            $("#stumps tr:eq('"+i+"') td:eq('5')").html("")
+            //loops through the table data to see if the selected user has a stump in there name    
+            if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === currentUser){
+                //gets the access key that was stored when the stump was created and saves it in itemId
+                var itemId = $("#stumps tr:eq('"+i+"') td:eq('0')").attr("data-value");
+                console.log(itemId); //checks data-value being saved to button
+                //adds the object key as a data-value to the remove-btn so the unique element can be located in the database
+                $("#stumps tr:eq('"+i+"') td:eq('5')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-btn">x</button>');
+                //found a solution to appending information to a specific column here: https://api.jquery.com/last-selector/
+            }
+        }
+    }
+
+    $(document).on("click", ".remove-btn", function(){
+        //gets the data-value of the remove-btn and stores it in removeThisNode
+        var removeThisNode = $(this).attr("data-value");
+        console.log(removeThisNode); //check the data-value
+        //uses the data-value of the remove-btn to remove the stumpObject stored at that location in the database
+        database.ref("/"+removeThisNode).remove();
+        //removes the item from the html table
+        $(this).closest('tr').remove();
+        //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
+    });
 
 });
 
