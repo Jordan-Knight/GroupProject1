@@ -249,6 +249,9 @@ $(document).ready(function() {
             var marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location,
+                //ima change some colors!!!!!
+                //https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
+                //https://developers.google.com/maps/documentation/javascript/symbols
                 icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
             });
 
