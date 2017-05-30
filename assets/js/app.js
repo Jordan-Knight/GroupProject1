@@ -26,6 +26,7 @@ var userName;
 var userCurrentLocation;
 var userAvailabilty;
 var userEmail;
+var filterStatus = false;
 
 //array of users
 /*var users = [{
@@ -70,7 +71,7 @@ var stumpObject = {
     availability: "",
     location: "",
     stumpees: "",
-    date: "",
+    date: moment().format("MM/DD/YYYY"),
     locationName:"",
     stumpID : "1"
 };
@@ -119,7 +120,7 @@ function initMap() {
             };
 
             infoWindow.setPosition(userPosition);
-            infoWindow.setContent('<img src="assets/images/small-black-silhouette-bird.png" style="width:1.5em; height:1.5em;">' + 'fly to the next stump!');
+            infoWindow.setContent('<img src="assets/images/flying-bird.png" style="width:1.5em; height:1.5em;">' + 'Fly to the next stump!');
             infoWindow.open(map);
             map.setCenter(userPosition);
 
@@ -144,16 +145,16 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 //************************************************************************************
-//    Event Handlers - Marya
-//   Name, View and Join buttons
+//    Build html table on data change
 //
 
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
 
         var row = $("<tr>");
+        var checkbox = $("<input type = 'checkbox'>");
 
-        row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().availability + "<td>");
+        row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td>");
         $("#stumps").append(row);
 
                 var stumpID = 0;
@@ -174,7 +175,11 @@ $(document).ready(function() {
     console.log("Event Handlers Reached -- Start js Stump")
 
 
-    // -----  Static button event handlers  ------  //
+    //************************************************************************************
+    //    Event Handlers - Marya
+    //
+    // -----  Static button event handlers Name, Availability, Date Picker ------  //
+   
 
     //  User Name buttons  //
     $(".btn-user").on("click", function() {
@@ -190,16 +195,31 @@ $(document).ready(function() {
     });
 
     // Date Picker input //
+    console.log("Default date is: " + stumpObject.date) 
     $(function() {
     $('input[name="stumpDate"]').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     }, 
-    function(start, end, label) {
-        stumpObject.date = $('input[name="stumpDate"]').val().trim();
+    function(start) {
+        stumpObject.date = moment(start).format("MM/DD/YYYY");
         console.log("Date picked is " + stumpObject.date)
-
     });
+    });
+
+
+    //  Filter button  //
+    $('.glyphicon').parent().click(function(){
+        if(jQuery(this).children('.glyphicon').hasClass('glyphicon-off')){
+            jQuery(this).children('.glyphicon').removeClass('glyphicon-off').addClass('glyphicon-sort-by-attributes');
+            filterStatus = true;
+            console.log ("filter was off, turned it on. Current status is: " + filterStatus);
+            }
+        else if(jQuery(this).children('.glyphicon').hasClass('glyphicon-sort-by-attributes')){
+            jQuery(this).children('.glyphicon').removeClass('glyphicon-sort-by-attributes').addClass('glyphicon-off');
+             filterStatus = false;
+             console.log ("filter was on, turned it off. Current status is: " + filterStatus);
+        }
     });
 
     //*********************************************************************************
@@ -306,7 +326,7 @@ $(document).ready(function() {
         availability: stumpObject.availability,
         location: stumpObject.location,
         stumpees: "",
-        date: firebase.database.ServerValue.TIMESTAMP,
+        date: stumpObject.date,
         locationName : stumpObject.locationName,
         stumpID : stumpObject.stumpID
     });

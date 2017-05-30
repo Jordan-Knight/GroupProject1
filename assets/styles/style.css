@@ -22,6 +22,10 @@ body {
 	z-index: 999;
 }
 
+.contatiner {
+	font-family: 'Ubuntu' !important, sans-serif;
+}
+
 h1 {
 	color: #D9AF8B;
 	text-shadow:
