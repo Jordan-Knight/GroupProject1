@@ -64,7 +64,7 @@ var stumpObject = {
     stumpees: "",
     date: moment().format("MM/DD/YYYY"),
     locationName:"",
-    stumpID : "1"
+    stumpID : 1
 };
 
 
@@ -151,10 +151,14 @@ $(document).ready(function() {
 
 
            		$.each(snapshot, function(){
-           			if (snapshot.val().stumpID > stumpObject.stumpID){ stumpObject.stumpID = snapshot.val().stumpID};
-           		});
 
+           			var snapSid = parseInt(snapshot.val().stumpID) ;
+           			
+           			if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
+           		});
+           		
            		stumpObject.stumpID = stumpObject.stumpID + 1;
+           		
 
            		
 
