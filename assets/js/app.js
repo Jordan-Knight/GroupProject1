@@ -152,21 +152,20 @@ $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
 
         var row = $("<tr>");
-        var checkbox = $("<input type = 'checkbox'>");
+        var checkbox = "<input type = 'checkbox'>";
 
         row.append("<td>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td>");
         $("#stumps").append(row);
 
-                var stumpID = 0;
 
 
            		$.each(snapshot, function(){
-           			if (snapshot.val().stumpID > stumpID){ stumpID = snapshot.val().stumpID};
+           			if (snapshot.val().stumpID > stumpObject.stumpID){ stumpObject.stumpID = snapshot.val().stumpID};
            		});
 
-           		stumpID += 1;
+           		stumpObject.stumpID = stumpObject.stumpID + 1;
 
-           		console.log(stumpID);
+           		
 
          
 
