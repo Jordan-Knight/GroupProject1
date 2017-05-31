@@ -315,7 +315,7 @@ $(document).ready(function() {
             }
         }
 
-        function createMarker(place, color) {
+        function createMarker(place, icon) {
             var placeLoc = place.geometry.location;
             var marker = new google.maps.Marker({
                 map: map,
@@ -323,7 +323,7 @@ $(document).ready(function() {
                 //ima change some colors!!!!!
                 //https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
                 //https://developers.google.com/maps/documentation/javascript/symbols
-                icon: color
+                icon: icon
                 //"http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
             });
 
