@@ -129,3 +129,11 @@ table, th, td {
   50% {background-position: 500px 500px, -100px 200px;}
   100% {background-position: 500px 1000px, -200px 400px;}
 }	
+
+.checkbox {
+	margin: 0px auto !important;
+}
+
+.remove-btn {
+	margin: 0px 0px 0px 25%;
+}

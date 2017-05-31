@@ -143,7 +143,10 @@ $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
         console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
-        var checkbox = "<input type = 'checkbox' data-value ='" + parseInt(snapshot.val().stumpID) + "'>";
+        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
+        $('checkbox').on('click', function() {
+            $(this).addClass('checked');
+        });
 
         row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
         $("#stumps").append(row);
@@ -160,9 +163,7 @@ $(document).ready(function() {
            		stumpObject.stumpID = stumpObject.stumpID + 1;
 
      $("#join-btn").on("click", function(){
-     	$("checkbox").each(function(){
-     		$(".checked")
-     	});
+
 
      });
 });
@@ -265,7 +266,7 @@ $(document).ready(function() {
                     console.log("lng= " +results[i].geometry.viewport.b.b + "lat= " + results[i].geometry.viewport.f.b);
                     var placeLocation = results[i].geometry.viewport.f.b+","+results[i].geometry.viewport.b.b;
                     console.log(placeLocation);
-                    createMarker(results[i], "ff6363");
+                    createMarker(results[i], "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ff6363");
                 }
             }
         }
@@ -278,7 +279,8 @@ $(document).ready(function() {
                 //ima change some colors!!!!!
                 //https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
                 //https://developers.google.com/maps/documentation/javascript/symbols
-                icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
+                icon: color
+                //"http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
             });
 
 
@@ -298,7 +300,7 @@ $(document).ready(function() {
                 center: stumpObject.location,
                 zoom: 12
                 });
-                createMarker(place, "a06a40");
+                createMarker(place, "tree-stump-.png");
                 //createMarker(userPosition, "88bafc");
             });
         }
@@ -347,14 +349,14 @@ $(document).ready(function() {
         var numRows = $('#stumps tr').length;
         for(i=0; i<numRows; i++){
             //removes all the removal buttons when a new user is selected
-            $("#stumps tr:eq('"+i+"') td:eq('5')").html("")
+            $("#stumps tr:eq('"+i+"') td:eq('6')").html("")
             //loops through the table data to see if the selected user has a stump in there name    
             if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === currentUser){
                 //gets the access key that was stored when the stump was created and saves it in itemId
                 var itemId = $("#stumps tr:eq('"+i+"') td:eq('0')").attr("data-value");
                 console.log(itemId); //checks data-value being saved to button
                 //adds the object key as a data-value to the remove-btn so the unique element can be located in the database
-                $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-btn">x</button>');
+                $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-btn">X</button>');
                 //found a solution to appending information to a specific column here: https://api.jquery.com/last-selector/
             }
         }
