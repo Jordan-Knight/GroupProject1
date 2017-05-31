@@ -298,7 +298,7 @@ $(document).ready(function() {
                 center: stumpObject.location,
                 zoom: 12
                 });
-                createMarker(place, "tree-stump-.png");
+                createMarker(place, "assets/images/tree-stump-.png");
                 //createMarker(userPosition, "88bafc");
             });
         }
