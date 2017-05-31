@@ -278,8 +278,6 @@ $(document).ready(function() {
     var chosenPlace;
     $('#places').on("click", function() {
 
-        console.log("I am in the place");
-
         getPlaces();
 
         //gets places nearby the user that they can meet at and stores the location
@@ -323,7 +321,6 @@ $(document).ready(function() {
                 //https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
                 //https://developers.google.com/maps/documentation/javascript/symbols
                 icon: icon
-                //"http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
             });
 
 
