@@ -143,8 +143,10 @@ $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
         console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
-        var checkbox = "<input type = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
-        
+        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
+        $('checkbox').on('click', function() {
+            $(this).addClass('checked');
+        });
 
         row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
         $("#stumps").append(row);
@@ -354,7 +356,7 @@ $(document).ready(function() {
                 var itemId = $("#stumps tr:eq('"+i+"') td:eq('0')").attr("data-value");
                 console.log(itemId); //checks data-value being saved to button
                 //adds the object key as a data-value to the remove-btn so the unique element can be located in the database
-                $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-btn">x</button>');
+                $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-btn">X</button>');
                 //found a solution to appending information to a specific column here: https://api.jquery.com/last-selector/
             }
         }
