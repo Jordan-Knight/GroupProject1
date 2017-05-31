@@ -252,7 +252,7 @@ $(document).ready(function() {
             var service = new google.maps.places.PlacesService(map);
             service.nearbySearch({
                 location: userPosition,
-                radius: 1500,
+                radius: 2500,
                 type: ['cafe']
             }, callback);
         }
