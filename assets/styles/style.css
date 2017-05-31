@@ -135,5 +135,6 @@ table, th, td {
 }
 
 .remove-btn {
-	margin: 0px 0px 0px 25%;
+	margin: 0px 0px 0px 20%;
+	font-weight: 900 !important;
 }
