@@ -263,7 +263,7 @@ $(document).ready(function() {
                     console.log("lng= " +results[i].geometry.viewport.b.b + "lat= " + results[i].geometry.viewport.f.b);
                     var placeLocation = results[i].geometry.viewport.f.b+","+results[i].geometry.viewport.b.b;
                     console.log(placeLocation);
-                    createMarker(results[i], "ff6363");
+                    createMarker(results[i], "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ff6363");
                 }
             }
         }
@@ -276,7 +276,8 @@ $(document).ready(function() {
                 //ima change some colors!!!!!
                 //https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
                 //https://developers.google.com/maps/documentation/javascript/symbols
-                icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
+                icon: color
+                //"http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color
             });
 
 
@@ -296,7 +297,7 @@ $(document).ready(function() {
                 center: stumpObject.location,
                 zoom: 12
                 });
-                createMarker(place, "a06a40");
+                createMarker(place, "tree-stump-.png");
                 //createMarker(userPosition, "88bafc");
             });
         }
