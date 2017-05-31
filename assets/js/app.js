@@ -143,7 +143,7 @@ $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
         console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
-        var checkbox = "<input type = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
+        var checkbox = "<input type = 'checkbox' data-value ='" + parseInt(snapshot.val().stumpID) + "'>";
 
         row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
         $("#stumps").append(row);
@@ -160,7 +160,9 @@ $(document).ready(function() {
            		stumpObject.stumpID = stumpObject.stumpID + 1;
 
      $("#join-btn").on("click", function(){
-
+     	$("checkbox").each(function(){
+     		$(".checked")
+     	});
 
      });
 });
