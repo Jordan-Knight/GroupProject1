@@ -250,6 +250,7 @@ $(document).ready(function() {
             jQuery(this).children('.glyphicon').removeClass('glyphicon-sort-by-attributes').addClass('glyphicon-off');
              filterStatus = false;
              console.log ("filter was on, turned it off. Current status is: " + filterStatus);
+              $("#stumps").empty();
              database.ref().on("child_added", function(snapshot) {
                     console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
                     var row = $("<tr>");
