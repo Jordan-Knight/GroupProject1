@@ -221,11 +221,54 @@ $(document).ready(function() {
             jQuery(this).children('.glyphicon').removeClass('glyphicon-off').addClass('glyphicon-sort-by-attributes');
             filterStatus = true;
             console.log ("filter was off, turned it on. Current status is: " + filterStatus);
+            $("#stumps").empty();
+            database.ref().orderByChild("date").equalTo(stumpObject.date).on("child_added", function(snapshot) {
+                    console.log("the filtered date is: " + stumpObject.date + "the creator is: " + snapshot.val().creator)
+                    var row = $("<tr>");
+                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
+                    $('checkbox').on('click', function() {
+                        $(this).addClass('checked');
+                    });
+                    row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
+                    $("#stumps").append(row);
+
+                            $.each(snapshot, function(){
+
+                                var snapSid = parseInt(snapshot.val().stumpID) ;
+                                
+                                if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
+                            });
+                            
+                            stumpObject.stumpID = stumpObject.stumpID + 1;
+
+                 $("#join-btn").on("click", function(){
+                                                        });
+                });
+
             }
         else if(jQuery(this).children('.glyphicon').hasClass('glyphicon-sort-by-attributes')){
             jQuery(this).children('.glyphicon').removeClass('glyphicon-sort-by-attributes').addClass('glyphicon-off');
              filterStatus = false;
              console.log ("filter was on, turned it off. Current status is: " + filterStatus);
+             database.ref().on("child_added", function(snapshot) {
+                    console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
+                    var row = $("<tr>");
+                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
+                    $('checkbox').on('click', function() {
+                        $(this).addClass('checked');
+                    });
+                    row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
+                    $("#stumps").append(row);
+                            $.each(snapshot, function(){
+
+                                var snapSid = parseInt(snapshot.val().stumpID) ;
+                                
+                                if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
+                            });   
+                            stumpObject.stumpID = stumpObject.stumpID + 1;
+                 $("#join-btn").on("click", function(){
+                 });
+            });
         }
     });
 
