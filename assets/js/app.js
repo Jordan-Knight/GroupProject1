@@ -64,9 +64,10 @@ var stumpObject = {
     stumpees: "",
     date: moment().format("MM/DD/YYYY"),
     locationName:"",
+    address:"",
+    placeId:"",
     stumpID : 1
 };
-
 
 //*******************************************************************************************************************
 // Jordan Firebase push plus population of table
@@ -148,7 +149,19 @@ $(document).ready(function() {
             $(this).addClass('checked');
         });
 
-        row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
+
+        //using this to create the google maps link for the table href
+        //this is not working very well... should we open with api?
+        var placeLink = "https://www.google.com/maps/place/"+snapshot.val().locationName+"/@"+snapshot.val().location.lat+
+         ","+snapshot.val().location.lng+",17z";
+        console.log(placeLink);
+
+        row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
+         '</td> <td><a href="'+placeLink+'" target="_blank">' +snapshot.val().locationName +
+          '</a></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
+          snapshot.val().date + '</td> <td>' + snapshot.val().availability + 
+         '</td> <td>' + checkbox + '</td> <td></tr>');
+        
         $("#stumps").append(row);
 
 
@@ -324,7 +337,11 @@ $(document).ready(function() {
                 icon: icon
             });
 
-
+            //did some mousin' over stuff... now you can see the place name when you hover!
+            google.maps.event.addListener(marker, "mouseover", function(event) {
+                infoWindow.setContent(place.name);
+                infoWindow.open(map, this);
+            })
 
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent(place.name);
@@ -335,7 +352,9 @@ $(document).ready(function() {
                   lat:place.geometry.viewport.f.b,
                   lng:place.geometry.viewport.b.b
                 }
-                console.log("this is the chosen place! "+stumpObject.locationName +stumpObject.location);
+                stumpObject.placeId = place.id;
+                stumpObject.address = place.vicinity;
+                console.log("this is the chosen place! "+stumpObject.locationName +stumpObject.location + stumpObject.address + stumpObject.placeId);
               
                 map = new google.maps.Map(document.getElementById('map'), {
                 center: stumpObject.location,
