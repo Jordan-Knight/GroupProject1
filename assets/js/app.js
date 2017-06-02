@@ -409,7 +409,7 @@ $(document).ready(function() {
             //removes all the removal buttons when a new user is selected
             $("#stumps tr:eq('"+i+"') td:eq('6')").html("")
             //loops through the table data to see if the selected user has a stump in there name    
-            if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === currentUser){
+            if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === currentUser || $("#stumps tr:eq('"+i+"') td:eq('0')").text() == ""){
                 //gets the access key that was stored when the stump was created and saves it in itemId
                 var itemId = $("#stumps tr:eq('"+i+"') td:eq('0')").attr("data-value");
                 console.log(itemId); //checks data-value being saved to button
