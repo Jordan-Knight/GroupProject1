@@ -156,7 +156,7 @@ $(document).ready(function() {
         console.log(placeLink);
 
         row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
-         '</td> <td><div class="stumpMap">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
+         '</td> <td><div class="stumpMap" id="'+snapshot.V.path.o[0]+'">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
           snapshot.val().date + '</td> <td>' + snapshot.val().availability + 
          '</td> <td>' + checkbox + '</td> <td></tr>');
         
@@ -173,7 +173,6 @@ $(document).ready(function() {
 
      });
 
-});
 
     console.log("Event Handlers Reached -- Start js Stump")
 
@@ -355,6 +354,7 @@ $(document).ready(function() {
                 //createMarker(userPosition, "88bafc");
             });
         }
+
     });
     //************************************************************************************
 
@@ -430,14 +430,16 @@ $(document).ready(function() {
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
     });
 
-
-    $(document).on("click", ".stumpMap", function(){
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: snapshot.val().location,
-            zoom: 17
+        $(document).on("click", ".stumpMap", function(){
+            var object = $(this).attr('id');
+            console.log(database.ref(object).location);
+            console.log(object);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: database.ref(object).location,
+                zoom: 17
+            });
+            //createMarker(place, "assets/images/tree-stump-.png");
         });
-        createMarker(snapshot.val().location, "assets/images/tree-stump-.png");
-    });
+
 
 });
-
