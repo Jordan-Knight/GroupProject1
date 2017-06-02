@@ -142,11 +142,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
-        console.log(snapshot);
         console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
-        
+        $('checkbox').on('click', function() {
+            $(this).addClass('checked');
+        });
 
 
         //using this to create the google maps link for the table href
@@ -156,11 +157,14 @@ $(document).ready(function() {
         console.log(placeLink);
 
         row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
-         '</td> <td><div class="stumpMap">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
+         '</td> <td><div'+snapshot.val().locationName +
+          '</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
           snapshot.val().date + '</td> <td>' + snapshot.val().availability + 
          '</td> <td>' + checkbox + '</td> <td></tr>');
         
         $("#stumps").append(row);
+
+
 
            		$.each(snapshot, function(){
 
@@ -171,8 +175,10 @@ $(document).ready(function() {
            		
            		stumpObject.stumpID = stumpObject.stumpID + 1;
 
-     });
+     $("#join-btn").on("click", function(){
 
+
+     });
 });
 
     console.log("Event Handlers Reached -- Start js Stump")
@@ -248,6 +254,8 @@ $(document).ready(function() {
                             
                             stumpObject.stumpID = stumpObject.stumpID + 1;
 
+                 $("#join-btn").on("click", function(){
+                                                        });
                 });
 
             }
@@ -272,7 +280,8 @@ $(document).ready(function() {
                                 if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
                             });   
                             stumpObject.stumpID = stumpObject.stumpID + 1;
-
+                 $("#join-btn").on("click", function(){
+                 });
             });
         }
     });
@@ -373,13 +382,8 @@ $(document).ready(function() {
     //  Join stump meetup location  //
     $(document).on("click", ".join-btn", function() {
         //stumpID = $(this).attr("data-stumpID");
-        
+        console.log("Join Stump ID is: " + stumpID);
     });
-
-    $(document).on("click", ".checkbox", function() {
-            $(this).addClass('checked');
-     });
-
 
 
     $("#add-stump-btn").on("click", function(event) {
@@ -429,4 +433,14 @@ $(document).ready(function() {
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
     });
 
+
+    $(document).on("click", ".stumpMap", function(){
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: snapshot.val().location,
+            zoom: 17
+        });
+        createMarker(snapshot.val().location, "assets/images/tree-stump-.png");
+    });
+
+});
 
