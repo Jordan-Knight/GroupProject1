@@ -173,7 +173,7 @@ $(document).ready(function() {
 
      });
 
-});
+
 
     console.log("Event Handlers Reached -- Start js Stump")
 
@@ -356,6 +356,7 @@ $(document).ready(function() {
             });
         }
     });
+  
     //************************************************************************************
 
  // ----- Dynamic button event handlers   ------//
@@ -430,4 +431,4 @@ $(document).ready(function() {
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
     });
 
-
+ });
