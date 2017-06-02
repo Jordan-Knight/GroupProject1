@@ -439,5 +439,4 @@ $(document).ready(function() {
         createMarker(snapshot.val().location, "assets/images/tree-stump-.png");
     });
 
-});
 
