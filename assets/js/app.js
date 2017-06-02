@@ -142,6 +142,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
+        console.log(snapshot);
         console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
@@ -155,8 +156,7 @@ $(document).ready(function() {
         console.log(placeLink);
 
         row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
-         '</td> <td><a href="'+placeLink+'" target="_blank">' +snapshot.val().locationName +
-          '</a></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
+         '</td> <td><div class="stumpMap">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
           snapshot.val().date + '</td> <td>' + snapshot.val().availability + 
          '</td> <td>' + checkbox + '</td> <td></tr>');
         
