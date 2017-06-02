@@ -27,6 +27,7 @@ var userCurrentLocation;
 var userAvailabilty;
 var userEmail;
 var filterStatus = false;
+var today = moment().format("MM/DD/YYYY")
 
 
 var users = [{
@@ -141,7 +142,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //
 
 $(document).ready(function() {
-    database.ref().on("child_added", function(snapshot) {
+    database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         console.log(snapshot);
         console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
@@ -255,7 +256,7 @@ $(document).ready(function() {
              filterStatus = false;
              console.log ("filter was on, turned it off. Current status is: " + filterStatus);
               $("#stumps").empty();
-             database.ref().on("child_added", function(snapshot) {
+             database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
                     console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
                     var row = $("<tr>");
                     var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
