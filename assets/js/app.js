@@ -144,7 +144,7 @@ $(document).ready(function() {
     database.ref().on("child_added", function(snapshot) {
         console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
-        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
+        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
         
 
 
@@ -232,7 +232,7 @@ $(document).ready(function() {
             database.ref().orderByChild("date").equalTo(stumpObject.date).on("child_added", function(snapshot) {
                     console.log("the filtered date is: " + stumpObject.date + "the creator is: " + snapshot.val().creator)
                     var row = $("<tr>");
-                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
+                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
                     $('checkbox').on('click', function() {
                         $(this).addClass('checked');
                     });
@@ -259,7 +259,7 @@ $(document).ready(function() {
              database.ref().on("child_added", function(snapshot) {
                     console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
                     var row = $("<tr>");
-                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='stump" + parseInt(snapshot.val().stumpID) + "'>";
+                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
                     $('checkbox').on('click', function() {
                         $(this).addClass('checked');
                     });
@@ -373,7 +373,8 @@ $(document).ready(function() {
     //  Join stump meetup location  //
     $(document).on("click", ".join-btn", function() {
         //stumpID = $(this).attr("data-stumpID");
-        
+        var stumps = [];
+        $(".checked")
     });
 
     $(document).on("click", ".checkbox", function() {
