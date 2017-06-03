@@ -441,10 +441,10 @@ function buildTable(){
                     var placeInfo = $("#placeInfo");
                     placeInfo.css("visibility", "visible")
                     //this will need to be cleared when get places is selected after a stump is viewed already
-                    placeInfo.html('<div id="placeName">Location: '+place.name+'</div>'+
+                    placeInfo.html('<div id="placeName">Location: <span class="locationInfo">'+place.name+'</span></div>'+
                         '<div id="address">Address: <a href="'+place.url+'" id="googleMapUrl" target="_blank">'+place.formatted_address+'</a></div>'+
-                        '<div id="stumpCreator">Creator: '+snap.val().creator+'</div>'+
-                        '<div id="date">Date: '+snap.val().date+"<br>Time: "+snap.val().availability+'</div>'+
+                        '<div id="stumpCreator">Creator: <span class="locationInfo">'+snap.val().creator+'</span></div>'+
+                        '<div id="date">Date: <span class="locationInfo">'+snap.val().date+'</span><br>Time: <span class="locationInfo">' + snap.val().availability + '</span></div>' +
                         '<div id="website">Website: </div>');
 
                     if(place.website){
