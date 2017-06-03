@@ -144,13 +144,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 $(document).ready(function() {
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         console.log(snapshot);
-        console.log("Key" + snapshot.V.path.o[0]);//this is the id for the element stored in the database
-        var row = $('<tr data-value="'+snapshot.V.path.o[0]+'">');
+        var firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
+        var row = $('<tr data-value="'+firebaseKey+'">');
         console.log(row.attr("data-value")+" data-value on the tr");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
 
-        row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
-         '</td> <td><div class="stumpMap" id="'+snapshot.V.path.o[0]+'">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
+        row.append('<td data-value="'+firebaseKey+'">' + snapshot.val().creator +
+         '</td> <td><div class="stumpMap" id="'+firebaseKey+'">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
           snapshot.val().date + '</td> <td>' + snapshot.val().availability + 
          '</td> <td>' + checkbox + '</td> <td></tr>');
         
