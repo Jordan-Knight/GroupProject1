@@ -141,5 +141,21 @@ table, th, td {
 
 /*this is going to be where we put place details of a selected stump! -KAYLEA!*/
 #placeInfo{
-	
+	background-color: #D9AF8B;
+	padding: 3%;
+	border: 3px solid #dddddd;
+}
+
+a {
+	color: #0d4c06;
+}
+
+a:hover {
+	color: #dddddd;
+	text-decoration: none;
+	text-shadow:
+			-.5px -.5px 0 #000,  
+			.5px -.5px 0 #000,
+			-.5px .5px 0 #000,
+			.5px .5px 0 #000;
 }
