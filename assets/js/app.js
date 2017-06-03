@@ -388,7 +388,7 @@ $(document).ready(function() {
     $("#add-stump-btn").on("click", function(event) {
     event.preventDefault();
     //Create jQuery events to push a selected-user and selected-avail class to the element.
-
+    $('.avail-btn').removeClass('selected-avail-btn');
 
     database.ref().push({
         creator: stumpObject.creator,
