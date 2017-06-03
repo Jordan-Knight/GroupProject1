@@ -144,12 +144,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 $(document).ready(function() {
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         var firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
-        var row = $('<tr data-value="'+firebaseKey+'">');
+        var row = $('<tr class="stumpMap" data-value="'+firebaseKey+'">');
         console.log(row.attr("data-value")+" data-value on the tr");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
 
         row.append('<td data-value="'+firebaseKey+'">' + snapshot.val().creator +
-         '</td> <td><div class="stumpMap" id="'+firebaseKey+'">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
+         '</td> <td><div>'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
           snapshot.val().date + '</td> <td>' + snapshot.val().availability + 
          '</td> <td>' + checkbox + '</td> <td></tr>');
         
@@ -422,7 +422,7 @@ $(document).ready(function() {
 
     $(document).on("click", ".remove-btn", function(){
         //gets the data-value of the remove-btn and stores it in removeThisNode
-        var removeThisNode = $(this).attr("data-value");
+        var removeThisNode = $(this).closest('tr').attr("data-value");
         console.log(removeThisNode); //check the data-value
         //uses the data-value of the remove-btn to remove the stumpObject stored at that location in the database
         database.ref("/"+removeThisNode).remove();
@@ -436,7 +436,7 @@ $(document).ready(function() {
         //--------------------------------------------------------------------------------------------
         //changes the map to show the stump selected and adds details under the map
         $(document).on("click", ".stumpMap", function(){
-            var object = $(this).attr('id');
+            var object = $(this).attr('data-value');
             database.ref(object).on('value', function(snap){
                 var request = {
                   placeId: snap.val().placeId
