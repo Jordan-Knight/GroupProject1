@@ -145,16 +145,10 @@ $(document).ready(function() {
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         console.log(snapshot);
         console.log("Key" + snapshot.V.path.o[0]);//this is the id for the element stored in the database
-        var row = $("<tr>");
+        var row = $('<tr data-value="'+snapshot.V.path.o[0]+'">');
+        console.log(row.attr("data-value")+" data-value on the row");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
         
-
-
-        //using this to create the google maps link for the table href
-        //this is not working very well... should we open with api?
-        var placeLink = "https://www.google.com/maps/place/"+snapshot.val().locationName+"/@"+snapshot.val().location.lat+
-         ","+snapshot.val().location.lng+",17z";
-        console.log(placeLink);
 
         row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
          '</td> <td><div class="stumpMap" id="'+snapshot.V.path.o[0]+'">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
