@@ -51,12 +51,14 @@
                 <br>
                 <!-- Selecting availability for stump time. -JB -->
                 <input type="text" name="stumpDate" />
-
-                <button type="button" id="am-button" data-value="Morning" class="btn btn-info avail-btn">Morning</button>
-                
-                <button type="button" id="mid-button" data-value="Afternoon" class="btn btn-danger avail-btn">Afternoon</button>
-                
-                <button type="button" id="pm-button" data-value="Evening" class="btn btn-primary avail-btn">Evening</button>
+                <div class="col-sm-15">
+					<select id="avail-btn" name="unit">
+                		<option id="avail-btn" value="">No Availability</option>
+                		<option id="avail-btn" data-value="Morning">Morning</option>
+                		<option id="avail-btn" data-value="Afternoon">Afternoon</option>
+                		<option id="avail-btn" data-value="Evening">Evening</option>
+                	</select>
+                </div>
                 <br>
                 <!-- Select a location with this button. -JB -->
                 <button type="button" class="buttons" id="places">Get Places <span class="glyphicon glyphicon-road" aria-hidden="true"></button>   
