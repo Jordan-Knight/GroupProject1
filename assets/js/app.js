@@ -466,7 +466,7 @@ $(document).ready(function() {
                         '<div id="stumpCreator">Creator: '+snap.val().creator+'</div>'+
                         '<div id="date">date: '+snap.val().date+" time: "+snap.val().availability+'</div>'+
                         '<div id="website">website: </div>'+
-                        '<a href="'+place.url+'" id="googleMapUrl">Google Maps Link!</a>');
+                        '<a href="'+place.url+'" id="googleMapUrl" target="_blank">Google Maps Link!</a>');
 
                     if(place.website){
                         $("#website").append('<a href="'+place.website+'" target="_blank">'+place.website+'</a>');
