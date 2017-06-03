@@ -60,7 +60,7 @@ var users = [{
 var stumpObject = {
     creator: "",
     availability: "",
-    location: "",
+    location: {},
     stumpees: "",
     date: moment().format("MM/DD/YYYY"),
     locationName:"",
@@ -331,7 +331,7 @@ $(document).ready(function() {
             google.maps.event.addListener(marker, "mouseover", function(event) {
                 infoWindow.setContent(place.name);
                 infoWindow.open(map, this);
-            })
+            });
 
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent(place.name);
@@ -342,7 +342,7 @@ $(document).ready(function() {
                   lat:place.geometry.viewport.f.b,
                   lng:place.geometry.viewport.b.b
                 }
-                stumpObject.placeId = place.id;
+                stumpObject.placeId = place.place_id;
                 stumpObject.address = place.vicinity;
                 console.log("this is the chosen place! "+stumpObject.locationName +stumpObject.location + stumpObject.address + stumpObject.placeId);
               
@@ -394,6 +394,7 @@ $(document).ready(function() {
         location: stumpObject.location,
         stumpees: "",
         date: stumpObject.date,
+        placeId: stumpObject.placeId,
         locationName : stumpObject.locationName,
         stumpID : stumpObject.stumpID
     });
@@ -430,16 +431,61 @@ $(document).ready(function() {
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
     });
 
+        //--------------------------------------------------------------------------------------------
+        //********************************************************************************************
+        //--------------------------------------------------------------------------------------------
+        //changes the map to show the stump selected and adds details under the map
         $(document).on("click", ".stumpMap", function(){
             var object = $(this).attr('id');
-            console.log(database.ref(object).location);
-            console.log(object);
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: database.ref(object).location,
-                zoom: 17
-            });
-            //createMarker(place, "assets/images/tree-stump-.png");
+            database.ref(object).on('value', function(snap){
+                var request = {
+                  placeId: snap.val().placeId
+                };
+
+                console.log(request);
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: snap.val().location,
+                    zoom: 14
+                });
+
+                infowindow = new google.maps.InfoWindow();
+                service = new google.maps.places.PlacesService(map);
+                service.getDetails(request, callbackStump);
+
+                function callbackStump(place, status) {
+                    console.log(place);//this shows the place object returned, 
+                    //will leave it in until we have finalized all of the information we want to pull from it
+                    $("#apiStuff").append('<div id="placeInfo"></div>');
+                    var placeInfo = $("#placeInfo");
+
+                    //this will need to be cleared when get places is selected after a stump is viewed already
+                    placeInfo.html('<div id="placeName">Location:'+place.name+'</div>'+
+                        '<div id="address">Address: '+place.formatted_address+'</div>'+
+                        '<div id="stumpCreator">Creator: '+snap.val().creator+'</div>'+
+                        '<div id="date">date: '+snap.val().date+" time: "+snap.val().availability+'</div>'+
+                        '<div id="website">website: </div>'+
+                        '<a href="'+place.url+'" id="googleMapUrl">Google Maps Link!</a>');
+
+                    if(place.website){
+                        $("#website").append('<a href="'+place.website+'" target="_blank">'+place.website+'</a>');
+                    }
+
+                  if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    var placeLoc = place.geometry.location;
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: place.geometry.location,
+                        icon: "assets/images/tree-stump-.png"
+                    });
+                  }
+                }
+            })
+            
         });
+        //--------------------------------------------------------------------------------------------
+        //********************************************************************************************
+        //--------------------------------------------------------------------------------------------
 
 
 });
