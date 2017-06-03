@@ -146,9 +146,8 @@ $(document).ready(function() {
         console.log(snapshot);
         console.log("Key" + snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $('<tr data-value="'+snapshot.V.path.o[0]+'">');
-        console.log(row.attr("data-value")+" data-value on the row");
+        console.log(row.attr("data-value")+" data-value on the tr");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
-        
 
         row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
          '</td> <td><div class="stumpMap" id="'+snapshot.V.path.o[0]+'">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
@@ -460,10 +459,10 @@ $(document).ready(function() {
                     var placeInfo = $("#placeInfo");
 
                     //this will need to be cleared when get places is selected after a stump is viewed already
-                    placeInfo.html('<div id="placeName">Location: <span class="locationInfo">'+place.name+'</span></div>'+
+                    placeInfo.html('<div id="placeName">Location: '+place.name+'</div>'+
                         '<div id="address">Address: <a href="'+place.url+'" id="googleMapUrl" target="_blank">'+place.formatted_address+'</a></div>'+
-                        '<div id="stumpCreator">Creator: <span class="locationInfo">'+snap.val().creator+'</span></div>'+
-                        '<div id="date">Date: <span class="locationInfo">'+snap.val().date+'</span>' + '<br>Time: <span class="locationInfo">'+snap.val().availability+'</span></div>'+
+                        '<div id="stumpCreator">Creator: '+snap.val().creator+'</div>'+
+                        '<div id="date">Date: '+snap.val().date+"<br>Time: "+snap.val().availability+'</div>'+
                         '<div id="website">Website: </div>');
 
                     if(place.website){
