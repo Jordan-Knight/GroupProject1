@@ -457,7 +457,7 @@ $(document).ready(function() {
                     console.log(place);//this shows the place object returned, 
                     //will leave it in until we have finalized all of the information we want to pull from it
                     var placeInfo = $("#placeInfo");
-
+                    placeInfo.css("visibility", "visible")
                     //this will need to be cleared when get places is selected after a stump is viewed already
                     placeInfo.html('<div id="placeName">Location: '+place.name+'</div>'+
                         '<div id="address">Address: <a href="'+place.url+'" id="googleMapUrl" target="_blank">'+place.formatted_address+'</a></div>'+
