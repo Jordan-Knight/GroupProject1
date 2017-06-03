@@ -461,11 +461,11 @@ $(document).ready(function() {
                     var placeInfo = $("#placeInfo");
 
                     //this will need to be cleared when get places is selected after a stump is viewed already
-                    placeInfo.html('<div id="placeName">Location:'+place.name+'</div>'+
+                    placeInfo.html('<div id="placeName">Location: '+place.name+'</div>'+
                         '<div id="address">Address: '+place.formatted_address+'</div>'+
                         '<div id="stumpCreator">Creator: '+snap.val().creator+'</div>'+
-                        '<div id="date">date: '+snap.val().date+" time: "+snap.val().availability+'</div>'+
-                        '<div id="website">website: </div>'+
+                        '<div id="date">Date: '+snap.val().date+"<br>Time: "+snap.val().availability+'</div>'+
+                        '<div id="website">Website: </div>'+
                         '<a href="'+place.url+'" id="googleMapUrl" target="_blank">Google Maps Link!</a>');
 
                     if(place.website){
