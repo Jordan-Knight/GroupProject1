@@ -457,16 +457,14 @@ $(document).ready(function() {
                 function callbackStump(place, status) {
                     console.log(place);//this shows the place object returned, 
                     //will leave it in until we have finalized all of the information we want to pull from it
-                    $("#apiStuff").append('<div id="placeInfo"></div>');
                     var placeInfo = $("#placeInfo");
 
                     //this will need to be cleared when get places is selected after a stump is viewed already
                     placeInfo.html('<div id="placeName">Location: '+place.name+'</div>'+
-                        '<div id="address">Address: '+place.formatted_address+'</div>'+
+                        '<div id="address">Address: <a href="'+place.url+'" id="googleMapUrl" target="_blank">'+place.formatted_address+'</a></div>'+
                         '<div id="stumpCreator">Creator: '+snap.val().creator+'</div>'+
                         '<div id="date">Date: '+snap.val().date+"<br>Time: "+snap.val().availability+'</div>'+
-                        '<div id="website">Website: </div>'+
-                        '<a href="'+place.url+'" id="googleMapUrl" target="_blank">Google Maps Link!</a>');
+                        '<div id="website">Website: </div>');
 
                     if(place.website){
                         $("#website").append('<a href="'+place.website+'" target="_blank">'+place.website+'</a>');
