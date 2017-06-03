@@ -143,8 +143,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 $(document).ready(function() {
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
+        console.log(snapshot);
         console.log("Key" + snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $('<tr data-value="'+snapshot.V.path.o[0]+'">');
+        console.log(row.attr("data-value")+" data-value on the tr");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
 
         row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
@@ -409,7 +411,7 @@ $(document).ready(function() {
             //loops through the table data to see if the selected user has a stump in there name    
             if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === currentUser || $("#stumps tr:eq('"+i+"') td:eq('0')").text() == ""){
                 //gets the access key that was stored when the stump was created and saves it in itemId
-                var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
+                var itemId = $("#stumps tr:eq('"+i+"') td:eq('0')").attr("data-value");
                 console.log(itemId); //checks data-value being saved to button
                 //adds the object key as a data-value to the remove-btn so the unique element can be located in the database
                 $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-btn">X</button>');
