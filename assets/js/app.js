@@ -27,7 +27,9 @@ var userCurrentLocation;
 var userAvailabilty;
 var userEmail;
 var filterStatus = false;
-var today = moment().format("MM/DD/YYYY")
+var today = moment().format("MM/DD/YYYY");
+var displayData;
+var firebaseKey;
 
 
 var users = [{
@@ -138,35 +140,41 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 //************************************************************************************
-//    Build html table on data change
+//    Firebase listener -- on load firebase query for data 
 //
-
 $(document).ready(function() {
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
-        var firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
-        var row = $('<tr class="stumpMap" data-value="'+firebaseKey+'">');
-        console.log(row.attr("data-value")+" data-value on the tr");
-        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
-
-        row.append('<td data-value="'+firebaseKey+'">' + snapshot.val().creator +
-         '</td> <td><div>'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
-          snapshot.val().date + '</td> <td>' + snapshot.val().availability + 
-         '</td> <td>' + checkbox + '</td> <td></tr>');
+        firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
+        displayData = snapshot.val();
+        buildTable();
         
-        $("#stumps").append(row);
 
            		$.each(snapshot, function(){
-
            			var snapSid = parseInt(snapshot.val().stumpID) ;
-           			
            			if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
            		});
-           		
            		stumpObject.stumpID = stumpObject.stumpID + 1;
 
      });
 
 
+
+//************************************************************************************
+//   Build Stump table data -- called by firebase queries
+//
+function buildTable(){
+        var row = $('<tr class="stumpMap" data-value="'+firebaseKey+'">');
+        console.log(row.attr("data-value")+" data-value on the tr");
+        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(displayData.stumpID) + "'>";
+
+        row.append('<td data-value="'+firebaseKey+'">' + displayData.creator +
+         '</td> <td><div>'+ displayData.locationName+'</div></td> <td>' + displayData.stumpees + '</td> <td>' + 
+          displayData.date + '</td> <td>' + displayData.availability + 
+         '</td> <td>' + checkbox + '</td> <td></tr>');
+        
+        $("#stumps").append(row);
+
+}
     console.log("Event Handlers Reached -- Start js Stump")
 
 
@@ -217,57 +225,30 @@ $(document).ready(function() {
 
     //  Filter button  //
     $('.glyphicon').parent().click(function(){
-        if(jQuery(this).children('.glyphicon').hasClass('glyphicon-off')){
-            jQuery(this).children('.glyphicon').removeClass('glyphicon-off').addClass('glyphicon-sort-by-attributes');
+        if(jQuery(this).children('.glyphicon').hasClass('glyphicon-calendar')){
+            jQuery(this).children('.glyphicon').removeClass('glyphicon-calendar').addClass('glyphicon-sort-by-attributes');
             filterStatus = true;
             console.log ("filter was off, turned it on. Current status is: " + filterStatus);
             $("#stumps").empty();
             database.ref().orderByChild("date").equalTo(stumpObject.date).on("child_added", function(snapshot) {
                     console.log("the filtered date is: " + stumpObject.date + "the creator is: " + snapshot.val().creator)
-                    var row = $("<tr>");
-                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
-                    $('checkbox').on('click', function() {
-                        $(this).addClass('checked');
-                    });
-                    row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
-                    $("#stumps").append(row);
-
-                            $.each(snapshot, function(){
-
-                                var snapSid = parseInt(snapshot.val().stumpID) ;
-                                
-                                if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
-                            });
-                            
-                            stumpObject.stumpID = stumpObject.stumpID + 1;
-
+                    firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
+                    displayData = snapshot.val();
+                    buildTable();
                 });
 
             }
         else if(jQuery(this).children('.glyphicon').hasClass('glyphicon-sort-by-attributes')){
-            jQuery(this).children('.glyphicon').removeClass('glyphicon-sort-by-attributes').addClass('glyphicon-off');
+            jQuery(this).children('.glyphicon').removeClass('glyphicon-sort-by-attributes').addClass('glyphicon-calendar');
              filterStatus = false;
              console.log ("filter was on, turned it off. Current status is: " + filterStatus);
               $("#stumps").empty();
              database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
-                    console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
-                    var row = $("<tr>");
-                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
-                    $('checkbox').on('click', function() {
-                        $(this).addClass('checked');
-                    });
-                    row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
-                    $("#stumps").append(row);
-                            $.each(snapshot, function(){
-
-                                var snapSid = parseInt(snapshot.val().stumpID) ;
-                                
-                                if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
-                            });   
-                            stumpObject.stumpID = stumpObject.stumpID + 1;
-
-            });
-        }
+                    firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
+                    displayData = snapshot.val();
+                    buildTable();
+                });
+            }
     });
 
     //*********************************************************************************
