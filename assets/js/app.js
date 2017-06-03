@@ -195,8 +195,9 @@ $(document).ready(function() {
 
 
     //  User Availability buttons  //
+    
     $(".avail-btn").on("click", function() {
-        stumpObject.availability = $(this).attr("data-value");
+        stumpObject.availability = $(this).val();
         console.log("Stump user availability is: " + stumpObject.availability);
     });
 
