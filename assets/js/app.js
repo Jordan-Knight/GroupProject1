@@ -143,7 +143,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 $(document).ready(function() {
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
-        console.log(snapshot);
         var firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
         var row = $('<tr data-value="'+firebaseKey+'">');
         console.log(row.attr("data-value")+" data-value on the tr");
