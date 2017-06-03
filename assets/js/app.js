@@ -256,7 +256,7 @@ function buildTable(){
     //--------------------NEARBY PLACES SEARCH
     var chosenPlace;
     $('#places').on("click", function() {
-
+        $("#placeInfo").empty();
         getPlaces();
 
         //gets places nearby the user that they can meet at and stores the location
