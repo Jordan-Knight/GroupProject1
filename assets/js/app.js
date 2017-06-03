@@ -197,6 +197,8 @@ $(document).ready(function() {
 
     //  User Availability buttons  //
     $(".avail-btn").on("click", function() {
+     $(this).addClass("selected-avail-btn");
+     $(".selected-avail-btn").css("background-color", "#000");
         stumpObject.availability = $(this).attr("data-value");
         console.log("Stump user availability is: " + stumpObject.availability);
     });
