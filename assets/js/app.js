@@ -27,7 +27,9 @@ var userCurrentLocation;
 var userAvailabilty;
 var userEmail;
 var filterStatus = false;
-var today = moment().format("MM/DD/YYYY")
+var today = moment().format("MM/DD/YYYY");
+var displayData;
+var displayKey;
 
 
 var users = [{
@@ -138,35 +140,43 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 //************************************************************************************
-//    Build html table on data change
+//    Firebase listener -- on load firebase query for data read
 //
 
 $(document).ready(function() {
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         console.log(snapshot);
         console.log("Key" + snapshot.V.path.o[0]);//this is the id for the element stored in the database
-        var row = $('<tr data-value="'+snapshot.V.path.o[0]+'">');
-        console.log(row.attr("data-value")+" data-value on the tr");
-        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
-
-        row.append('<td data-value="'+snapshot.V.path.o[0]+'">' + snapshot.val().creator +
-         '</td> <td><div class="stumpMap" id="'+snapshot.V.path.o[0]+'">'+snapshot.val().locationName+'</div></td> <td>' + snapshot.val().stumpees + '</td> <td>' + 
-          snapshot.val().date + '</td> <td>' + snapshot.val().availability + 
-         '</td> <td>' + checkbox + '</td> <td></tr>');
+        displayData = snapshot.val();
+        displayKey = snapshot.V.path.o[0];
+        buildTable();
         
-        $("#stumps").append(row);
-
            		$.each(snapshot, function(){
-
            			var snapSid = parseInt(snapshot.val().stumpID) ;
-           			
-           			if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
+         			if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
            		});
            		
            		stumpObject.stumpID = stumpObject.stumpID + 1;
 
      });
 
+
+//************************************************************************************
+//   Build Stump table data -- called by firebase query
+//
+function buildTable(){
+		var row = $('<tr data-value="'+ displayKey+'">');
+        console.log(row.attr("data-value")+" data-value on the tr");
+        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(displayData.stumpID) + "'>";
+
+        row.append('<td data-value="'+ displayKey +'">' + displayData.creator +
+         '</td> <td><div class="stumpMap" id="'+ displayKey +'">'+ displayData.locationName+'</div></td> <td>' + displayData.stumpees + '</td> <td>' + 
+          displayData.date + '</td> <td>' + displayData.availability + 
+         '</td> <td>' + checkbox + '</td> <td></tr>');
+        
+        $("#stumps").append(row);
+
+};
 
     console.log("Event Handlers Reached -- Start js Stump")
 
@@ -223,24 +233,9 @@ $(document).ready(function() {
             console.log ("filter was off, turned it on. Current status is: " + filterStatus);
             $("#stumps").empty();
             database.ref().orderByChild("date").equalTo(stumpObject.date).on("child_added", function(snapshot) {
-                    console.log("the filtered date is: " + stumpObject.date + "the creator is: " + snapshot.val().creator)
-                    var row = $("<tr>");
-                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
-                    $('checkbox').on('click', function() {
-                        $(this).addClass('checked');
-                    });
-                    row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
-                    $("#stumps").append(row);
-
-                            $.each(snapshot, function(){
-
-                                var snapSid = parseInt(snapshot.val().stumpID) ;
-                                
-                                if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
-                            });
-                            
-                            stumpObject.stumpID = stumpObject.stumpID + 1;
-
+                    displayData = snapshot.val();
+			        displayKey = snapshot.V.path.o[0];
+			        buildTable();
                 });
 
             }
@@ -250,22 +245,9 @@ $(document).ready(function() {
              console.log ("filter was on, turned it off. Current status is: " + filterStatus);
               $("#stumps").empty();
              database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
-                    console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
-                    var row = $("<tr>");
-                    var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
-                    $('checkbox').on('click', function() {
-                        $(this).addClass('checked');
-                    });
-                    row.append("<td data-value='"+snapshot.V.path.o[0]+"'>" + snapshot.val().creator + "</td> <td>" + snapshot.val().locationName + "</td> <td>" + snapshot.val().stumpees + "</td> <td>" + snapshot.val().date + "</td> <td>" + snapshot.val().availability + "</td> <td>" + checkbox + "</td> <td></tr>");
-                    $("#stumps").append(row);
-                            $.each(snapshot, function(){
-
-                                var snapSid = parseInt(snapshot.val().stumpID) ;
-                                
-                                if (snapSid > stumpObject.stumpID){ stumpObject.stumpID = snapSid};
-                            });   
-                            stumpObject.stumpID = stumpObject.stumpID + 1;
-
+                    displayData = snapshot.val();
+			        displayKey = snapshot.V.path.o[0];
+			        buildTable();
             });
         }
     });
