@@ -27,6 +27,7 @@ var userCurrentLocation;
 var userAvailabilty;
 var userEmail;
 var filterStatus = false;
+var today = moment().format("MM/DD/YYYY")
 
 
 var users = [{
@@ -141,7 +142,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //
 
 $(document).ready(function() {
-    database.ref().on("child_added", function(snapshot) {
+    database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         console.log(snapshot);
         console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
@@ -255,7 +256,7 @@ $(document).ready(function() {
              filterStatus = false;
              console.log ("filter was on, turned it off. Current status is: " + filterStatus);
               $("#stumps").empty();
-             database.ref().on("child_added", function(snapshot) {
+             database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
                     console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
                     var row = $("<tr>");
                     var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
@@ -409,7 +410,7 @@ $(document).ready(function() {
             //removes all the removal buttons when a new user is selected
             $("#stumps tr:eq('"+i+"') td:eq('6')").html("")
             //loops through the table data to see if the selected user has a stump in there name    
-            if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === currentUser){
+            if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === currentUser || $("#stumps tr:eq('"+i+"') td:eq('0')").text() == ""){
                 //gets the access key that was stored when the stump was created and saves it in itemId
                 var itemId = $("#stumps tr:eq('"+i+"') td:eq('0')").attr("data-value");
                 console.log(itemId); //checks data-value being saved to button
