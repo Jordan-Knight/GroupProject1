@@ -144,7 +144,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 $(document).ready(function() {
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         console.log(snapshot);
-        console.log(snapshot.V.path.o[0]);//this is the id for the element stored in the database
+        console.log("Key" + snapshot.V.path.o[0]);//this is the id for the element stored in the database
         var row = $("<tr>");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(snapshot.val().stumpID) + "'>";
         
@@ -375,7 +375,13 @@ $(document).ready(function() {
     $(document).on("click", ".join-btn", function() {
         //stumpID = $(this).attr("data-stumpID");
         var stumps = [];
-        $(".checked")
+        database.ref().on("child_added", function(snapshot){
+        	snapshot.forEach(function(){
+
+        	});
+
+        });
+        
     });
 
     $(document).on("click", ".checkbox", function() {
