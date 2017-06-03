@@ -256,7 +256,7 @@ function buildTable(){
     //--------------------NEARBY PLACES SEARCH
     var chosenPlace;
     $('#places').on("click", function() {
-
+        $("#placeInfo").empty();
         getPlaces();
 
         //gets places nearby the user that they can meet at and stores the location
@@ -320,7 +320,12 @@ function buildTable(){
                 stumpObject.placeId = place.place_id;
                 stumpObject.address = place.vicinity;
                 console.log("this is the chosen place! "+stumpObject.locationName +stumpObject.location + stumpObject.address + stumpObject.placeId);
-              
+                
+                //  add basic data to places info section --- K, could you add website?
+                $("#placeInfo").html('<div id="placeName">Location: <span class="locationInfo">'+place.name+'</span></div>'+
+                      '<div id="address">Address: '+ stumpObject.address +'</div>'); 
+                 $("#placeInfo").css("visibility", "visible");   
+
                 map = new google.maps.Map(document.getElementById('map'), {
                 center: stumpObject.location,
                 zoom: 12
