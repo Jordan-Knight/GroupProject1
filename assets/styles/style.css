@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 
 body {
 	background-image: url(../images/woodbg.jpg);
@@ -148,6 +149,8 @@ table, th, td {
 
 a {
 	color: #0d4c06;
+	font-family: 'Oswald', sans-serif;
+	font-size: 16px;
 }
 
 a:hover {
@@ -158,4 +161,6 @@ a:hover {
 			.5px -.5px 0 #000,
 			-.5px .5px 0 #000,
 			.5px .5px 0 #000;
+	font-family: 'Oswald', sans-serif;
+	font-size: 16px;
 }
