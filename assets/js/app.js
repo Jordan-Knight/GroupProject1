@@ -325,7 +325,7 @@ function buildTable(){
                 
                 //  add basic data to places info section --- K, could you add website?
                 $("#placeInfo").html('<div id="placeName">Location: <span class="locationInfo">'+place.name+'</span></div>'+
-                    '<div id="address">Address: '+place.vicinity+'</div>');
+                    '<div id="address">Address: <span class="locationInfo">'+place.vicinity+'</span></div>');
 
 
                 $("#placeInfo").css("visibility", "visible");   
