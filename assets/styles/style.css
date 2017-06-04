@@ -172,8 +172,23 @@ a:hover {
 	font-family: 'Oswald', sans-serif;
 	font-size: 15px;
 }
-
+/* Establishes fonts for location info under map. -JB */
 .locationInfo {
 	font-family: 'Oswald', sans-serif;
 	font-size: 15px;
+}
+/* Availability colors. -JB */
+.select-morning {
+	color: #FFFFFF;
+	background-color: #31B0D5;
+}
+
+.select-afternoon {
+	color: #FFFFFF;
+	background-color: #EC971F;
+}
+
+.select-evening {
+	color: #FFFFFF;
+	background-color: #286090;
 }
