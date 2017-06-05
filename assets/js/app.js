@@ -322,18 +322,37 @@ function buildTable(){
                 console.log("this is the chosen place! "+stumpObject.locationName +stumpObject.location + stumpObject.address + stumpObject.placeId);
                 
                 //  add basic data to places info section --- K, could you add website?
-                $("#placeInfo").html('<div id="placeName">Location: <span class="locationInfo">'+place.name+'</span></div>'+
-                    '<div id="address">Address: '+place.vicinity+'</div>');
-
-
-                $("#placeInfo").css("visibility", "visible");   
 
                 map = new google.maps.Map(document.getElementById('map'), {
                 center: stumpObject.location,
                 zoom: 12
                 });
-                createMarker(place, "assets/images/tree-stump-.png");
-                //createMarker(userPosition, "88bafc");
+
+                var request= {placeId : place.place_id};
+                service = new google.maps.places.PlacesService(map);
+                service.getDetails(request, callback);
+
+                function callback(place, status) {
+                    console.log(place);//this shows the place object returned, 
+                    //will leave it in until we have finalized all of the information we want to pull from it
+                    var placeInfo = $("#placeInfo");
+                    placeInfo.css("visibility", "visible")
+                    //this will need to be cleared when get places is selected after a stump is viewed already
+                    placeInfo.html('<div id="placeName">Location: <span class="locationInfo">'+place.name+'</span></div>'+
+                        '<div id="address">Address: <a href="'+place.url+'" id="googleMapUrl" target="_blank">'+place.formatted_address+'</a></div>'+
+                        '<div id="website">Website: </div>');
+
+                    if(place.website){
+                        $("#website").append('<a href="'+place.website+'" target="_blank">'+place.website+'</a>');
+                    }
+
+                    $("#placeInfo").css("visibility", "visible"); 
+                  
+                  if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    createMarker(place, "assets/images/tree-stump-.png");
+                  }
+                }
+
             });
         }
 
@@ -469,6 +488,7 @@ function buildTable(){
             })
             
         });
+
         //--------------------------------------------------------------------------------------------
         //********************************************************************************************
         //--------------------------------------------------------------------------------------------
