@@ -6,7 +6,7 @@
 	<meta name="keywords" content="coding, bootcamp, part-time, student, meetup">
 	<meta name="authors" content="Jordan Knight, Marya Crigler, Anthony Pekearo, Kaylea Box, John Bendfeldt">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>STUMP</title>
+	<title>STUMP Sign In</title>
 	<!-- Bootstrap csss link. -John Bendfeldt jfbendfeldt@gmail.com -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
@@ -35,7 +35,22 @@
 <div id="leaves">
 </div>
 <div class="content row">
-	<div id="signIn" style="background-color: white; width:500px; height: auto;">User Sign In</div>
+	<form style="background-color: #D9AF8B; margin:30px;">
+	  <div class="form-group" style="margin: 30px;">
+	    <label for="exampleInputEmail1">Email address</label>
+	    <input style="border:none;" type="email" class="form-control" id="userEmail" placeholder="Email">
+	  </div>
+	  <div class="form-group" style="margin: 30px;">
+	    <label for="exampleInputPassword1">Password</label>
+	    <input style="border:none;" type="password" class="form-control" id="userPassword" placeholder="Password">
+	  </div>
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox"> Get email notifications?
+	    </label>
+	  </div>
+	  <button style="margin: 30px; border:none"; type="submit" class="btn btn-default">Submit</button>
+	</form>
 </div>
 
 </body>
