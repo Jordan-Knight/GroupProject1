@@ -41,22 +41,24 @@
                   <label for="student-name-input">Student Name</label>
                   <br>
                   <!-- User selection happens here. -JB -->
+                  <div>
                   <button type="button" id="tony" data-value="Tony" class="buttons btn-user">Tony</button>
                   <button type="button" id="kaylea" data-value="Kaylea" class="buttons btn-user">Kaylea</button>
                   <button type="button" id="marya" data-value="Yaya" class="buttons btn-user">Marya</button>
                   <button type="button" id="jordan" data-value="Jordan" class="buttons btn-user">Jordan</button>
                   <button type="button" id="john" data-value="John" class="buttons btn-user">John</button>
+                  </div>
                 </div>
                 <label for="availability-input">Availability</label>
                 <br>
                 <!-- Selecting availability for stump time. -JB -->
                 <input type="text" name="stumpDate" />
                 <div class="col-sm-15">
-					<select class ="avail-btn" name="unit">
+					<select class ="avail-btn" name="Availability">
                 		<option value="">No Availability</option>
-                		<option data-value="Morning">Morning</option>
-                		<option data-value="Afternoon">Afternoon</option>
-                		<option data-value="Evening">Evening</option>
+                		<option data-value="Morning" class="select-morning">Morning</option>
+                		<option data-value="Afternoon" class="select-afternoon">Afternoon</option>
+                		<option data-value="Evening" class="select-evening">Evening</option>
                 	</select>
                 </div>
                 <br>
