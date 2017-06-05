@@ -188,6 +188,8 @@ function buildTable(){
     $(".btn-user").on("click", function() {
         stumpObject.creator = $(this).attr("data-value");
         console.log("Stump User selected is: " + stumpObject.creator);
+        $(".btn-user").siblings().css({"background-color": "#0d4c06"});
+        $(this).css({"background-color": "#000"});
 
         //**************************************************************************************
         //I am inside the ".btn-user" function adding remove buttons when the users is selected
