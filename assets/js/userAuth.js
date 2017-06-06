@@ -1,68 +1,121 @@
-//_______________________________________Database Config Stuff_________________________________________
-//_____________________________________________________________________________________________________
 
-var config   = {
-    apiKey: "AIzaSyD-ftcKUoOvdhzaeaXypzqjyzKrsoZMGr8",
-    authDomain: "stump-ddd23.firebaseapp.com",
-    databaseURL: "https://stump-ddd23.firebaseio.com",
-    projectId: "stump-ddd23",
-    storageBucket: "stump-ddd23.appspot.com",
-    messagingSenderId: "140581118335"
-};
-
-firebase.initializeApp(config);
-
-var database = firebase.database();
-
+//initializes database in the app.js file
 
 //enabled the use of email/password sign in in the firebase console
 
 //______________________________________________________________________________________________________
 //______________________________________________________________________________________________________
 
-
+//_____________________________________________________________________________________________________
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________________________________________________________________
+$(document).ready(function() {
+var name;
+var userId;
 var email; 
 var password;
-$("#createAccount").on("click", function(){
+var confirmPassword;
 
+$("#createAccount").on("click", function(event){
+      $('#userInfo').prepend('<div class="form-group" style="margin: 30px;">'+
+                             '<label for="userName">User Name</label>'+
+                             '<input style="border:none;" type="email" class="form-control"'+
+                             ' id="userName" placeholder="userName">');
+      $('#userInfo').append('<div class="form-group" style="margin: 30px;">'+
+                            '<label for="confirmPassword">Confirm Password</label>'+
+                            '<input type="password" style="border:none;" class="form-control"'+ 
+                            'id="confirmPassword" placeholder="Reenter your password"></div>');
+      $('#buttons').empty();
+      $('#buttons').html('<button style="margin: 30px; border:none"; type="submit" '+
+                         'class="btn btn-default" id="createAccountSubmit">Create Account</button>');
+});
+
+$(document).on("click","#createAccountSubmit", function(event){
+  event.preventDefault();
+  console.log("create");
+  name            = $("#userName").val();
+  email           = $("#userEmail").val();
+  password        = $("#userPassword").val();
+  confirmPassword = $("#confirmPassword").val();
+  console.log(email);
+
+  $("#userName").val("");
+  $("#userEmail").val("");
+  $("#userPassword").val("");
+  $("#confirmPassword").val("");
+
+  if(password == confirmPassword){
+    //create user
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode    = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+      // ...
+    });
+    email.html
+  }
+
+});
+
+$("#signIn").on("click", function(event){
+  event.preventDefault();
+  console.log("sign in");
   email    = $("#userEmail").val();
   password = $("#userPassword").val();
-  console.log(email+' '+password);
-//create user
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode    = error.code;
-    var errorMessage = error.message;
-    // ...
-  });
-  email.html
 
-})
+  $("#userEmail").val("");
+  $("#userPassword").val("");
+  console.log(email);
 
+    //sign in existing user
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode    = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
 
-//sign in existing user
-firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-  // Handle Errors here.
-  var errorCode    = error.code;
-  var errorMessage = error.message;
-  // ...
 });
+
+$(document).on("click", "#signOut", function(){
+  firebase.auth().signOut().then(function() {
+    // Sign-out successful.
+    console.log("signed out!");
+    $("#navContents").html('<button type="button" id="signInPage" class="btn btn-default navbar-btn navbar-right">Sign In</button>')
+
+  }).catch(function(error) {
+    // An error happened.
+    console.log("error signing out!");
+  });
+});
+
 
 //user state is changed
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    // User is signed in.
-    var displayName   = user.displayName;
-    var email         = user.email;
-    var emailVerified = user.emailVerified;
-    var photoURL      = user.photoURL;
-    var isAnonymous   = user.isAnonymous;
-    var uid           = user.uid;
-    var providerData  = user.providerData;
+    console.log(user);
+    if(name !== undefined){
+      user.updateProfile({
+          displayName: name,
+        }).then(function() {
+          console.log(user.displayName);
+        }, function(error) {
+          console.log("error updating displayName");
+        });
+    }
+
+    $("#navContents").html('<p class="navbar-text">Signed in as '+user.email+'</p>'+
+      '<button type="button" id="signOut" class="btn btn-default navbar-btn navbar-right">Sign Out</button>')
     // ...
   } else {
     // User is signed out.
     // ...
   }
+  //email.html
 });
-email.html
+
+
+
+
+})
