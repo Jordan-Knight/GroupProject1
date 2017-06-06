@@ -165,12 +165,12 @@ $(document).ready(function() {
 function buildTable(){
         var row = $('<tr class="stumpMap" data-value="'+firebaseKey+'">');
         console.log(row.attr("data-value")+" data-value on the tr");
-        var checkbox = "<input type = 'checkbox' class = 'checkbox' id ='" + parseInt(displayData.stumpID) + "'>";
+        var checkbox = "<input type = 'checkbox' class = 'checkbox' value='unchecked' id ='" + parseInt(displayData.stumpID) + "'>";
 
         row.append('<td data-value="'+firebaseKey+'">' + displayData.creator +
          '</td> <td><div>'+ displayData.locationName+'</div></td> <td>' + displayData.stumpees + '</td> <td>' + 
           displayData.date + '</td> <td>' + displayData.availability + 
-         '</td> <td>' + checkbox + '</td> <td></tr>');
+         '</td> <td>' + checkbox + '</td> <td></td></tr>');
         
         $("#stumps").append(row);
 
@@ -193,12 +193,10 @@ function buildTable(){
 
         //**************************************************************************************
         //I am inside the ".btn-user" function adding remove buttons when the users is selected
-        //appends a button to remove the stump *****still need to only append it for the creator
+        //appends a button to remove the stump 
         //kaylea
         addRemoveBtn(stumpObject.creator);
 
-        //as of now the user has to select their name again after 
-        //submitting the create stump form in order to see the ".remove-btn"
         //**************************************************************************************
 
     });
@@ -375,6 +373,37 @@ function buildTable(){
 
     //  Join stump meetup location  //
     $(document).on("click", ".join-btn", function() {
+        var numRows = $('#stumps tr').length;
+        for(i=0; i<numRows; i++){
+            //loops through the table data to see if the selected user has a stump in there name  
+            console.log($("#stumps tr:eq('"+i+"') .checkbox").attr('value'))
+            if($("#stumps tr:eq('"+i+"') .checkbox").attr("value") === "checked"){
+                //gets the access key that was stored when the stump was created and saves it in itemId
+                var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
+                console.log("join this one! "+itemId);
+                console.log(itemId); //checks data-value being saved to button
+                //add user to object stumpees list
+                var stumpees;
+                database.ref(itemId).on("value", function(snapshot){
+                    stumpees = snapshot.val().stumpees;
+                    console.log("stumpees "+stumpees);
+                    if(stumpees === undefined){
+                        stumpees = stumpObject.creator+" ";
+                    }
+                    else{
+                        stumpees = stumpees+stumpObject.creator+" ";
+                    }
+                })
+
+                database.ref(itemId).update({stumpees: stumpees});
+                database.ref(itemId).on("value", function(snap)
+                    {$("#stumps tr:eq('"+i+"') td:eq('2')").html(snap.val().stumpees);})
+                $("#stumps tr:eq('"+i+"') td:eq('5')").html("<input type = 'checkbox' class = 'checkbox' value='unchecked'>");
+            }
+
+        }
+ 
+
         //stumpID = $(this).attr("data-stumpID");
         var stumps = [];
         database.ref().on("child_added", function(snapshot){
@@ -387,7 +416,13 @@ function buildTable(){
     });
 
     $(document).on("click", ".checkbox", function() {
-            $(this).addClass('checked');
+        if($(this).attr('value') === "unchecked"){
+            $(this).attr('value','checked');
+        }
+        else if($(this).attr('value') === "checked"){
+            $(this).attr('value','unchecked');
+        }
+
      });
 
 
