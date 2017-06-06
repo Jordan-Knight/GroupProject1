@@ -64,7 +64,7 @@ var stumpObject = {
     creator: "",
     availability: "",
     location: {},
-    stumpees: "",
+    stumpees: [],
     date: moment().format("MM/DD/YYYY"),
     locationName:"",
     address:"",
@@ -163,13 +163,13 @@ $(document).ready(function() {
 //   Build Stump table data -- called by firebase queries
 //
 function buildTable(){
-        var row = $('<tr class="stumpMap" data-value="'+firebaseKey+'">');
+        var row = $('<tr data-value="'+firebaseKey+'">');
         console.log(row.attr("data-value")+" data-value on the tr");
         var checkbox = "<input type = 'checkbox' class = 'checkbox' value='unchecked' id ='" + parseInt(displayData.stumpID) + "'>";
 
-        row.append('<td data-value="'+firebaseKey+'">' + displayData.creator +
-         '</td> <td><div>'+ displayData.locationName+'</div></td> <td>' + displayData.stumpees + '</td> <td>' + 
-          displayData.date + '</td> <td>' + displayData.availability + 
+        row.append('<td class="stumpMap" data-value="'+firebaseKey+'">' + displayData.creator +
+         '</td> <td class="stumpMap"><div>'+ displayData.locationName+'</div></td> <td class="stumpMap">' + displayData.stumpees + '</td> <td>' + 
+          displayData.date + '</td> <td class="stumpMap">' + displayData.availability + 
          '</td> <td>' + checkbox + '</td> <td></td></tr>');
         
         $("#stumps").append(row);
@@ -383,15 +383,15 @@ function buildTable(){
                 console.log("join this one! "+itemId);
                 console.log(itemId); //checks data-value being saved to button
                 //add user to object stumpees list
-                var stumpees;
+                var stumpees = [];
                 database.ref(itemId).on("value", function(snapshot){
-                    stumpees = snapshot.val().stumpees;
+                    stumpees.push(snapshot.val().stumpees);
                     console.log("stumpees "+stumpees);
                     if(stumpees === undefined){
-                        stumpees = stumpObject.creator+" ";
+                        stumpees.push(stumpObject.creator);
                     }
                     else{
-                        stumpees = stumpees+stumpObject.creator+" ";
+                        stumpees.push(stumpObject.creator);
                     }
                 })
 
