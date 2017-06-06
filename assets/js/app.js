@@ -404,14 +404,7 @@ function buildTable(){
         }
  
 
-        //stumpID = $(this).attr("data-stumpID");
-        var stumps = [];
-        database.ref().on("child_added", function(snapshot){
-        	snapshot.forEach(function(){
-
-        	});
-
-        });
+ 
         
     });
 
