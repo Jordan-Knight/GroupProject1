@@ -11,7 +11,7 @@ body {
 .banner {
 	background-color: #0d4c06;
 	color: #D9AF8B;
-	height: 90px;
+	min-height: 90px;
 	width: 100% !important;
 	top: 0px;
     letter-spacing: 0.05em;
@@ -19,7 +19,7 @@ body {
     text-align: center;
     margin: 0px !important;
     right: 0px !important;
-    position: fixed;
+    position: absolute;
 	z-index: 999;
 	box-shadow: 3px 3px 10px #000;
 }
@@ -86,7 +86,7 @@ h1 {
 
 /* Sets top margin so banner doesn't cover any of the main content area. -JB */
 .content {
-	margin: 120px 0px 0px 0px;
+	margin: 150px 0px 0px 0px;
 }
 /* Sets the table dimensions. -JB */
 th {
@@ -208,7 +208,7 @@ tbody {
 /* changes the sign-in button */
 #navContents {
 	float: right;
-	margin-right: 5%;
+	margin: 20px 5% 0px 0px;
 }
 
 .btn-default:hover {
@@ -220,5 +220,5 @@ tbody {
 }
 
 .navbar-btn {
-	margin: auto;
+	margin: 0px;
 }
