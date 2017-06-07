@@ -46,7 +46,14 @@ $(document).on("click","#createAccountSubmit", function(event){
 
   if(password == confirmPassword){
     //create user
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    var nextPage = false;
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+      nextPage = true;
+      if(nextPage=== true){
+        nextPage = false;
+        window.location = "signIn.html";
+      }
+    }).catch(function(error) {
       // Handle Errors here.
       var errorCode    = error.code;
       var errorMessage = error.message;
