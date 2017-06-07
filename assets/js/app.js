@@ -490,7 +490,7 @@ function buildTable(){
                 var stumpees = "";
                 if( snap.val().stumpees !== undefined){
                     stumpees+=snap.val().stumpees;
-                    stumpees.split(',');
+                    stumpees.split('<br>');
                     console.log(stumpees);
 
                     if(stumpees.includes(currentUser)){
