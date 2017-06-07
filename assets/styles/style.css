@@ -197,3 +197,8 @@ a:hover {
 tbody {
 	cursor: pointer;
 }
+
+#errMsg{
+	color:#E74C3C;
+	font-weight: 900;
+}
