@@ -193,3 +193,7 @@ a:hover {
 	color: #FFFFFF;
 	background-color: #286090;
 }
+/* Makes table body have a pointer so people know they can click it. -JB */
+tbody {
+	cursor: pointer;
+}
