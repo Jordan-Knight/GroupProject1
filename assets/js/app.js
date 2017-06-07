@@ -438,7 +438,6 @@ function buildTable(){
     });
 
     addRemoveBtn(stumpObject.creator);
-    addRemoveStumpeeBtn(stumpObject.creator);
 
 });
 
