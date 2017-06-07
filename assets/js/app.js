@@ -438,6 +438,7 @@ function buildTable(){
     });
 
     addRemoveBtn(stumpObject.creator);
+    addRemoveStumpeeBtn(stumpObject.creator);
 
 });
 
@@ -449,7 +450,7 @@ function buildTable(){
             //loops through the table data to see if the selected user has a stump in there name    
             if($("#stumps tr:eq('"+i+"') td:eq('0')").text() === currentUser || $("#stumps tr:eq('"+i+"') td:eq('0')").text() == ""){
                 //gets the access key that was stored when the stump was created and saves it in itemId
-                var itemId = $("#stumps tr:eq('"+i+"') td:eq('0')").attr("data-value");
+                var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
                 console.log(itemId); //checks data-value being saved to button
                 //adds the object key as a data-value to the remove-btn so the unique element can be located in the database
                 $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-btn">X</button>');
@@ -474,7 +475,7 @@ function buildTable(){
         var numRows = $('#stumps tr').length;
         for(i=0; i<numRows; i++){
             //removes all the removal buttons when a new user is selected
-            $("#stumps tr:eq('"+i+"') td:eq('6')").html("")
+            $("#stumps tr:eq('"+i+"')").attr("id",i);
             //loops through the table data to see if the selected user has a stump in there name
             var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
             database.ref(itemId).on("value",function(snap){
@@ -496,22 +497,24 @@ function buildTable(){
     $(document).on("click", ".remove-stumpee", function(){
         //gets the data-value of the remove-btn and stores it in removeThisNode
         var removeThisNode = $(this).closest('tr').attr("data-value");
-        console.log(removeThisNode); //check the data-value
+        var row = $(this).closest('tr').attr("id");
         var stumpees = "";
         //uses the data-value of the remove-btn to remove the stumpObject stored at that location in the database
         database.ref("/"+removeThisNode).on("value", function(snap){
             stumpees += snap.val().stumpees;
-            stumpees = stumpees.split(",");
-            var index = stumpees.indexOf(stumpObject.creator);
+            var stumpeesArray = stumpees.split(",");
+            var index = stumpeesArray.indexOf(stumpObject.creator);
             console.log(index);
             
-            stumpees.splice(index,1);
-            console.log(stumpees);
-            stumpees = stumpees.toString();
+            stumpeesArray.splice(index,1);
+            stumpees = stumpeesArray.toString();
+
         });
-        database.ref("/"+removeThisNode).update({stumpees:stumpees});
+        console.log(stumpees);
         //removes the item from the html table
-        $(this).closest('tr td:eq("2")').html(stumpees);
+        $('#stumps tr:eq("'+row+'") td:eq("2")').html(stumpees);
+        $("#stumps tr:eq('"+row+"') td:eq('6')").html("");
+        database.ref("/"+removeThisNode).update({stumpees:stumpees});
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
     });
         //--------------------------------------------------------------------------------------------
@@ -519,7 +522,7 @@ function buildTable(){
         //--------------------------------------------------------------------------------------------
         //changes the map to show the stump selected and adds details under the map
         $(document).on("click", ".stumpMap", function(){
-            var object = $(this).attr('data-value');
+            var object = $(this).closest('tr').attr('data-value');
             database.ref(object).on('value', function(snap){
                 var request = {
                   placeId: snap.val().placeId
