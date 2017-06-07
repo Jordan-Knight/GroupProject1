@@ -388,10 +388,10 @@ function buildTable(){
                     stumpees = snapshot.val().stumpees;
                     console.log("stumpees "+stumpees);
                     if(stumpees === undefined){
-                        stumpees = stumpObject.creator+",";
+                        stumpees = stumpObject.creator+"<br>";
                     }
                     else{
-                        stumpees +=stumpObject.creator+",";
+                        stumpees +=stumpObject.creator+"<br>";
                     }
 
                 })
@@ -511,7 +511,7 @@ function buildTable(){
         //uses the data-value of the remove-btn to remove the stumpObject stored at that location in the database
         database.ref("/"+removeThisNode).on("value", function(snap){
             stumpees += snap.val().stumpees;
-            var stumpeesArray = stumpees.split(",");
+            var stumpeesArray = stumpees.split("<br>");
             var index = stumpeesArray.indexOf(stumpObject.creator);
             console.log(index);
             
