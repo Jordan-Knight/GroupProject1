@@ -426,6 +426,11 @@ function buildTable(){
     //Create jQuery events to push a selected-user and selected-avail class to the element.
     $('.avail-btn').removeClass('selected-avail-btn');
 
+    if(firebase.auth().currentUser !== null){
+        var user = firebase.auth().currentUser;
+        stumpObject.creator = user.displayName;
+    }
+
     database.ref().push({
         creator: stumpObject.creator,
         availability: stumpObject.availability,
