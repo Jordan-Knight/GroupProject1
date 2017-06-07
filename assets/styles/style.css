@@ -146,6 +146,12 @@ table, th, td {
 	font-weight: 900 !important;
 }
 
+/* remove stumpee button -kb*/
+.remove-stumpee{
+	margin: 0px 0px 0px 20%;
+	font-weight: 900 !important;
+}
+
 /*this is going to be where we put place details of a selected stump! -KAYLEA!*/
 #placeInfo{
 	background-color: #D9AF8B;

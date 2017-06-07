@@ -498,14 +498,15 @@ function buildTable(){
             var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
             database.ref(itemId).on("value",function(snap){
                 var stumpees = "";
-                stumpees+=snap.val().stumpees;
-                stumpees.split(',');
-                console.log(stumpees);
                 if( snap.val().stumpees !== undefined){
+                    stumpees+=snap.val().stumpees;
+                    stumpees.split(',');
+                    console.log(stumpees);
+
                     if(stumpees.includes(currentUser)){
                     //gets the access key that was stored when the stump was created and saves it in itemId
                     //adds the object key as a data-value to the remove-btn so the unique element can be located in the database
-                    $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-stumpee">X</button>');
+                    $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-warning remove-stumpee">X</button>');
                     }
                 }
             });  
