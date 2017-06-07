@@ -69,23 +69,39 @@ $("#signIn").on("click", function(event){
   console.log(email);
 
     //sign in existing user
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    var nextPage = false;
+    firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+      nextPage = true;
+      if(nextPage=== true){
+        nextPage = false;
+        window.location = "index.html";
+      }
+    }).catch(function(error) {
       // Handle Errors here.
+      nextPage = false;
       var errorCode    = error.code;
       var errorMessage = error.message;
       // ...
     });
 
+
 });
 
 $(document).on("click", "#signOut", function(){
+  var signedOut = false;
   firebase.auth().signOut().then(function() {
     // Sign-out successful.
-    console.log("signed out!");
+    console.log("signed out!"); 
+    signedOut = true;     
+    if(signedOut=== true){
+        signedOut = false;
+        window.location = "signIn.html";
+      }
     $("#navContents").html('<button type="button" id="signInPage" class="btn btn-default navbar-btn navbar-right">Sign In</button>')
 
   }).catch(function(error) {
     // An error happened.
+    signedOut=false;
     console.log("error signing out!");
   });
 });
@@ -107,7 +123,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     $("#navContents").html('<p class="navbar-text">Signed in as '+user.email+'</p>'+
       '<button type="button" id="signOut" class="btn btn-default navbar-btn navbar-right">Sign Out</button>')
-    // ...
+    
   } else {
     // User is signed out.
     // ...
