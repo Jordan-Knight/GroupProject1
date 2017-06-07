@@ -64,7 +64,7 @@ var stumpObject = {
     creator: "",
     availability: "",
     location: {},
-    stumpees: [],
+    stumpees: "",
     date: moment().format("MM/DD/YYYY"),
     locationName:"",
     address:"",
@@ -196,7 +196,7 @@ function buildTable(){
         //appends a button to remove the stump 
         //kaylea
         addRemoveBtn(stumpObject.creator);
-
+        addRemoveStumpeeBtn(stumpObject.creator);
         //**************************************************************************************
 
     });
@@ -383,16 +383,17 @@ function buildTable(){
                 console.log("join this one! "+itemId);
                 console.log(itemId); //checks data-value being saved to button
                 //add user to object stumpees list
-                var stumpees = [];
+                var stumpees;
                 database.ref(itemId).on("value", function(snapshot){
-                    stumpees.push(snapshot.val().stumpees);
+                    stumpees = snapshot.val().stumpees;
                     console.log("stumpees "+stumpees);
                     if(stumpees === undefined){
-                        stumpees.push(stumpObject.creator);
+                        stumpees = stumpObject.creator+",";
                     }
                     else{
-                        stumpees.push(stumpObject.creator);
+                        stumpees +=stumpObject.creator+",";
                     }
+
                 })
 
                 database.ref(itemId).update({stumpees: stumpees});
@@ -468,6 +469,51 @@ function buildTable(){
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
     });
 
+    function addRemoveStumpeeBtn(currentUser){
+        console.log("remove me from the stump!");
+        var numRows = $('#stumps tr').length;
+        for(i=0; i<numRows; i++){
+            //removes all the removal buttons when a new user is selected
+            $("#stumps tr:eq('"+i+"') td:eq('6')").html("")
+            //loops through the table data to see if the selected user has a stump in there name
+            var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
+            database.ref(itemId).on("value",function(snap){
+                var stumpees = "";
+                stumpees+=snap.val().stumpees;
+                stumpees.split(',');
+                console.log(stumpees);
+                if( snap.val().stumpees !== undefined){
+                    if(stumpees.includes(currentUser)){
+                    //gets the access key that was stored when the stump was created and saves it in itemId
+                    //adds the object key as a data-value to the remove-btn so the unique element can be located in the database
+                    $("#stumps tr:eq('"+i+"') td:eq('6')").html('<button type="button" data-value="'+itemId+'" class="btn btn-danger remove-stumpee">X</button>');
+                    }
+                }
+            });  
+        }
+    }
+
+    $(document).on("click", ".remove-stumpee", function(){
+        //gets the data-value of the remove-btn and stores it in removeThisNode
+        var removeThisNode = $(this).closest('tr').attr("data-value");
+        console.log(removeThisNode); //check the data-value
+        var stumpees = "";
+        //uses the data-value of the remove-btn to remove the stumpObject stored at that location in the database
+        database.ref("/"+removeThisNode).on("value", function(snap){
+            stumpees += snap.val().stumpees;
+            stumpees = stumpees.split(",");
+            var index = stumpees.indexOf(stumpObject.creator);
+            console.log(index);
+            
+            stumpees.splice(index,1);
+            console.log(stumpees);
+            stumpees = stumpees.toString();
+        });
+        database.ref("/"+removeThisNode).update({stumpees:stumpees});
+        //removes the item from the html table
+        $(this).closest('tr td:eq("2")').html(stumpees);
+        //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
+    });
         //--------------------------------------------------------------------------------------------
         //********************************************************************************************
         //--------------------------------------------------------------------------------------------
