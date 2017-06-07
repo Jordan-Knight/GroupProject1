@@ -438,7 +438,6 @@ function buildTable(){
     });
 
     addRemoveBtn(stumpObject.creator);
-    addRemoveStumpeeBtn(stumpObject.creator);
 
      var slackURL="https://hooks.slack.com/services/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";
      var payload={"text": "Hey yall someone just created an new stump, check it out! <https://alert-system.com/alerts/1234|Click here> for details!" }
