@@ -34,6 +34,8 @@ h1 {
     font-weight: 900 !important;
     font-size: 48px !important;
     font-family: 'Ubuntu' !important, sans-serif;
+    float: left;
+    margin-left: 5%;
 }
 /* Places the map on page with the apistuff. -JB */
 #apistuff, 
@@ -202,4 +204,17 @@ a:hover {
 /* Makes table body have a pointer so people know they can click it. -JB */
 tbody {
 	cursor: pointer;
+}
+/* changes the sign-in button */
+#navContents {
+	float: right;
+	margin-right: 5%;
+}
+
+.btn-default:hover {
+	box-shadow: 2px 2px 2px #000;
+}
+
+.form-control:hover {
+	box-shadow: 2px 2px 2px #000;
 }

@@ -28,6 +28,10 @@
 <!-- Establishes banner as a row. -JB -->
 <div class="banner row">
 	<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
+	<div id="navContents">
+	<br>
+	    	<button type="button" id="signInPage" class="btn btn-default navbar-btn">Sign in</button>
+	    </div>
 </div>
 <!-- Establishes main content area as a grid for bootstrap to work. -JB -->
 <body class="container">
@@ -35,16 +39,7 @@
 <div id="leaves">
 </div>
 <div class="content row">
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	    </div>
-	    <div id="navContents">
-	    	<button type="button" id="signInPage" class="btn btn-default navbar-btn">Sign in</button>
-	    </div>
-	  </div>
-	</nav>
-	<section class="user-input col-md-6">
+	<div class="user-input col-md-8">
 	<form>
 		<div class="form-group">
                   <label for="student-name-input">Student Name</label>
@@ -94,10 +89,10 @@
 				<tbody id="stumps">
 				</tbody>
 			</table>
-	</section>
+	</div>
 
 	<!-- Map display Happens here. -JB -->
-	<div id="apiStuff" class="col-md-4">
+	<div id="apiStuff" class="col-md-3">
 	  <section id="map"></section>
 	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_tV6Hz5kQdY1kRrBnl9TZH5sNymPX6Is&libraries=places&callback=initMap" async defer></script>
 	  <div id="placeInfo"></div>
