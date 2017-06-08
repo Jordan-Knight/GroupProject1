@@ -107,6 +107,9 @@ $(document).on("click", "#signOut", function(){
   });
 });
 
+$(document).on("click", "#signInPage", function(){
+  window.location = "signIn.html";
+});
 
 //user state is changed
 firebase.auth().onAuthStateChanged(function(user) {

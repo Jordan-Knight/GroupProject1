@@ -436,23 +436,6 @@ function buildTable(){
     $("#add-stump-btn").on("click", function(event) {
     event.preventDefault();
 
-    //Create jQuery events to push a selected-user and selected-avail class to the element.
-    $('.avail-btn').removeClass('selected-avail-btn');
-
-    database.ref().push({
-        creator: stumpObject.creator,
-        availability: stumpObject.availability,
-        location: stumpObject.location,
-        stumpees: "",
-        date: stumpObject.date,
-        placeId: stumpObject.placeId,
-        locationName : stumpObject.locationName,
-        stumpID : stumpObject.stumpID
-    });
-    addRemoveBtn(stumpObject.creator);
-    //addRemoveStumpeeBtn(stumpObject.creator);
-
-
 //-------------this is causing the create stump to duplicate each stump
     validateStumpCreate();
     if (createErr) {
