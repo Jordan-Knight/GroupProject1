@@ -181,8 +181,6 @@ function buildTable(){
 
 }
 
-
-<<<<<<< HEAD
     //************************************************************************************
     //    Event Handlers - Marya
     //
@@ -196,13 +194,6 @@ function buildTable(){
 
 
     // -----  Static button event handlers Name, Availability, Date Picker ------  //
-   
-=======
-//************************************************************************************
-//    Event Handlers - Marya
-//
-// -----  Static button event handlers Name, Availability, Date Picker ------  //
->>>>>>> 90203ce0290b0b9b84005e1300dda8c5bf73f0a4
 
     //  User Name buttons  //
     $(".btn-user").on("click", function() {
@@ -443,7 +434,7 @@ function buildTable(){
     // Create Stump button  //
     $("#add-stump-btn").on("click", function(event) {
     event.preventDefault();
-<<<<<<< HEAD
+
     //Create jQuery events to push a selected-user and selected-avail class to the element.
     $('.avail-btn').removeClass('selected-avail-btn');
 
@@ -462,8 +453,6 @@ function buildTable(){
         locationName : stumpObject.locationName,
         stumpID : stumpObject.stumpID
     });
-=======
->>>>>>> 90203ce0290b0b9b84005e1300dda8c5bf73f0a4
 
     validateStumpCreate();
     if (createErr) {
