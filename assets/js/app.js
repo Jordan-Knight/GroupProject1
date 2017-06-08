@@ -414,7 +414,7 @@ function buildTable(){
         $("#errMsg").empty();
         errMsg = ""
         if (stumpObject.creator == ""){
-            errMsg = errMsg + " SignIn to select stump user | ";
+            errMsg = errMsg + " Sign In to select stump user | ";
             createErr = true; 
         };
 

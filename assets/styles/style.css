@@ -206,7 +206,7 @@ a:hover {
 tbody {
 	cursor: pointer;
 }
-<<<<<<< HEAD
+
 /* changes the sign-in button */
 #navContents {
 	float: right;
@@ -239,10 +239,9 @@ tbody {
 	h1 {
 		margin-left: 5% !important;
 	}
-=======
+
 
 #errMsg{
 	color:#E74C3C;
 	font-weight: 900;
->>>>>>> 90203ce0290b0b9b84005e1300dda8c5bf73f0a4
 }
