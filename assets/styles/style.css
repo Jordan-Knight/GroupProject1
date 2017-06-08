@@ -35,7 +35,6 @@ h1 {
     font-size: 48px !important;
     font-family: 'Ubuntu' !important, sans-serif;
     float: left;
-    margin-left: 5%;
 }
 /* Places the map on page with the apistuff. -JB */
 #apistuff, 
@@ -87,6 +86,8 @@ h1 {
 /* Sets top margin so banner doesn't cover any of the main content area. -JB */
 .content {
 	margin: 150px 0px 0px 0px;
+	max-width: 1100px;
+	width: 100%;
 }
 /* Sets the table dimensions. -JB */
 th {
@@ -208,7 +209,7 @@ tbody {
 /* changes the sign-in button */
 #navContents {
 	float: right;
-	margin: 20px 5% 0px 0px;
+	margin: 20px 0px 0px 0px;
 }
 
 .btn-default:hover {
@@ -221,4 +222,20 @@ tbody {
 
 .navbar-btn {
 	margin: 0px;
+}
+
+.navHeader {
+	max-width: 1100px;
+	width: 100%;
+	margin: 0px auto;
+}
+
+@media screen and (max-width: 980px) {
+	#navContents {
+		margin-right: 5% !important;
+	}
+
+	h1 {
+		margin-left: 5% !important;
+	}
 }
