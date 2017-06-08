@@ -155,7 +155,7 @@ $(document).ready(function() {
             stumpObject.creator = user.displayName;
             console.log(stumpObject.creator);
             addRemoveBtn(stumpObject.creator);
-            addRemoveStumpeeBtn(stumpObject.creator);
+            //addRemoveStumpeeBtn(stumpObject.creator);
         }
     });
 //---------------------------------GET ITEMS FROM FIREBASE------------------------------------
@@ -449,10 +449,11 @@ function buildTable(){
         locationName : stumpObject.locationName,
         stumpID : stumpObject.stumpID
     });
-
     addRemoveBtn(stumpObject.creator);
-    addRemoveStumpeeBtn(stumpObject.creator);
+    //addRemoveStumpeeBtn(stumpObject.creator);
 
+
+//-------------this is causing the create stump to duplicate each stump
     validateStumpCreate();
     if (createErr) {
         $("#errMsg").html(errMsg);
@@ -473,7 +474,7 @@ function buildTable(){
         });
 
         addRemoveBtn(stumpObject.creator);
-        addRemoveStumpeeBtn(stumpObject.creator);  
+        //addRemoveStumpeeBtn(stumpObject.creator);  
          //var payload={"text": "Hey yall someone just created an new stump, check it out! <https://alert-system.com/alerts/1234|Click here> for details!" }
          slackMsg = "Hey y'all, " + stumpObject.creator + " just created a stump for " + stumpObject.date + " at " + stumpObject.locationName + " . Check it out!"
          var payload={"text": slackMsg}  
@@ -497,6 +498,7 @@ function buildTable(){
                 //found a solution to appending information to a specific column here: https://api.jquery.com/last-selector/
             }
         }
+        addRemoveStumpeeBtn(stumpObject.creator);
     }
 
 
@@ -506,7 +508,7 @@ function buildTable(){
         var removeThisNode = $(this).closest('tr').attr("data-value");
         console.log(removeThisNode); //check the data-value
         //uses the data-value of the remove-btn to remove the stumpObject stored at that location in the database
-        database.ref("/"+removeThisNode).remove();
+        database.ref(removeThisNode).remove();
         //removes the item from the html table
         $(this).closest('tr').remove();
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
@@ -521,8 +523,9 @@ function buildTable(){
             $("#stumps tr:eq('"+i+"')").attr("id",i);
             //loops through the table data to see if the selected user has a stump in there name
             var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
-            database.ref("/"+itemId).on("value",function(snap){
+            database.ref(itemId).on("value",function(snap){
                 var stumpees = "";
+                console.log(snap);
                 if( snap.val().stumpees !== undefined){
                     stumpees+=snap.val().stumpees;
                     stumpees.split('<br>');
