@@ -30,6 +30,10 @@ var filterStatus = false;
 var today = moment().format("MM/DD/YYYY");
 var displayData;
 var firebaseKey;
+var createErr = false; 
+var errMsg ="";
+var slackMsg="";
+var slackURL="https://hooks.slack.com/services/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";
 
 
 var users = [{
@@ -69,6 +73,7 @@ var stumpObject = {
     locationName:"",
     address:"",
     placeId:"",
+    meetingType:"",
     stumpID : 1
 };
 
@@ -175,9 +180,9 @@ function buildTable(){
         $("#stumps").append(row);
 
 }
-    console.log("Event Handlers Reached -- Start js Stump")
 
 
+<<<<<<< HEAD
     //************************************************************************************
     //    Event Handlers - Marya
     //
@@ -192,6 +197,12 @@ function buildTable(){
 
     // -----  Static button event handlers Name, Availability, Date Picker ------  //
    
+=======
+//************************************************************************************
+//    Event Handlers - Marya
+//
+// -----  Static button event handlers Name, Availability, Date Picker ------  //
+>>>>>>> 90203ce0290b0b9b84005e1300dda8c5bf73f0a4
 
     //  User Name buttons  //
     $(".btn-user").on("click", function() {
@@ -199,36 +210,29 @@ function buildTable(){
         console.log("Stump User selected is: " + stumpObject.creator);
         $(".btn-user").siblings().css({"background-color": "#0d4c06"});
         $(this).css({"background-color": "#000"});
-
-        //**************************************************************************************
-        //I am inside the ".btn-user" function adding remove buttons when the users is selected
-        //appends a button to remove the stump 
-        //kaylea
         addRemoveBtn(stumpObject.creator);
         addRemoveStumpeeBtn(stumpObject.creator);
-        //**************************************************************************************
-
     });
 
 
     //  User Availability buttons  //
-    
     $(".avail-btn").on("click", function() {
         stumpObject.availability = $(this).val();
         console.log("Stump user availability is: " + stumpObject.availability);
     });
 
+
     // Date Picker input //
     console.log("Default date is: " + stumpObject.date) 
     $(function() {
-    $('input[name="stumpDate"]').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-    }, 
-    function(start) {
-        stumpObject.date = moment(start).format("MM/DD/YYYY");
-        console.log("Date picked is " + stumpObject.date)
-    });
+        $('input[name="stumpDate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true
+        }, 
+        function(start) {
+            stumpObject.date = moment(start).format("MM/DD/YYYY");
+            console.log("Date picked is " + stumpObject.date)
+        });
     });
 
 
@@ -366,21 +370,11 @@ function buildTable(){
         }
 
     });
-    //************************************************************************************
+  //************************************************************************************
+  // ----- Dynamic button event handlers   ------//
+  //
 
- // ----- Dynamic button event handlers   ------//
- 
- //  View stump location button  //
- 	$(document).on("click", ".view-btn", function(){
-        //stumpID = $(this).attr("data-stumpID");
-          //try to insert code that will call back the location object from firebase
-
-         console.log("View Stump ID is: " + stumpID);
-    });   
-
-
-
-    //  Join stump meetup location  //
+     //  Join stump meetup location  //
     $(document).on("click", ".join-btn", function() {
         var numRows = $('#stumps tr').length;
         for(i=0; i<numRows; i++){
@@ -410,14 +404,11 @@ function buildTable(){
                     {$("#stumps tr:eq('"+i+"') td:eq('2')").html(snap.val().stumpees);})
                 $("#stumps tr:eq('"+i+"') td:eq('5')").html("<input type = 'checkbox' class = 'checkbox' value='unchecked'>");
             }
-
         }
- 
-
- 
-        
     });
 
+
+    //  Checkbox to select a stump  used in conjuction with the Join button  //
     $(document).on("click", ".checkbox", function() {
         if($(this).attr('value') === "unchecked"){
             $(this).attr('value','checked');
@@ -429,9 +420,30 @@ function buildTable(){
      });
 
 
+    // Validate data selections before creating a stump  //
+    function validateStumpCreate(){
+        $("#errMsg").empty();
+        errMsg = ""
+        if (stumpObject.creator == ""){
+            errMsg = errMsg + " SignIn to select stump user | ";
+            createErr = true; 
+        };
 
+        if(stumpObject.availability == ""){
+             errMsg = errMsg + " Select availability | ";
+            createErr = true;
+        };
+         if(stumpObject.locationName == ""){
+             errMsg = errMsg + " Select a location | ";
+            createErr = true;
+        };
+    };
+
+
+    // Create Stump button  //
     $("#add-stump-btn").on("click", function(event) {
     event.preventDefault();
+<<<<<<< HEAD
     //Create jQuery events to push a selected-user and selected-avail class to the element.
     $('.avail-btn').removeClass('selected-avail-btn');
 
@@ -450,15 +462,39 @@ function buildTable(){
         locationName : stumpObject.locationName,
         stumpID : stumpObject.stumpID
     });
+=======
+>>>>>>> 90203ce0290b0b9b84005e1300dda8c5bf73f0a4
 
-    addRemoveBtn(stumpObject.creator);
+    validateStumpCreate();
+    if (createErr) {
+        $("#errMsg").html(errMsg);
+        createErr = false;
+    }
+    else {
+        $('.avail-btn').removeClass('selected-avail-btn');
 
-     var slackURL="https://hooks.slack.com/services/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";
-     var payload={"text": "Hey yall someone just created an new stump, check it out! <https://alert-system.com/alerts/1234|Click here> for details!" }
-        $.post(slackURL,JSON.stringify(payload));
+        database.ref().push({
+            creator: stumpObject.creator,
+            availability: stumpObject.availability,
+            location: stumpObject.location,
+            stumpees: "",
+            date: stumpObject.date,
+            placeId: stumpObject.placeId,
+            locationName : stumpObject.locationName,
+            stumpID : stumpObject.stumpID
+        });
 
+        addRemoveBtn(stumpObject.creator);
+
+        
+         //var payload={"text": "Hey yall someone just created an new stump, check it out! <https://alert-system.com/alerts/1234|Click here> for details!" }
+         slackMsg = "Hey y'all, " + stumpObject.creator + " just created a stump for " + stumpObject.date + " at " + stumpObject.locationName + " . Check it out!"
+         var payload={"text": slackMsg}  
+         $.post(slackURL,JSON.stringify(payload));
+    }
 });
 
+    // Dynamically add Delete Stump buttons to each stump  //
     function addRemoveBtn(currentUser){
         var numRows = $('#stumps tr').length;
         for(i=0; i<numRows; i++){
@@ -476,6 +512,8 @@ function buildTable(){
         }
     }
 
+
+    //  Delete Stump buttons  //
     $(document).on("click", ".remove-btn", function(){
         //gets the data-value of the remove-btn and stores it in removeThisNode
         var removeThisNode = $(this).closest('tr').attr("data-value");
@@ -487,6 +525,7 @@ function buildTable(){
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
     });
 
+    // Dynamically add Delete Stumpee user buttons to each stump  //
     function addRemoveStumpeeBtn(currentUser){
         console.log("remove me from the stump!");
         var numRows = $('#stumps tr').length;
@@ -512,6 +551,7 @@ function buildTable(){
         }
     }
 
+    // Delete Stumpee from the Stumpee array  //
     $(document).on("click", ".remove-stumpee", function(){
         //gets the data-value of the remove-btn and stores it in removeThisNode
         var removeThisNode = $(this).closest('tr').attr("data-value");
