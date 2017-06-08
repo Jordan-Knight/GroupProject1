@@ -45,10 +45,8 @@ $(document).on("click","#createAccountSubmit", function(event){
   $("#confirmPassword").val("");
 
   if(password == confirmPassword){
-    var nextPage = false;
     //create user
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
-      nextPage=true;
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode    = error.code;
@@ -57,12 +55,6 @@ $(document).on("click","#createAccountSubmit", function(event){
       // ...
     });
     email.html
-
-      console.log(nextPage);
-      if(nextPage=== true){
-        nextPage = false;
-        window.location = "index.html";
-      }
 
   }
 
@@ -125,10 +117,17 @@ firebase.auth().onAuthStateChanged(function(user) {
           displayName: name,
         }).then(function() {
           console.log(user.displayName);
+          signedIn = true;
+          if(signedIn === true){
+          window.location = "index.html"
+          signedIn = false;
+        }
         }, function(error) {
           console.log("error updating displayName");
         });
     }
+
+
 
     $("#navContents").html('<p class="navbar-text">Signed in as '+user.email+'</p>'+
       '<button type="button" id="signOut" class="btn btn-default navbar-btn navbar-right">Sign Out</button>')
@@ -138,8 +137,6 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
   //email.html
 });
-
-
 
   
 })

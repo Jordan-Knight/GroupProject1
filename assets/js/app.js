@@ -147,12 +147,19 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //************************************************************************************
 //    Firebase listener -- on load firebase query for data 
 //
-$(document).ready(function() {
+$(window).on("load", function() {
+//---------------------------------SET CREATOR TO CURRENT USER---------------------------------
+    if(firebase.auth().currentUser !== null){
+        var user = firebase.auth().currentUser;
+        stumpObject.creator = user.displayName;
+        console.log(stumpObject.creator);
+    }
+
+//---------------------------------GET ITEMS FROM FIREBASE------------------------------------
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
         displayData = snapshot.val();
         buildTable();
-        
 
            		$.each(snapshot, function(){
            			var snapSid = parseInt(snapshot.val().stumpID) ;
@@ -178,20 +185,11 @@ function buildTable(){
          '</td> <td>' + checkbox + '</td> <td></td></tr>');
         
         $("#stumps").append(row);
-
 }
 
     //************************************************************************************
     //    Event Handlers - Marya
     //
-
-    // ---------------- Set user to user that is signed in ---------------- 
-        if(firebase.auth().currentUser !== null){
-            var user = firebase.auth().currentUser;
-            stumpObject.creator = user.displayName;
-            console.log(user);
-        }
-
 
     // -----  Static button event handlers Name, Availability, Date Picker ------  //
 
@@ -437,11 +435,6 @@ function buildTable(){
 
     //Create jQuery events to push a selected-user and selected-avail class to the element.
     $('.avail-btn').removeClass('selected-avail-btn');
-
-    /*if(firebase.auth().currentUser !== null){
-        var user = firebase.auth().currentUser;
-        stumpObject.creator = user.displayName;
-    }*/
 
     database.ref().push({
         creator: stumpObject.creator,
