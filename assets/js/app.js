@@ -148,11 +148,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //    Firebase listener -- on load firebase query for data 
 //
 $(document).ready(function() {
+//---------------------------------SET CREATOR TO CURRENT USER---------------------------------
+    $(window).on("load", function() {
+        if(firebase.auth().currentUser !== null){
+            var user = firebase.auth().currentUser;
+            stumpObject.creator = user.displayName;
+            console.log(stumpObject.creator);
+            addRemoveBtn(stumpObject.creator);
+            //addRemoveStumpeeBtn(stumpObject.creator);
+        }
+    });
+//---------------------------------GET ITEMS FROM FIREBASE------------------------------------
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
         displayData = snapshot.val();
         buildTable();
-        
 
            		$.each(snapshot, function(){
            			var snapSid = parseInt(snapshot.val().stumpID) ;
@@ -178,14 +188,13 @@ function buildTable(){
          '</td> <td>' + checkbox + '</td> <td></td></tr>');
         
         $("#stumps").append(row);
-
 }
 
+    //************************************************************************************
+    //    Event Handlers - Marya
+    //
 
-//************************************************************************************
-//    Event Handlers - Marya
-//
-// -----  Static button event handlers Name, Availability, Date Picker ------  //
+    // -----  Static button event handlers Name, Availability, Date Picker ------  //
 
     //  User Name buttons  //
     $(".btn-user").on("click", function() {
@@ -374,10 +383,10 @@ function buildTable(){
                     stumpees = snapshot.val().stumpees;
                     console.log("stumpees "+stumpees);
                     if(stumpees === undefined){
-                        stumpees = stumpObject.creator+",";
+                        stumpees = stumpObject.creator+"<br>";
                     }
                     else{
-                        stumpees +=stumpObject.creator+",";
+                        stumpees +=stumpObject.creator+"<br>";
                     }
 
                 })
@@ -408,7 +417,7 @@ function buildTable(){
         $("#errMsg").empty();
         errMsg = ""
         if (stumpObject.creator == ""){
-            errMsg = errMsg + " SignIn to select stump user | ";
+            errMsg = errMsg + " Sign In to select stump user | ";
             createErr = true; 
         };
 
@@ -427,6 +436,7 @@ function buildTable(){
     $("#add-stump-btn").on("click", function(event) {
     event.preventDefault();
 
+//-------------this is causing the create stump to duplicate each stump
     validateStumpCreate();
     if (createErr) {
         $("#errMsg").html(errMsg);
@@ -447,8 +457,7 @@ function buildTable(){
         });
 
         addRemoveBtn(stumpObject.creator);
-
-        
+        //addRemoveStumpeeBtn(stumpObject.creator);  
          //var payload={"text": "Hey yall someone just created an new stump, check it out! <https://alert-system.com/alerts/1234|Click here> for details!" }
          slackMsg = "Hey y'all, " + stumpObject.creator + " just created a stump for " + stumpObject.date + " at " + stumpObject.locationName + " . Check it out!"
          var payload={"text": slackMsg}  
@@ -472,6 +481,7 @@ function buildTable(){
                 //found a solution to appending information to a specific column here: https://api.jquery.com/last-selector/
             }
         }
+        addRemoveStumpeeBtn(stumpObject.creator);
     }
 
 
@@ -481,7 +491,7 @@ function buildTable(){
         var removeThisNode = $(this).closest('tr').attr("data-value");
         console.log(removeThisNode); //check the data-value
         //uses the data-value of the remove-btn to remove the stumpObject stored at that location in the database
-        database.ref("/"+removeThisNode).remove();
+        database.ref(removeThisNode).remove();
         //removes the item from the html table
         $(this).closest('tr').remove();
         //https://stackoverflow.com/questions/23249130/delete-table-row-using-jquery
@@ -498,9 +508,10 @@ function buildTable(){
             var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
             database.ref(itemId).on("value",function(snap){
                 var stumpees = "";
+                console.log(snap);
                 if( snap.val().stumpees !== undefined){
                     stumpees+=snap.val().stumpees;
-                    stumpees.split(',');
+                    stumpees.split('<br>');
                     console.log(stumpees);
 
                     if(stumpees.includes(currentUser)){
@@ -522,7 +533,7 @@ function buildTable(){
         //uses the data-value of the remove-btn to remove the stumpObject stored at that location in the database
         database.ref("/"+removeThisNode).on("value", function(snap){
             stumpees += snap.val().stumpees;
-            var stumpeesArray = stumpees.split(",");
+            var stumpeesArray = stumpees.split("<br>");
             var index = stumpeesArray.indexOf(stumpObject.creator);
             console.log(index);
             
