@@ -147,14 +147,17 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //************************************************************************************
 //    Firebase listener -- on load firebase query for data 
 //
-$(window).on("load", function() {
+$(document).ready(function() {
 //---------------------------------SET CREATOR TO CURRENT USER---------------------------------
-    if(firebase.auth().currentUser !== null){
-        var user = firebase.auth().currentUser;
-        stumpObject.creator = user.displayName;
-        console.log(stumpObject.creator);
-    }
-
+    $(window).on("load", function() {
+        if(firebase.auth().currentUser !== null){
+            var user = firebase.auth().currentUser;
+            stumpObject.creator = user.displayName;
+            console.log(stumpObject.creator);
+            addRemoveBtn(stumpObject.creator);
+            addRemoveStumpeeBtn(stumpObject.creator);
+        }
+    });
 //---------------------------------GET ITEMS FROM FIREBASE------------------------------------
     database.ref().orderByChild("date").startAt(today).on("child_added", function(snapshot) {
         firebaseKey = snapshot.V.path.o[0];//this is the id for the element stored in the database
@@ -447,6 +450,9 @@ function buildTable(){
         stumpID : stumpObject.stumpID
     });
 
+    addRemoveBtn(stumpObject.creator);
+    addRemoveStumpeeBtn(stumpObject.creator);
+
     validateStumpCreate();
     if (createErr) {
         $("#errMsg").html(errMsg);
@@ -467,8 +473,7 @@ function buildTable(){
         });
 
         addRemoveBtn(stumpObject.creator);
-
-        
+        addRemoveStumpeeBtn(stumpObject.creator);  
          //var payload={"text": "Hey yall someone just created an new stump, check it out! <https://alert-system.com/alerts/1234|Click here> for details!" }
          slackMsg = "Hey y'all, " + stumpObject.creator + " just created a stump for " + stumpObject.date + " at " + stumpObject.locationName + " . Check it out!"
          var payload={"text": slackMsg}  
@@ -516,7 +521,7 @@ function buildTable(){
             $("#stumps tr:eq('"+i+"')").attr("id",i);
             //loops through the table data to see if the selected user has a stump in there name
             var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
-            database.ref(itemId).on("value",function(snap){
+            database.ref("/"+itemId).on("value",function(snap){
                 var stumpees = "";
                 if( snap.val().stumpees !== undefined){
                     stumpees+=snap.val().stumpees;
