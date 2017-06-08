@@ -28,7 +28,13 @@
 </head>
 <!-- Establishes banner as a row. -JB -->
 <div class="banner row">
-	<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
+	<div class="navHeader">
+		<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
+		<!-- Where user sign-in appears. -JB -->
+			<div id="navContents">
+    			<button type="button" id="signInPage" class="btn btn-default navbar-btn">Sign in</button>
+    		</div>
+    </div>
 </div>
 <!-- Establishes main content area as a grid for bootstrap to work. -JB -->
 <body class="container">
@@ -37,19 +43,10 @@
 </div>
 
 <div class="content row">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    </div>
-    <div id="navContents">
-    	<button type="button" id="signInPage" class="btn btn-default navbar-btn">Sign in</button>
-    </div>
-  </div>
-</nav>
 	<form class="user-input" style="background-color: #D9AF8B; margin:30px;">
 	  <div id="userInfo">
 		  <div class="form-group" style="margin: 30px;">
-		    <label for="email">Email address</label>
+		    <label for="email">Email Address</label>
 		    <input style="border:none;" type="email" class="form-control" id="userEmail" placeholder="Email">
 		  </div>
 		  <div class="form-group" style="margin: 30px;">
