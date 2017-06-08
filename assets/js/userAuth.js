@@ -15,6 +15,7 @@ var userId;
 var email; 
 var password;
 var confirmPassword;
+var signedIn;
 
 $("#createAccount").on("click", function(event){
       $('#userInfo').prepend('<div class="form-group" style="margin: 30px;">'+
@@ -32,7 +33,6 @@ $("#createAccount").on("click", function(event){
 
 $(document).on("click","#createAccountSubmit", function(event){
   event.preventDefault();
-  console.log("create");
   name            = $("#userName").val();
   email           = $("#userEmail").val();
   password        = $("#userPassword").val();
@@ -45,14 +45,10 @@ $(document).on("click","#createAccountSubmit", function(event){
   $("#confirmPassword").val("");
 
   if(password == confirmPassword){
-    //create user
     var nextPage = false;
+    //create user
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
-      nextPage = true;
-      if(nextPage=== true){
-        nextPage = false;
-        window.location = "signIn.html";
-      }
+      nextPage=true;
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode    = error.code;
@@ -61,6 +57,13 @@ $(document).on("click","#createAccountSubmit", function(event){
       // ...
     });
     email.html
+
+      console.log(nextPage);
+      if(nextPage=== true){
+        nextPage = false;
+        window.location = "index.html";
+      }
+
   }
 
 });
@@ -90,7 +93,6 @@ $("#signIn").on("click", function(event){
       var errorMessage = error.message;
       // ...
     });
-
 
 });
 
@@ -130,7 +132,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     $("#navContents").html('<p class="navbar-text">Signed in as '+user.email+'</p>'+
       '<button type="button" id="signOut" class="btn btn-default navbar-btn navbar-right">Sign Out</button>')
-    
   } else {
     // User is signed out.
     // ...
@@ -140,5 +141,5 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 
-
+  
 })

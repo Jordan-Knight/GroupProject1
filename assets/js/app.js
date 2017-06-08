@@ -181,6 +181,15 @@ function buildTable(){
     //************************************************************************************
     //    Event Handlers - Marya
     //
+
+    // ---------------- Set user to user that is signed in ---------------- 
+        if(firebase.auth().currentUser !== null){
+            var user = firebase.auth().currentUser;
+            stumpObject.creator = user.displayName;
+            console.log(user);
+        }
+
+
     // -----  Static button event handlers Name, Availability, Date Picker ------  //
    
 
@@ -426,10 +435,10 @@ function buildTable(){
     //Create jQuery events to push a selected-user and selected-avail class to the element.
     $('.avail-btn').removeClass('selected-avail-btn');
 
-    if(firebase.auth().currentUser !== null){
+    /*if(firebase.auth().currentUser !== null){
         var user = firebase.auth().currentUser;
         stumpObject.creator = user.displayName;
-    }
+    }*/
 
     database.ref().push({
         creator: stumpObject.creator,
