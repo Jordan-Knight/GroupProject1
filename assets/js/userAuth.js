@@ -24,36 +24,57 @@ $("#createAccount").on("click", function(event){
                             '<label for="confirmPassword">Confirm Password</label>'+
                             '<input type="password" style="border:none;" class="form-control"'+ 
                             'id="confirmPassword" placeholder="Reenter your password"></div>');
+      $('#password').prepend('<div id="password-alert"></div>');
       $('#buttons').empty();
       $('#buttons').html('<button style="margin: 30px; border:none"; type="submit" '+
                          'class="btn btn-default" id="createAccountSubmit">Create Account</button>');
 });
 
+
+$(document).on('keyup', "input#confirmPassword",function () { 
+  var pw = $("#userPassword");
+  var cpw = $("#confirmPassword");
+  if(pw.val()!=="" && pw.val() === cpw.val()){ 
+    pw.css("background-color", "#b9ffaf");
+    cpw.css("background-color", "#b9ffaf");
+  }
+  else{
+    pw.css("background-color", "#ffc7b2");
+    cpw.css("background-color", "#ffc7b2");
+  }
+   
+});
+
+
 $(document).on("click","#createAccountSubmit", function(event){
   event.preventDefault();
+  $("#alerts").empty();
+  $("#password-alert").empty();
   name            = $("#userName").val();
   email           = $("#userEmail").val();
   password        = $("#userPassword").val();
   confirmPassword = $("#confirmPassword").val();
   console.log(email);
 
-  $("#userName").val("");
-  $("#userEmail").val("");
-  $("#userPassword").val("");
-
-
   if(password == confirmPassword){
     //create user
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+      $("#userName").val("");
+      $("#userEmail").val("");
+      $("#userPassword").val("");
+      $("#confirmPassword").val("");
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode    = error.code;
       var errorMessage = error.message;
       console.log(errorMessage);
+      $('#alerts').prepend('<div class="alert alert-danger" role="alert">'+errorMessage+'</div>');
       // ...
     });
     email.html
-
+  }
+  else{
+      $('#password-alert').prepend('<div class="alert alert-danger" role="alert">Your passwords do not match!</div>');
   }
 
 });
