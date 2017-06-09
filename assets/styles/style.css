@@ -250,7 +250,13 @@ tbody {
 		margin-left: 5% !important;
 	}
 
-@media screen and (max-width: 555px) {
+@media screen and (max-width: 560px) {
+	#navContents {
+		margin: 0px !important;
+	}
+}
+
+@media screen and (max-width: 535px) {
 	.content {
 		margin: 215px 0px 0px 0px;
 	}
