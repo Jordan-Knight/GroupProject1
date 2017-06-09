@@ -117,6 +117,10 @@ firebase.auth().onAuthStateChanged(function(user) {
           console.log("error updating displayName");
         });
     }
+    else{  var pathSplit = window.location.pathname.split('/')
+          if (pathSplit[pathSplit.length-1] !== 'stumpPage.html'){
+          window.location = "stumpPage.html"
+          }}
 
     // window.location = "stumpPage.html"
     console.log(window.location)
