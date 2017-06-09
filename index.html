@@ -6,7 +6,7 @@
 	<meta name="keywords" content="coding, bootcamp, part-time, student, meetup">
 	<meta name="authors" content="Jordan Knight, Marya Crigler, Anthony Pekearo, Kaylea Box, John Bendfeldt">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>STUMP</title>
+	<title>STUMP Sign In</title>
 	<!-- Bootstrap csss link. -John Bendfeldt jfbendfeldt@gmail.com -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
@@ -23,82 +23,47 @@
 	<!--  javascript for STUMP -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
 	<script type="text/javascript" src="assets/js/userAuth.js"></script>
+	
 
 </head>
 <!-- Establishes banner as a row. -JB -->
 <div class="banner row">
 	<div class="navHeader">
 		<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
-			<div id="navContents" class="col-sm-15">
-	    		<button type="button" id="signInPage" class="btn btn-default navbar-btn">Sign in</button>
-	    	</div>
-	</div>
+		<!-- Where user sign-in appears. -JB -->
+			<div id="navContents">
+    			<button type="button" id="signInPage" class="btn btn-default navbar-btn">Sign in</button>
+    		</div>
+    </div>
 </div>
 <!-- Establishes main content area as a grid for bootstrap to work. -JB -->
 <body class="container">
 <!-- Establishes leaves for animation. -JB -->
 <div id="leaves">
 </div>
-<div class="content row">
-	<div class="user-input col-md-8">
-	<form>
-		<div class="form-group">
-                  <label for="student-name-input">Student Name</label>
-                  <br>
-                  <!-- User selection happens here. -JB -->
-                  <div>
-                  <button type="button" id="tony" data-value="Tony" class="buttons btn-user">Tony</button>
-                  <button type="button" id="kaylea" data-value="Kaylea" class="buttons btn-user">Kaylea</button>
-                  <button type="button" id="marya" data-value="Yaya" class="buttons btn-user">Marya</button>
-                  <button type="button" id="jordan" data-value="Jordan" class="buttons btn-user">Jordan</button>
-                  <button type="button" id="john" data-value="John" class="buttons btn-user">John</button>
-                  </div>
-                </div>
-                <label for="availability-input">Availability</label>
-                <br>
-                <!-- Selecting availability for stump time. -JB -->
-                <input type="text" name="stumpDate" />
-                <div class="col-sm-15">
-					<select class ="avail-btn" name="Availability">
-                		<option value="">No Availability</option>
-                		<option data-value="Morning" class="select-morning">Morning</option>
-                		<option data-value="Afternoon" class="select-afternoon">Afternoon</option>
-                		<option data-value="Evening" class="select-evening">Evening</option>
-                	</select>
-                </div>
-                <br>
-                <!-- Select a location with this button. -JB -->
-                <button type="button" class="buttons" id="places">Get Places <span class="glyphicon glyphicon-road" aria-hidden="true"></button>   
-                <!-- Create a stump here. Pushing data to the table. -JB -->             
-                <button type="button" class="buttons" id="add-stump-btn" type="submit">Create Stump</button>
-                <button type="button" class="buttons join-btn" id="join-btn">Join Stump</button>
-                <button type="button" class="buttons filter-btn" id="filter-btn">Filter <span d="filterIcon" class="glyphicon glyphicon-calendar" aria-hidden="true"></span></button>
-                <br><span id="errMsg"></span>
-	</form>
-			<table>
-				<thead>
-                  <tr>
-					<th>Stump Leader</th>
-					<th>Location <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></th>
-					<th>Stumpees</th>
-					<th>Date <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></th>
-					<th>Time <span class="glyphicon glyphicon-time" aria-hidden="true"></span></th>
-					<th>Selected<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
-					<th>Delete<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
-					</tr>
-				</thead>
-				<tbody id="stumps">
-				</tbody>
-			</table>
-	</div>
 
-	<!-- Map display Happens here. -JB -->
-	<div id="apiStuff" class="col-md-3">
-	  <section id="map"></section>
-	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_tV6Hz5kQdY1kRrBnl9TZH5sNymPX6Is&libraries=places&callback=initMap" async defer></script>
-	  <div id="placeInfo"></div>
-	  <!--had to generate a new api key because is was throwing an error that the program could not access google places library. I believe there might be a cap on use? AIzaSyBNTLpbtTYUAjvokJlpdDVDTqxbHqFYDkg  AIzaSyC_tV6Hz5kQdY1kRrBnl9TZH5sNymPX6Is--> 
-	</div>
+<div class="content row">
+	<form class="user-input" style="background-color: #D9AF8B; margin:30px;">
+	  <div id="userInfo">
+		  <div class="form-group" style="margin: 30px;">
+		    <label for="email">Email Address</label>
+		    <input style="border:none;" type="email" class="form-control" id="userEmail" placeholder="Email">
+		  </div>
+		  <div class="form-group" style="margin: 30px;">
+		    <label for="password">Password</label>
+		    <input style="border:none;" type="password" class="form-control" id="userPassword" placeholder="Password">
+		  </div>
+	  </div>
+	  <div class="checkbox" >
+	    <label style="margin:30px;">
+	      <input type="checkbox"> Get email notifications?
+	    </label>
+	  </div>
+	  <div id="buttons">
+		  <button style="margin: 30px; border:none"; type="submit" class="btn btn-default" id="signIn">Sign In</button> or
+		  <button style="margin: 30px; border:none"; type="button" class="btn btn-default" id="createAccount">Create Account</button>
+	  </div>
+	</form>
 </div>
 
 </body>

@@ -76,7 +76,7 @@ $("#signIn").on("click", function(event){
       nextPage = true;
       if(nextPage=== true){
         nextPage = false;
-        window.location = "index.html";
+        window.location = "stumpPage.html";
       }
     }).catch(function(error) {
       // Handle Errors here.
@@ -96,7 +96,7 @@ $(document).on("click", "#signOut", function(){
     signedOut = true;     
     if(signedOut=== true){
         signedOut = false;
-        window.location = "signIn.html";
+        window.location = "index.html";
       }
     $("#navContents").html('<button type="button" id="signInPage" class="btn btn-default navbar-btn navbar-right">Sign In</button>')
 
@@ -108,7 +108,7 @@ $(document).on("click", "#signOut", function(){
 });
 
 $(document).on("click", "#signInPage", function(){
-  window.location = "signIn.html";
+  window.location = "index.html";
 });
 
 //user state is changed
@@ -122,7 +122,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           console.log(user.displayName);
           signedIn = true;
           if(signedIn === true){
-          window.location = "index.html"
+          window.location = "stumpPage.html"
           signedIn = false;
         }
         }, function(error) {
