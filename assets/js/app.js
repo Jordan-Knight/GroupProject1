@@ -34,6 +34,8 @@ var createErr = false;
 var errMsg ="";
 var slackMsg="";
 var slackURL="https://hooks.slack.com/services/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";
+var ckJoin = false;
+var joinErr = false;
 
 
 var users = [{
@@ -366,13 +368,18 @@ function buildTable(){
   // ----- Dynamic button event handlers   ------//
   //
 
-     //  Join stump meetup location  //
+// Validate data selections before creating a stump  //
+    
+    //  Join stump meetup location  //
     $(document).on("click", ".join-btn", function() {
+        $("#errMsg").empty();
+        ckJoin = false;
         var numRows = $('#stumps tr').length;
         for(i=0; i<numRows; i++){
             //loops through the table data to see if the selected user has a stump in there name  
             console.log($("#stumps tr:eq('"+i+"') .checkbox").attr('value'))
             if($("#stumps tr:eq('"+i+"') .checkbox").attr("value") === "checked"){
+                ckJoin=true;
                 //gets the access key that was stored when the stump was created and saves it in itemId
                 var itemId = $("#stumps tr:eq('"+i+"')").attr("data-value");
                 console.log("join this one! "+itemId);
@@ -395,8 +402,14 @@ function buildTable(){
                 database.ref(itemId).on("value", function(snap)
                     {$("#stumps tr:eq('"+i+"') td:eq('2')").html(snap.val().stumpees);})
                 $("#stumps tr:eq('"+i+"') td:eq('5')").html("<input type = 'checkbox' class = 'checkbox' value='unchecked'>");
-            }
+            } 
+
         }
+        if (!ckJoin){
+                 errMsg = " Select a Stump to join | ";
+                 $("#errMsg").html(errMsg);
+                 ckJoin = false;
+            };
     });
 
 
@@ -436,7 +449,6 @@ function buildTable(){
     $("#add-stump-btn").on("click", function(event) {
     event.preventDefault();
 
-//-------------this is causing the create stump to duplicate each stump
     validateStumpCreate();
     if (createErr) {
         $("#errMsg").html(errMsg);
