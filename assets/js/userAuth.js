@@ -71,16 +71,10 @@ $("#signIn").on("click", function(event){
   console.log(email);
 
     //sign in existing user
-    var nextPage = false;
     firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-      nextPage = true;
-      if(nextPage=== true){
-        nextPage = false;
-        window.location = "stumpPage.html";
-      }
+
     }).catch(function(error) {
       // Handle Errors here.
-      nextPage = false;
       var errorCode    = error.code;
       var errorMessage = error.message;
       // ...
@@ -90,16 +84,7 @@ $("#signIn").on("click", function(event){
 
 $(document).on("click", "#signOut", function(){
   var signedOut = false;
-  firebase.auth().signOut().then(function() {
-    // Sign-out successful.
-    console.log("signed out!"); 
-    signedOut = true;     
-    if(signedOut=== true){
-        signedOut = false;
-        window.location = "index.html";
-      }
-    $("#navContents").html('<button type="button" id="signInPage" class="btn btn-default navbar-btn navbar-right">Sign In</button>')
-
+  firebase.auth().signOut().then(function(){
   }).catch(function(error) {
     // An error happened.
     signedOut=false;
@@ -120,23 +105,27 @@ firebase.auth().onAuthStateChanged(function(user) {
           displayName: name,
         }).then(function() {
           console.log(user.displayName);
-          signedIn = true;
-          if(signedIn === true){
-          window.location = "stumpPage.html"
-          signedIn = false;
-        }
         }, function(error) {
           console.log("error updating displayName");
         });
     }
 
-
-
+    // window.location = "stumpPage.html"
+    console.log(window.location)
+    var pathSplit = window.location.pathname.split('/')
+    if (pathSplit[pathSplit.length-1] !== 'stumpPage.html'){
+          window.location = "stumpPage.html"
+    }
     $("#navContents").html('<p class="navbar-text">Signed in as '+user.email+'</p>'+
-      '<button type="button" id="signOut" class="btn btn-default navbar-btn navbar-right">Sign Out</button>')
+      '<button type="button" id="signOut" class="btn btn-default navbar-btn navbar-right">Sign Out</button>');
   } else {
     // User is signed out.
     // ...
+    var pathSplit = window.location.pathname.split('/')
+    if (pathSplit[pathSplit.length-1] !== 'index.html'){
+          window.location = "index.html"
+    }
+     $("#navContents").html('<button type="button" id="signInPage" class="btn btn-default navbar-btn navbar-right">Sign In</button>');
   }
   //email.html
 });
