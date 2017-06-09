@@ -37,7 +37,8 @@ h1 {
     float: left;
 }
 
-h2 {
+h2,
+h4 {
 	font-weight: 900;
 }
 /* Places the map on page with the apistuff. -JB */
