@@ -16,16 +16,6 @@ var confirmPassword;
 var signedIn;
 
 
-    //  Checkbox to select a stump  used in conjuction with the Join button  //
-    $(document).on("click", ".checkbox", function() {
-        if($(this).attr('value') === "unchecked"){
-            $(this).attr('value','checked');
-        }
-        else if($(this).attr('value') === "checked"){
-            $(this).attr('value','unchecked');
-        }
-
-     });
 
 $("#createAccount").on("click", function(event){
       $('#userInfo').prepend('<div class="form-group" style="margin: 10px;">'+
