@@ -471,7 +471,7 @@ function buildTable(){
         addRemoveBtn(stumpObject.creator);
         //addRemoveStumpeeBtn(stumpObject.creator);  
          //var payload={"text": "Hey yall someone just created an new stump, check it out! <https://alert-system.com/alerts/1234|Click here> for details!" }
-         slackMsg = "Hey y'all, " + stumpObject.creator + " just created a stump for " + stumpObject.date + " at " + stumpObject.locationName + " . Check it out!"
+         slackMsg = "Hey y'all, " + stumpObject.creator + " just created a stump for " + stumpObject.date + " at " + stumpObject.locationName + " . Check it out! <https://stumput.github.io/|Click here> for details!"
          var payload={"text": slackMsg}  
          $.post(slackURL,JSON.stringify(payload));
     }
