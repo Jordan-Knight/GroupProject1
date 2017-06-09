@@ -6,8 +6,8 @@
 	<meta name="keywords" content="coding, bootcamp, part-time, student, meetup">
 	<meta name="authors" content="Jordan Knight, Marya Crigler, Anthony Pekearo, Kaylea Box, John Bendfeldt">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>STUMP Sign In</title>
-<!-- jquery script. -JB -->
+	<title>STUMP Profile</title>
+	<!-- jquery script. -JB -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<!-- Bootstrap csss link. -John Bendfeldt jfbendfeldt@gmail.com -->
@@ -18,7 +18,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
-
 	<!-- Firebase script. -JB -->
 	<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 	<!-- moment js script. -JB -->
@@ -27,9 +26,10 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 	<!--  javascript for STUMP -->
+	<!--<script type="text/javascript" src="assets/js/app.js"></script>-->
 	<script type="text/javascript" src="assets/js/initFirebase.js"></script>
-	<script type="text/javascript" src="assets/js/app.js"></script>
-	<script type="text/javascript" src="assets/js/userAuth.js"></script>
+	<!--<script type="text/javascript" src="assets/js/userAuth.js"></script>-->
+	<script type="text/javascript" src="assets/js/profile.js"></script>
 	
 
 </head>
@@ -39,7 +39,18 @@
 		<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
 		<!-- Where user sign-in appears. -JB -->
 			<div id="navContents">
-    			<button type="button" id="signInPage" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign in</button>
+				<div class="btn-group">
+				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</button>
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <span class="caret"></span>
+				    <span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li><a class="browse-btn" href="stumpPage.html">Check Stumps</a></li>
+				    <li><a id="update-btn" href="#">Update Profile</a></li>
+				    <li><a id="signOut">Sign Out</a></li>
+				  </ul>
+				</div>
     		</div>
     </div>
 </div>
@@ -50,27 +61,28 @@
 </div>
 
 <div class="content row">
-	<form class="user-input" style="background-color: #D9AF8B; margin:30px;">
-	  <div id="userInfo">
-		  <div class="form-group" style="margin: 10px;">
-		    <label for="email">Email Address</label>
-		    <input style="border:none;" type="email" class="form-control" id="userEmail" placeholder="Email">
+	  <div class="user-input">
+		  <header class="row" id="profile-header" style="margin-left:30px;"><h3 id="profile-greet"></h3></header>
+		  <div class="row">
+		  	<div id="profile-img" class="col-md-4"><img id="stock-photo" src="assets/images/stumplogo.gif" width="200px"></div>
+		  	<div class="col-md-5" id="user-info">
+		  		<h4>User Info</h4>
+		  		<div class="row">
+			  		<div class="col-sm-9" id="user-name"> Name: </div>				  
+			  		<button type="button" class="btn btn-default buttons edit-name col-sm-1"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+		  		</div>
+		  		<div class="row">
+		  			<div id="user-email" class="col-sm-9"> Email: </div>
+		  			<button type="button" class="btn btn-default buttons edit-email col-sm-1"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+		  		</div>	  				  				  		
+		  	</div>
+		  	<div class="col-md-3" id="profile-buttons">
+		  		<h4>Take Action</h4>
+		  		<button type="button" class="buttons profile-btn browse-btn">Browse Stumps</button>	
+		  		<button type="button" class="buttons profile-btn" id="del-btn">Delete Account</button>	
+		  	</div>
 		  </div>
-		  <div class="form-group" style="margin: 10px;">
-		    <label for="password">Password</label>
-		    <input style="border:none;" type="password" class="form-control" id="userPassword" placeholder="Password">
-		  </div>
 	  </div>
-	  <div class="checkbox" >
-	    <label style="margin: 10px;">
-	      <input type="checkbox" value="unchecked"> Get email notifications?
-	    </label>
-	  </div>
-	  <div id="buttons">
-		  <button style="margin: 10px; border:none"; type="submit" class="btn btn-default" id="signIn">Sign In</button> or
-		  <button style="margin: 10px; border:none"; type="button" class="btn btn-default" id="createAccount">Create Account</button>
-	  </div>
-	</form>
 </div>
 
 </body>

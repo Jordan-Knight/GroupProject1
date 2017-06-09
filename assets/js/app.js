@@ -1,24 +1,3 @@
-var googleApi = {
-
-    key: "AIzaSyBUln0pM_BnfEb_h86rcctPuC5hECblXgY",
-    queryUrl: "https://maps.googleapis.com/maps/api/js?key=" + this.key + "&callback=initMap"
-
-};
-
-var config = {
-    apiKey: "AIzaSyD-ftcKUoOvdhzaeaXypzqjyzKrsoZMGr8",
-    authDomain: "stump-ddd23.firebaseapp.com",
-    databaseURL: "https://stump-ddd23.firebaseio.com",
-    projectId: "stump-ddd23",
-    storageBucket: "stump-ddd23.appspot.com",
-    messagingSenderId: "140581118335"
-};
-
-firebase.initializeApp(config);
-
-var database = firebase.database();
-
-
 
 
 var userID;

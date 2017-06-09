@@ -7,12 +7,17 @@
 	<meta name="authors" content="Jordan Knight, Marya Crigler, Anthony Pekearo, Kaylea Box, John Bendfeldt">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>STUMP</title>
-	<!-- Bootstrap csss link. -John Bendfeldt jfbendfeldt@gmail.com -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
-	<!-- jquery script. -JB -->
+<!-- jquery script. -JB -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!-- Bootstrap csss link. -John Bendfeldt jfbendfeldt@gmail.com -->
+	<<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 	<!-- Firebase script. -JB -->
 	<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 	<!-- moment js script. -JB -->
@@ -21,6 +26,7 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 	<!--  javascript for STUMP -->
+	<script type="text/javascript" src="assets/js/initFirebase.js"></script>
 	<script type="text/javascript" src="assets/js/app.js"></script>
 	<script type="text/javascript" src="assets/js/userAuth.js"></script>
 
@@ -29,9 +35,20 @@
 <div class="banner row">
 	<div class="navHeader">
 		<h1>STUMP<img src="assets/images/stumplogo.gif" width="60px"></h1>
-			<div id="navContents" class="col-sm-15">
-	    		<button type="button" id="signInPage" class="btn btn-default navbar-btn">Sign in</button>
-	    	</div>
+		<div id="navContents" class="col-sm-15">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</button>
+				    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <span class="caret"></span>
+				    <span class="sr-only">Toggle Dropdown</span>
+			  	</button>
+				<ul class="dropdown-menu">
+				   	<li><a class="browse-btn" href="stumpPage.html">Check Stumps</a></li>
+				    <li><a id="update-btn" href="#">Update Profile</a></li>
+				    <li><a id="signOut">Sign Out</a></li>
+				 </ul>
+			</div>		
+	    </div>
 	</div>
 </div>
 <!-- Establishes main content area as a grid for bootstrap to work. -JB -->
