@@ -24,6 +24,11 @@ var database = firebase.database();
 
 $(document).ready(function() {
 
+  //initilize popovers
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+
 $(document).on("click", "#signOut", function(){
   var signedOut = false;
   firebase.auth().signOut().then(function(){
@@ -38,7 +43,7 @@ $(document).on("click", "#signInPage", function(){
   window.location = "index.html";
 });
 
-$("#update-btn").on("click", function(){
+$(".update-btn").on("click", function(){
 	console.log("update your profile");
 	window.location = "profile.html";
 });

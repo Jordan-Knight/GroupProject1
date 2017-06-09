@@ -52,17 +52,21 @@ $(".edit-name").on("click", function(){
 });
 
 $(document).on("click","#update-name", function(){
-	var user = firebase.auth().currentUser;
+	var user    = firebase.auth().currentUser;
+	var newName = $("#new-name").val();
+	console.log(newName);
 
 	user.updateProfile({
 	  displayName: newName,
 	}).then(function() {
 	  // Update successful.
 	  console.log(user.displayName);
-	  $("#user-name").html('<div class="col-sm-9" id="user-name"> Name:'+user.displayName+' </div>');
+	  $("#user-name").html("Name: "+user.displayName);
 	}, function(error) {
 	  // An error happened.
 	});
+
+	$("#new-name").val("");
 });
 
 $(".edit-email").on("click", function(){
@@ -72,11 +76,18 @@ $(".edit-email").on("click", function(){
 $(document).on("click","#update-email", function(){
 	var user = firebase.auth().currentUser;
 
+	var newEmail = $("#new-email").val();
+	console.log(newEmail);
+
 	user.updateEmail(newEmail).then(function() {
 	  // Update successful.
+	  console.log(user.email);
+	  $("#user-email").html("Email: "+user.email);
 	}, function(error) {
 	  // An error happened.
 	});
+
+	$("#new-email").val("");
 });
 
 
