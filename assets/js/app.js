@@ -385,19 +385,24 @@ function buildTable(){
                 console.log("join this one! "+itemId);
                 console.log(itemId); //checks data-value being saved to button
                 //add user to object stumpees list
-                var stumpees;
+                var stumpees = "";
                 database.ref(itemId).on("value", function(snapshot){
-                    stumpees = snapshot.val().stumpees;
+                    stumpees += snapshot.val().stumpees;
+                    stumpees.split("<br>");
                     console.log("stumpees "+stumpees);
                     if(stumpees === undefined){
                         stumpees = stumpObject.creator+"<br>";
                     }
                     else{
-                        stumpees +=stumpObject.creator+"<br>";
+                        if(stumpees.includes(stumpObject.creator)){
+                            console.log("already in the stump");
+                        }
+                        else{stumpees +=stumpObject.creator+"<br>";}
                     }
 
                 })
 
+                stumpees.toString();
                 database.ref(itemId).update({stumpees: stumpees});
                 database.ref(itemId).on("value", function(snap)
                     {$("#stumps tr:eq('"+i+"') td:eq('2')").html(snap.val().stumpees);})
