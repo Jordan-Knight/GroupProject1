@@ -282,6 +282,9 @@ function buildTable(){
                 radius: 2500,
                 type: ['cafe']
             }, callback);
+            $('html, body').animate({
+                scrollTop: $("#apiStuff").offset().top
+            }, 500);
         }
 
         function callback(results, status) {
