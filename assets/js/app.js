@@ -177,16 +177,6 @@ function buildTable(){
 
     // -----  Static button event handlers Name, Availability, Date Picker ------  //
 
-    //  User Name buttons  //
-    $(".btn-user").on("click", function() {
-        stumpObject.creator = $(this).attr("data-value");
-        console.log("Stump User selected is: " + stumpObject.creator);
-        $(".btn-user").siblings().css({"background-color": "#0d4c06"});
-        $(this).css({"background-color": "#000"});
-        addRemoveBtn(stumpObject.creator);
-        addRemoveStumpeeBtn(stumpObject.creator);
-    });
-
 
     //  User Availability buttons  //
     $(".avail-btn").on("click", function() {
@@ -261,6 +251,10 @@ function buildTable(){
                 radius: 2500,
                 type: ['cafe']
             }, callback);
+            //scroll to map on mobile click
+            $('html, body').animate({
+                scrollTop: $("#apiStuff").offset().top
+            }, 500);
         }
 
         function callback(results, status) {
@@ -327,7 +321,6 @@ function buildTable(){
                     placeInfo.html('<div id="placeName">Location: <span class="locationInfo">'+place.name+'</span></div>'+
                         '<div id="address">Address: <a href="'+place.url+'" id="googleMapUrl" target="_blank">'+place.formatted_address+'</a></div>'+
                         '<div id="website">Website: </div>');
-
                     if(place.website){
                         $("#website").append('<a href="'+place.website+'" target="_blank">'+place.website+'</a>');
                     }
@@ -556,7 +549,10 @@ function buildTable(){
                 };
 
                 console.log(request);
-
+                //scroll to map in mobile on click
+                    $('html, body').animate({
+                        scrollTop: $("#apiStuff").offset().top
+                    }, 500);
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: snap.val().location,
                     zoom: 14
