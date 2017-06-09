@@ -72,6 +72,10 @@ $("#signIn").on("click", function(event){
 
     //sign in existing user
     firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+      var pathSplit = window.location.pathname.split('/')
+      if (pathSplit[pathSplit.length-1] !== 'stumpPage.html'){
+        window.location = "stumpPage.html"
+      }
 
     }).catch(function(error) {
       // Handle Errors here.
@@ -105,6 +109,10 @@ firebase.auth().onAuthStateChanged(function(user) {
           displayName: name,
         }).then(function() {
           console.log(user.displayName);
+          var pathSplit = window.location.pathname.split('/')
+          if (pathSplit[pathSplit.length-1] !== 'stumpPage.html'){
+                window.location = "stumpPage.html"
+          }
         }, function(error) {
           console.log("error updating displayName");
         });
@@ -112,10 +120,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     // window.location = "stumpPage.html"
     console.log(window.location)
-    var pathSplit = window.location.pathname.split('/')
-    if (pathSplit[pathSplit.length-1] !== 'stumpPage.html'){
-          window.location = "stumpPage.html"
-    }
     $("#navContents").html('<p class="navbar-text">Signed in as '+user.email+'</p>'+
       '<button type="button" id="signOut" class="btn btn-default navbar-btn navbar-right">Sign Out</button>');
   } else {
