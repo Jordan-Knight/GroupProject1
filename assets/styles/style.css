@@ -235,7 +235,13 @@ tbody {
 	margin: 0px auto;
 }
 
+#errMsg{
+	color:#E74C3C;
+	font-weight: 900;
+}
+
 @media screen and (max-width: 980px) {
+
 	#navContents {
 		margin-right: 5% !important;
 	}
@@ -244,8 +250,8 @@ tbody {
 		margin-left: 5% !important;
 	}
 
-
-#errMsg{
-	color:#E74C3C;
-	font-weight: 900;
+@media screen and (max-width: 555px) {
+	.content {
+		margin: 215px 0px 0px 0px;
+	}
 }
