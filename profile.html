@@ -40,15 +40,15 @@
 		<!-- Where user sign-in appears. -JB -->
 			<div id="navContents">
 				<div class="btn-group">
-				  <button type="button" class="btn btn-default update-btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</button>
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  <button type="button" class="btn search-btn update-btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</button>
+				  <button type="button" class="btn search-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    <span class="caret"></span>
 				    <span class="sr-only">Toggle Dropdown</span>
 				  </button>
-				  <ul class="dropdown-menu">
-				    <li><a class="browse-btn" href="stumpPage.html">Check Stumps</a></li>
-				    <li><a class="update-btn" href="profile.html">Update Profile</a></li>
-				    <li><a id="signOut">Sign Out</a></li>
+				  <ul class="dropdown-menu dropdown-menu-right" style="background-color: #D9AF8B;">
+				    <li><button class="browse-btn search-btn search-menu">Check Stumps</button></li>
+				    <li><button class="update-btn search-btn search-menu">Update Profile</button></li>
+				    <li><button class="search-btn search-menu" id="signOut">Sign Out</button></li>
 				  </ul>
 				</div>
     		</div>
@@ -116,8 +116,8 @@
 		  	</div>
 		  	<div class="col-md-3" id="profile-buttons">
 		  		<h4>Take Action</h4>
-		  		<button type="button" class="buttons profile-btn browse-btn">Browse Stumps</button>	
-		  		<button type="button" class="buttons profile-btn" id="del-btn">Delete Account</button>	
+		  		<button type="button" class="buttons browse-btn">Browse Stumps</button>	
+		  		<button type="button" class="buttons" id="del-btn">Delete Account</button>	
 		  	</div>
 		  </div>
 	  </div>

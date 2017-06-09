@@ -68,7 +68,7 @@ h4 {
 	margin: 3px 0px;
 	padding: 5px 10px;
 }
-
+.search-btn:hover,
 .btn-user:hover,
 .buttons:hover {
 	background-color: #dddddd !important;
@@ -76,6 +76,8 @@ h4 {
 	box-shadow: 2px 2px 2px #000;
 }
 
+.search-btn:active:hover, 
+.search-btn:focus:hover,
 .buttons:active,
 .buttons:focus {
 	color: #D9AF8B !important;
@@ -83,10 +85,26 @@ h4 {
 	outline: none!important;
 }
 
+.search-btn:active:hover, 
+.search-btn:focus:hover,
 .buttons:active:hover,
 .buttons:focus:hover {
 	box-shadow: 2px 2px 2px #dddddd;
 }
+
+.search-btn {
+	border: none;
+	border-radius: 3px;
+	color: #0d4c06;
+	background-color: #D9AF8B;
+	margin: 3px 0px;
+	padding: 5px 10px;
+}
+
+.search-menu{
+	width: 99%;
+}
+
 
 /* Sets top margin so banner doesn't cover any of the main content area. -JB */
 .content {
