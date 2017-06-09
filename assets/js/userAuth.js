@@ -15,8 +15,6 @@ var password;
 var confirmPassword;
 var signedIn;
 
-
-
 $("#createAccount").on("click", function(event){
       $('#userInfo').prepend('<div class="form-group" style="margin: 10px;">'+
                              '<label for="userName">User Name</label>'+
