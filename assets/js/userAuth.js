@@ -27,7 +27,7 @@ $("#createAccount").on("click", function(event){
       $('#password').prepend('<div id="password-alert"></div>');
       $('#buttons').empty();
       $('#buttons').html('<button style="margin: 30px; border:none"; type="submit" '+
-                         'class="btn btn-default" id="createAccountSubmit">Create Account</button>');
+                         'class="btn buttons" id="createAccountSubmit">Create Account</button>');
 });
 
 
