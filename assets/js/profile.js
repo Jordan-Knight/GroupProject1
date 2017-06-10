@@ -47,10 +47,6 @@ $("#del-btn").on("click", function(){
 });
 
 
-$(".edit-name").on("click", function(){
-
-});
-
 $(document).on("click","#update-name", function(){
 	var user    = firebase.auth().currentUser;
 	var newName = $("#new-name").val();
@@ -67,10 +63,6 @@ $(document).on("click","#update-name", function(){
 	});
 
 	$("#new-name").val("");
-});
-
-$(".edit-email").on("click", function(){
-
 });
 
 $(document).on("click","#update-email", function(){
